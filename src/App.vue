@@ -1,26 +1,33 @@
 <template>
-  <div>
+  <v-app>
     <Header />
-    <p>alguma coisa
-      
-    </p>
-  </div>
+    <v-main>
+      <router-view />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
 import Header from "./components/header-app.vue";
+
 export default {
   components: { Header },
+  name: "App",
+
+  data: () => ({
+    //
+  }),
 };
 </script>
 
-<style lang="scss">
-*{
+
+<style lang="scss" scoped>
+* {
   margin: 0;
   padding: 0;
 }
 
-.dsg-flex-center{
+.dsg-flex-center {
   display: flex;
   align-items: center;
 }

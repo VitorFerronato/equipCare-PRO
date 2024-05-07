@@ -1,8 +1,6 @@
 <template>
-  <nav class="header dsg-flex-center">
-    <div class="">
-      <h4>Equip Care PRO</h4>
-    </div>
+  <nav class="header dsg-flex-center px-5">
+    <h4>Equip Care PRO</h4>
   </nav>
 </template>
 
