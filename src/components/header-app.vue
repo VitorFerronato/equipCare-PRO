@@ -7,18 +7,20 @@
 </template>
 
 <script>
-export default {
-    
-};
+export default {};
 </script>
 
 <style lang="scss">
 @import "../design/_colors.scss";
 @import "../design/_sizes.scss";
 .header {
-  background-color: #ccc;
   height: $header-height-lg;
-  @media (max-width: 1380px) {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  background-color: #ccc;
+
+  @media (max-width: $medium-breakpoint) {
     height: $header-height-md;
     background-color: red;
   }

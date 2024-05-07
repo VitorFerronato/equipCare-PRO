@@ -1,6 +1,9 @@
 <template>
   <div>
     <Header />
+    <p>alguma coisa
+      
+    </p>
   </div>
 </template>
 
