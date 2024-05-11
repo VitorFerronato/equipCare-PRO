@@ -2,7 +2,7 @@
   <v-app>
     <Header />
     <v-main>
-      <router-view />
+      <router-view class="view"/>
     </v-main>
   </v-app>
 </template>
@@ -25,6 +25,10 @@ export default {
 * {
   margin: 0;
   padding: 0;
+}
+
+.view{
+  margin: 2rem 3rem;
 }
 
 .dsg-flex-center {

@@ -14,13 +14,11 @@ export default {};
 .header {
   height: $header-height-lg;
   width: 100%;
-  position: fixed;
-  top: 0;
   background-color: #ccc;
 
   @media (max-width: $medium-breakpoint) {
     height: $header-height-md;
-    background-color: red;
+    background-color: #ccc;
   }
 }
 </style>
