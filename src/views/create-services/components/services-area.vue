@@ -1,38 +1,67 @@
 <template>
   <div class="mt-4">
-    <Dsg-btn :title="'Adicionar serviço'" />
+    <Dsg-btn
+      :title="'Adicionar serviço'"
+      :icon="'mdi-plus'"
+      @click="addNewService"
+      class="mr-4"
+    />
+    <Dsg-btn :title="'salvar'" @click="saveEquipment" />
 
-    <v-card class="pa-4 mt-4">
-      <v-row align="center">
-        <v-col cols="12" md="5" lg="8">
-          <Dsg-text-field :title="'Nome do serviço'" />
-        </v-col>
-
-        <div class="mt-5">
-          <p>Próxima manutenção</p>
-          <p>22/08/2024 - 15:00</p>
-        </div>
-      </v-row>
-      <v-row>
-        <v-col>
-          <Dsg-text-field :title="'Intevalo de manutenção'" :tooltipText="'Alguma explicação'"/>
-        </v-col>
-        <v-col>
-          <Dsg-text-field :title="'Horas de uso'" />
-        </v-col>
-        <v-col>
-          <Dsg-text-field :title="'Dias de uso'" />
-        </v-col>
-      </v-row>
-    </v-card>
+    <Service-card
+      v-for="(service, index) in services"
+      :key="index"
+      :service="service"
+      :index="index"
+      @saveService="saveService"
+      @deleteService="deleteService"
+    />
   </div>
 </template>
 
 <script>
 import DsgBtn from "@/components/common/dsg-btn.vue";
-import DsgTextField from "@/components/common/dsg-text-field.vue";
+import ServiceCard from "./service-card.vue";
 export default {
-  components: { DsgBtn, DsgTextField },
+  components: { DsgBtn, ServiceCard },
+  data() {
+    return {
+      services: [
+        {
+          serviceName: null,
+          dateInterval: null,
+          workHours: null,
+          daysUsed: null,
+          nextMaintenance: null,
+        },
+      ],
+    };
+  },
+
+  methods: {
+    addNewService() {
+      this.services.push({
+        serviceName: null,
+        dateInterval: null,
+        workHours: null,
+        daysUsed: null,
+        nextMaintenance: null,
+      });
+    },
+
+    saveService(service, index) {
+      Object.assign(this.services[index], service);
+    },
+
+    deleteService(index) {
+      this.services.splice(index, 1);
+    },
+
+    saveEquipment() {
+      // envia os dados preenchidos
+      console.log(this.services);
+    },
+  },
 };
 </script>
 

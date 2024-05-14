@@ -1,5 +1,5 @@
 <template>
-  <v-btn prepend-icon="mdi-plus">
+  <v-btn :prepend-icon="icon">
     {{ title }}
   </v-btn>
 </template>
@@ -10,6 +10,10 @@ export default {
     title: {
       type: String,
       default: "Botão",
+    },
+    icon: {
+      type: String,
+      default: "",
     },
   },
 };
