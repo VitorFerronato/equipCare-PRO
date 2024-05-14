@@ -1,17 +1,15 @@
 <template>
   <div>
     <h2 class="mb-6">CRIAR EQUIPAMENTO</h2>
-      <New-equipment />
-      <New-service />
+    <New-equipment />
   </div>
 </template>
 
 <script>
 import NewEquipment from "./components/new-equipment.vue";
-import NewService from "./components/new-service.vue";
 
 export default {
-  components: { NewEquipment, NewService },
+  components: { NewEquipment },
   name: "create-equipment",
   data() {
     return {};
