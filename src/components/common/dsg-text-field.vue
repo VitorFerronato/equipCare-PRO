@@ -16,7 +16,6 @@
       :append-icon="appendIcon"
       @click:append="$emit('append', $event)"
       @input="$emit('input', $event)"
-      @blur="$emit('blur', $event)"
       hide-details
       variant="outlined"
       density="compact"

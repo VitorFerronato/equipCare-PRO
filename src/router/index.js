@@ -3,6 +3,10 @@ import createEquipment from "@/views/create-equipment/create-equipment-main.vue"
 import createServices from "@/views/create-services/create-services-main.vue"
 const routes = [
   {
+    path: "/",
+    redirect: 'create-equipment'
+  },
+  {
     path: '/create-equipment',
     component: createEquipment,
     name: 'create-equipment'
