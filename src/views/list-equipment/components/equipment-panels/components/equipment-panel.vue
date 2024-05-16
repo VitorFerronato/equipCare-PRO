@@ -1,21 +1,23 @@
 <template>
-  <v-expansion-panel>
+  <v-expansion-panel style="border-left: 5px solid red; border-radius: 5px">
     <v-expansion-panel-title>
-      <h4>TORNO MULTIUSO</h4>
+      <h4>{{ equipment.equipmentName }}</h4>
     </v-expansion-panel-title>
 
-    <v-expansion-panel-text>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minus aspernatur
-      in architecto dolorum temporibus fugiat sequi ipsum placeat et,
-      reprehenderit, consectetur possimus! Nemo reiciendis corporis eius
-      assumenda reprehenderit doloribus molestias.
-    </v-expansion-panel-text>
+    <Equipment-table-body :services="equipment.services" />
   </v-expansion-panel>
 </template>
 
 <script>
-export default {};
+import EquipmentTableBody from "./equipment-table-body.vue";
+export default {
+  components: { EquipmentTableBody },
+  props: ["equipment"],
+  data() {
+    return {};
+  },
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
 </style>

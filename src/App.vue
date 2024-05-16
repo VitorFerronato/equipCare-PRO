@@ -9,7 +9,6 @@
 
 <script>
 import Header from "./components/header-app.vue";
-
 export default {
   components: { Header },
   name: "App",
@@ -22,9 +21,25 @@ export default {
 
 
 <style lang="scss">
+@import "./design/_colors.scss";
+@import "./design/_fonts.scss";
+
+.v-application {
+  background-color: $body-color !important;
+}
+
+.header-color {
+  background-color: $header-color;
+}
+
+.text-white {
+  color: #fff;
+}
+
 * {
   margin: 0;
   padding: 0;
+  font-family: $font-base;
 }
 
 a {
@@ -41,24 +56,25 @@ a {
   align-items: center;
 }
 
+.red-border {
+  border-left: 6px solid red;
+  border-radius: 5px;
+  padding-left: 0.2rem;
+}
 .green-border {
   border-left: 6px solid green;
   border-radius: 5px;
-  padding-left: .2rem;
+  padding-left: 0.2rem;
 }
 .yellow-border {
   border-left: 6px solid yellow;
   border-radius: 5px;
-  padding-left: .2rem;
+  padding-left: 0.2rem;
 }
-.red-border {
-  border-left: 6px solid red;
-  border-radius: 5px;
-  padding-left: .2rem;
-}
-.blue-border {
+
+.orange-border {
   border-left: 6px solid blue;
   border-radius: 5px;
-  padding-left: .2rem;
+  padding-left: 0.2rem;
 }
 </style>

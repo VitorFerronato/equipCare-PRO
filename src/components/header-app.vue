@@ -1,6 +1,6 @@
 <template>
-  <nav class="header dsg-flex-center px-5">
-    <h4>Equip Care PRO</h4>
+  <nav class="header header-color dsg-flex-center px-5">
+    <h4 class="text-white">Equip Care PRO</h4>
   </nav>
 </template>
 
@@ -14,7 +14,6 @@ export default {};
 .header {
   height: $header-height-lg;
   width: 100%;
-  background-color: #ccc;
 
   @media (max-width: $medium-breakpoint) {
     height: $header-height-md;
