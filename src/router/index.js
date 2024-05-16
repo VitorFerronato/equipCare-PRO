@@ -1,10 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import createEquipment from "@/views/create-equipment/create-equipment-main.vue"
 import createServices from "@/views/create-services/create-services-main.vue"
+import listEquipments from "@/views/list-equipment/list-equipment-main.vue"
 const routes = [
   {
     path: "/",
-    redirect: 'create-equipment'
+    redirect: 'list-equipments'
   },
   {
     path: '/create-equipment',
@@ -15,6 +16,11 @@ const routes = [
     path: '/create-services/:id',
     component: createServices,
     name: 'create-services'
+  },
+  {
+    path: '/list-equipments',
+    component: listEquipments,
+    name: 'list-equipments'
   },
 ]
 

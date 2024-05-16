@@ -1,0 +1,13 @@
+{
+    "items": [
+        {
+            "equipmentName": "TORNO MULTIOSO C3PO4",
+            "ID": 1817,
+            "services": [
+                {
+                    "serviceName": "Troca de óleo compressor"
+                }
+            ]
+        }
+    ]
+}
