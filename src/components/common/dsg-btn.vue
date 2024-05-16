@@ -1,5 +1,5 @@
 <template>
-  <v-btn :prepend-icon="icon">
+  <v-btn :prepend-icon="icon" class="btn-color">
     {{ title }}
   </v-btn>
 </template>
@@ -19,5 +19,11 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+@import "@/design/_colors.scss";
+
+.btn-color {
+  background-color: $btn-color;
+  color: #fff;
+}
 </style>

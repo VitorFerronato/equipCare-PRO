@@ -57,23 +57,23 @@ a {
 }
 
 .red-border {
-  border-left: 6px solid red;
+  border-left: 6px solid $danger-color;
   border-radius: 5px;
   padding-left: 0.2rem;
 }
 .green-border {
-  border-left: 6px solid green;
+  border-left: 6px solid $success-color;
   border-radius: 5px;
   padding-left: 0.2rem;
 }
 .yellow-border {
-  border-left: 6px solid yellow;
+  border-left: 6px solid $warning-color;
   border-radius: 5px;
   padding-left: 0.2rem;
 }
 
 .orange-border {
-  border-left: 6px solid blue;
+  border-left: 6px solid orange;
   border-radius: 5px;
   padding-left: 0.2rem;
 }
