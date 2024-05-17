@@ -10,7 +10,8 @@
     :items="items"
     @update:modelValue="$emit('change', $event)"
     hide-details
-    item-title="text"
+    :item-title="itemTitle"
+    :item-value="itemValue"
     variant="outlined"
     density="compact"
     class="mt-1"
@@ -30,6 +31,14 @@ export default {
     tooltipText: {
       type: String,
       default: null,
+    },
+    itemTitle: {
+      type: String,
+      default: "text",
+    },
+    itemValue: {
+      type: String,
+      default: "value",
     },
   },
 };

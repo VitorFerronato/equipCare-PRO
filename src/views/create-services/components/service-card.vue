@@ -11,17 +11,25 @@
 
       <div class="mt-5">
         <p>Próxima manutenção</p>
-        <p>
-          {{ nextMaintenance }}
-        </p>
+        <p>{{ dsgFormatDate(nextMaintenance) }}</p>
       </div>
     </v-row>
     <v-row>
       <v-col>
         <Dsg-text-field
+          v-model="localService.dateInterval"
+          :title="'Rodagem'"
+          placeholder="Ex: 8000"
+          suffix="Horas"
+          type="number"
+          hide-spin-buttons
+        />
+      </v-col>
+      <v-col>
+        <Dsg-text-field
           v-model="localService.workHours"
           :title="'Horas de uso'"
-          placeholder="Ex: 1"
+          placeholder="Ex: 4"
           suffix="Horas"
           type="number"
           hide-spin-buttons
@@ -37,14 +45,6 @@
           hide-spin-buttons
         />
       </v-col>
-      <v-col>
-        <Dsg-combobox
-          v-model="localService.dateInterval"
-          :items="intervalItems"
-          :title="'Intervalo de manutenção'"
-          :tooltipText="'Alguma explicação'"
-        />
-      </v-col>
     </v-row>
 
     <v-row justify="end" no-gutters class="mt-4">
@@ -57,36 +57,16 @@
 <script>
 import DsgTextField from "@/components/common/dsg-text-field.vue";
 import DsgBtn from "@/components/common/dsg-btn.vue";
-import DsgCombobox from "@/components/common/dsg-combobox.vue";
-
+import { dsgFormatDate } from "@/utils/dsg-format-date.js";
 export default {
   props: ["service", "index"],
   components: {
     DsgTextField,
     DsgBtn,
-    DsgCombobox,
   },
   data() {
     return {
       localService: {},
-      intervalItems: [
-        {
-          text: "60 dias",
-          value: 60,
-        },
-        {
-          text: "90 dias",
-          value: 90,
-        },
-        {
-          text: "7 dias",
-          value: 7,
-        },
-        {
-          text: "15 dias",
-          value: 15,
-        },
-      ],
     };
   },
 
@@ -94,9 +74,18 @@ export default {
     nextMaintenance() {
       let service = this.localService;
 
-      let workHours = parseFloat(this.localService.workHours);
+      let workHours = parseFloat(service.workHours);
       let daysUsed = parseFloat(service.daysUsed);
-      return workHours * daysUsed;
+      let dateInterval = parseFloat(service.dateInterval);
+
+      let remainingHours = dateInterval - workHours * daysUsed;
+      const currentDate = new Date();
+
+      const nextMaintenanceDate = new Date(
+        currentDate.getTime() + remainingHours * 60 * 60 * 1000
+      );
+
+      return nextMaintenanceDate;
     },
   },
 
@@ -111,6 +100,8 @@ export default {
   },
 
   methods: {
+    dsgFormatDate,
+
     deleteService() {
       this.$emit("deleteService", this.index);
     },

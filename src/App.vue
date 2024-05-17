@@ -4,13 +4,15 @@
     <v-main>
       <router-view class="view" />
     </v-main>
+    <Snackbar />
   </v-app>
 </template>
 
 <script>
 import Header from "./components/header-app.vue";
+import Snackbar from "@/components/common/dsg-snackbar.vue";
 export default {
-  components: { Header },
+  components: { Header, Snackbar },
   name: "App",
 
   data: () => ({
@@ -80,5 +82,18 @@ a {
   border-left: 6px solid $success-color;
   border-radius: 5px;
   padding-left: 0.2rem;
+}
+
+.red-background {
+  border-left: 6px solid $danger-color;
+}
+.yellow-background {
+  border-left: 6px solid $warning-color;
+}
+.orange-background {
+  border-left: 6px solid orange;
+}
+.green-background {
+  border-left: 6px solid $success-color;
 }
 </style>

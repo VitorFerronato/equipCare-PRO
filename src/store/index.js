@@ -1,4 +1,7 @@
+// index.js
 import { createStore } from 'vuex'
+import snackbar from './snackbar'
+
 export default createStore({
   state: {
     equipments: [],
@@ -24,15 +27,15 @@ export default createStore({
       try {
         let response = await fetch("http://localhost:3000/equipments")
         let data = await response.json()
-
+        
         commit('LIST_EQUIPMENTS', data)
       } catch (error) {
         console.log(error);
+        commit('snackbar/set', { message: 'Erro ao carregar equipamentos', type: 'error' }, { root: true });
         commit('LIST_EQUIPMENTS', [])
       }
 
       state.listEquipmentsLoading = false
-
     },
 
     FILTER_ITEMS({ commit, state }, searchTerm) {
@@ -43,5 +46,6 @@ export default createStore({
     }
   },
   modules: {
+    snackbar
   }
 })
