@@ -1,44 +1,46 @@
 import { createStore } from 'vuex'
-
 export default createStore({
   state: {
-    equipments: [
-      {
-        equipmentName: "COP 5894 - TORNO MULTIUSO",
-        id: 17871,
-        services: [
-          {
+    equipments: [],
+    filteredEquipments: [],
+    listEquipmentsLoading: false
+  },
 
-            serviceName: "Troca de óleo",
-            workHours: 281,
-            daysUsed: 28,
-            dateInterval: 800,
-            nextMaintence: "22/08/2024 - 15:00",
-          },
-          {
-            serviceName: "Troca de engrenagem",
-            workHours: 87,
-            daysUsed: 5,
-            dateInterval: 41,
-            nextMaintence: "22/10/2024 - 22:00",
-          },
-          {
-            serviceName: "Troca da ventuinha de pano",
-            workHours: 70,
-            daysUsed: 10,
-            dateInterval: 80,
-            nextMaintence: "22/10/2024 - 22:00",
-          },
-        ]
-      }
-    ]
-  },
   mutations: {
-    // ADD_EQUIPMENT(state, payload) {
-    //   state.equipment = payload
-    // }
+    LIST_EQUIPMENTS(state, payload) {
+      state.equipments = payload
+      state.filteredEquipments = payload
+    },
+
+    SET_FILTERED_EQUIPMENTS(state, filtered) {
+      state.filteredEquipments = filtered;
+    }
   },
+
   actions: {
+    async GET_EQUIPMENTS({ commit, state }) {
+      state.listEquipmentsLoading = true
+
+      try {
+        let response = await fetch("http://localhost:3000/equipments")
+        let data = await response.json()
+
+        commit('LIST_EQUIPMENTS', data)
+      } catch (error) {
+        console.log(error);
+        commit('LIST_EQUIPMENTS', [])
+      }
+
+      state.listEquipmentsLoading = false
+
+    },
+
+    FILTER_ITEMS({ commit, state }, searchTerm) {
+      const filtered = state.equipments.filter(item =>
+        item.equipmentName.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      commit('SET_FILTERED_EQUIPMENTS', filtered);
+    }
   },
   modules: {
   }

@@ -1,5 +1,5 @@
 <template>
-  <v-btn :prepend-icon="icon" class="btn-color">
+  <v-btn :prepend-icon="icon" v-bind="$attrs" class="btn-color">
     {{ title }}
   </v-btn>
 </template>

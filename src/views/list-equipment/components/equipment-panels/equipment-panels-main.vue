@@ -4,6 +4,7 @@
       v-for="equipment in equipments"
       :key="equipment.id"
       :equipment="equipment"
+      class="mt-3"
     />
   </v-expansion-panels>
 </template>

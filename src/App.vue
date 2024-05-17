@@ -16,6 +16,11 @@ export default {
   data: () => ({
     //
   }),
+
+  methods: {},
+  created() {
+    this.$store.dispatch("GET_EQUIPMENTS", this.searchTerm);
+  },
 };
 </script>
 
@@ -61,19 +66,18 @@ a {
   border-radius: 5px;
   padding-left: 0.2rem;
 }
-.green-border {
-  border-left: 6px solid $success-color;
-  border-radius: 5px;
-  padding-left: 0.2rem;
-}
 .yellow-border {
   border-left: 6px solid $warning-color;
   border-radius: 5px;
   padding-left: 0.2rem;
 }
-
 .orange-border {
   border-left: 6px solid orange;
+  border-radius: 5px;
+  padding-left: 0.2rem;
+}
+.green-border {
+  border-left: 6px solid $success-color;
   border-radius: 5px;
   padding-left: 0.2rem;
 }

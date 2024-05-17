@@ -15,7 +15,6 @@
       v-bind="$attrs"
       :append-icon="appendIcon"
       @click:append="$emit('append', $event)"
-      @input="$emit('input', $event)"
       hide-details
       variant="outlined"
       density="compact"
