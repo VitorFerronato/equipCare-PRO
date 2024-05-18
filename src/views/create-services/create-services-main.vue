@@ -1,13 +1,13 @@
 <template>
   <div>
     <v-row v-if="!editName" align="center">
-      <h2>{{ equipmentName }}</h2>
+      <h2>{{ equipment.equipmentName }}</h2>
       <v-icon @click="editName = true" class="ml-4">mdi-pencil-box</v-icon>
     </v-row>
-
+    {{ equipment }}
     <v-row v-if="editName">
       <v-col cols="12" md="4" lg="6">
-        <Dsg-text-field v-model="equipmentName" />
+        <Dsg-text-field />
       </v-col>
 
       <div class="mt-5">
@@ -41,13 +41,30 @@ export default {
         },
       ],
       editName: false,
+      equipment: null,
     };
   },
 
   computed: {
-    equipmentName() {
-      return this.$route.params.id.toUpperCase();
+    equipamentsList() {
+      return this.$store?.state?.equipments ?? [];
     },
+  },
+
+  methods: {
+    verifyId(idParam) {
+      let foundedEquipment = this.equipamentsList.filter(
+        (el) => el.id == idParam
+      );
+      console.log(foundedEquipment);
+      if (foundedEquipment) this.equipment = foundedEquipment;
+    },
+  },
+
+  created() {
+    let idRouteParam = this.$route.params.id.toUpperCase();
+    if (!idRouteParam) this.$router.push("/list-equipments");
+    this.verifyId(idRouteParam);
   },
 };
 </script>

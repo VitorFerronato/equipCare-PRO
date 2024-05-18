@@ -3,10 +3,7 @@
     <v-row no-gutters justify="end" align="center" class="my-4">
       <Dsg-btn :title="'Editar'" :icon="'mdi-pencil'" />
     </v-row>
-    <v-data-table
-      :items="services"
-      :headers="headers"
-    >
+    <v-data-table :items="services" :headers="headers">
       <template v-slot:item="{ item }">
         <tr>
           <td :class="setBackground(item.semaphore)">
@@ -19,7 +16,7 @@
           <td>
             <div>
               <v-icon v-if="item.realized == 0">mdi-checkbox-marked</v-icon>
-              <v-icon v-if="item.realized == 1"
+              <v-icon @click="modalOpen = true" v-if="item.realized == 1"
                 >mdi-checkbox-blank-outline</v-icon
               >
             </div>
@@ -27,14 +24,20 @@
         </tr>
       </template>
     </v-data-table>
+    
+    <Confirm-date
+      :modalOpen="modalOpen"
+      @closeModal="modalOpen = false"
+    />
   </v-expansion-panel-text>
 </template>
 
 <script>
 import DsgBtn from "@/components/common/dsg-btn.vue";
+import ConfirmDate from "./confirm-date.vue";
 export default {
   props: ["services"],
-  components: { DsgBtn },
+  components: { DsgBtn, ConfirmDate },
   data() {
     return {
       headers: [
@@ -70,6 +73,7 @@ export default {
           sortable: true,
         },
       ],
+      modalOpen: false,
     };
   },
 

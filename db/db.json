@@ -163,5 +163,23 @@
                 }
             ]
         }
+    ],
+    "equipmentsByName": [
+        {
+            "equipmentName": "COP 5894 - TORNO MULTIUSO",
+            "id": 17871
+        },
+        {
+            "equipmentName": "COP 9788 - FRESA TESTE",
+            "id": 5844
+        },
+        {
+            "equipmentName": "Algum produto",
+            "id": 5787
+        },
+        {
+            "equipmentName": "COP 5471 - TECPIX",
+            "id": 444
+        }
     ]
 }
