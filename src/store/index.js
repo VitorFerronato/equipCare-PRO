@@ -1,7 +1,8 @@
 // index.js
 import { createStore } from 'vuex'
 import snackbar from './snackbar'
-
+import service from "@/service/list-equipments.js"
+const Service = new service()
 export default createStore({
   state: {
     equipments: [],
@@ -25,10 +26,8 @@ export default createStore({
       state.listEquipmentsLoading = true
 
       try {
-        let response = await fetch("http://localhost:3000/equipments")
-        let data = await response.json()
-        
-        commit('LIST_EQUIPMENTS', data)
+        let response = await Service.getEquipments()
+        commit('LIST_EQUIPMENTS', response?.data ?? [])
       } catch (error) {
         console.log(error);
         commit('snackbar/set', { message: 'Erro ao carregar equipamentos', type: 'error' }, { root: true });

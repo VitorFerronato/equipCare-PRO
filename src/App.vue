@@ -20,9 +20,6 @@ export default {
   }),
 
   methods: {},
-  created() {
-    this.$store.dispatch("GET_EQUIPMENTS", this.searchTerm);
-  },
 };
 </script>
 

@@ -6,4 +6,8 @@ export default class ProductList extends ServiceBase {
     async getEquipmentNames() {
         return await axiosInstance.get(API_URL + "equipmentsByName");
     }
+
+    async getEquipmentByID(id) {
+        return await axiosInstance.get(API_URL + `equipments/${id}`);
+    }
 }

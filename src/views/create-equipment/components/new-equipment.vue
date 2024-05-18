@@ -15,9 +15,11 @@
       <v-col cols="12" md="3" lg="4">
         <Dsg-combobox
           :title="'Editar equipamento'"
-          :items="equipamentsList"
+          :items="equipmentList"
           :itemTitle="'equipmentName'"
           :itemValue="'id'"
+          :loading="isLoading"
+          :disabled="isLoading || equipmentList.length == 0"
           @change="addNewEquipment($event, true)"
           placeholder="Escolha um equipamento"
         />
@@ -36,26 +38,37 @@ export default {
   data() {
     return {
       newEquipment: null,
+      equipmentList: [],
+      isLoading: false,
     };
   },
-  computed: {
-    equipamentsList() {
-      return this.$store?.state?.equipments ?? [];
-    },
-  },
   methods: {
-    addNewEquipment(event, editEquipment) {
-      if (editEquipment)
-        this.$router.push(`create-services/${event?.id ?? null}`);
-      else this.$router.push(`create-services/${this.newEquipment}`);
-    },
-
     async getEquipmentsNames() {
+      this.isLoading = true;
+
       try {
         let response = await Service.getEquipmentNames();
-        console.log("data", response);
+        this.equipmentList = response?.data ?? [];
       } catch (error) {
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao buscar equipamentos, contate o suporte!",
+          type: "error",
+        });
         console.log(error);
+        this.equipmentList = [];
+      }
+
+      this.isLoading = false;
+    },
+
+    addNewEquipment(event, editEquipment) {
+      if (editEquipment) {
+        const id = parseFloat(event?.id);
+        if (!isNaN(id)) {
+          this.$router.push(`create-services/existent/${id}`);
+        }
+      } else {
+        this.$router.push(`create-services/new/${this.newEquipment}`);
       }
     },
   },

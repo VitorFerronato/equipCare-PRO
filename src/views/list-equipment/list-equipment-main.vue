@@ -20,7 +20,6 @@
     >
       <h2>NENHUM EQUIPAMENTO ENCONTRADO</h2>
     </v-row>
-    
   </div>
 </template>
 
@@ -50,6 +49,10 @@ export default {
     isLoading() {
       return this.$store?.state?.listEquipmentsLoading ?? false;
     },
+  },
+
+  created(){
+    this.$store.dispatch("GET_EQUIPMENTS");
   },
 };
 </script>
