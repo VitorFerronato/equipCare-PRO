@@ -4,7 +4,7 @@
       <h4>{{ equipment.equipmentName.toUpperCase() }}</h4>
     </v-expansion-panel-title>
 
-    <Equipment-table-body :services="equipment.services" />
+    <Equipment-table-body :services="equipment.services" :id="equipment.id"/>
   </v-expansion-panel>
 </template>
 

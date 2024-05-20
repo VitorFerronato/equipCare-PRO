@@ -13,7 +13,7 @@ const routes = [
     name: 'create-equipment'
   },
   {
-    path: '/create-services/:type/:id',
+    path: '/create-services/:type?/:id?',
     component: createServices,
     name: 'create-services'
   },

@@ -7,6 +7,7 @@
           v-model="searchTerm"
           :title="'Buscar equipamentos'"
           :placeholder="'Ex: Torno multiuso'"
+          :disabled="equipments.length == 0"
           @update:modelValue="search"
           append-inner-icon="mdi-magnify"
           rounded
@@ -18,7 +19,7 @@
         <Dsg-combobox
           v-model="filter.selected"
           :title="filter.title"
-          :disabled="filter.items.length <= 0"
+          :disabled="filter.items.length <= 0 || equipments.length == 0"
           :items="filter.items"
         />
       </v-col>

@@ -49,7 +49,6 @@
 
     <v-row justify="end" no-gutters class="mt-4">
       <Dsg-btn :title="'Excluir'" @click="deleteService" class="mr-4" />
-      <Dsg-btn :title="'Confirmar'" @click="saveService" />
     </v-row>
   </v-card>
 </template>
@@ -97,6 +96,14 @@ export default {
       immediate: true,
       deep: true,
     },
+
+    localService: {
+      handler(newValue) {
+        this.$emit("setNewService", newValue, this.index);
+      },
+      deep: true,
+      immediate: true,
+    },
   },
 
   methods: {
@@ -104,9 +111,6 @@ export default {
 
     deleteService() {
       this.$emit("deleteService", this.index);
-    },
-    saveService() {
-      this.$emit("saveService", this.localService, this.index);
     },
   },
 };

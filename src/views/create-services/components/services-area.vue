@@ -9,12 +9,12 @@
     <Dsg-btn :title="'salvar'" @click="saveEquipment" />
 
     <Service-card
-      v-for="(service, index) in services"
+      v-for="(service, index) in localServices"
       :key="index"
       :service="service"
       :index="index"
-      @saveService="saveService"
       @deleteService="deleteService"
+      @setNewService="setNewService"
     />
   </div>
 </template>
@@ -25,14 +25,49 @@ import ServiceCard from "./service-card.vue";
 export default {
   components: { DsgBtn, ServiceCard },
   props: ["services"],
-  data() {
-    return {};
+  data: () => ({
+    localServices: [],
+    servicesNew: [],
+  }),
+
+  computed: {
+    newServices() {
+      return this.$store?.state?.services ?? [];
+    },
+  },
+
+  watch: {
+    services: {
+      handler(value) {
+        this.localServices = value;
+      },
+      deep: true,
+      immediate: true,
+    },
   },
 
   methods: {
+    setNewService(service, index) {
+      this.servicesNew.splice(index, 1, service);
+    },
+
     saveEquipment() {
-      // envia os dados preenchidos
       console.log(this.services);
+    },
+
+    addNewService() {
+      this.localServices.unshift({
+        serviceName: null,
+        workHours: null,
+        daysUsed: null,
+        dateInterval: null,
+        nextMaintence: null,
+      });
+    },
+
+    deleteService(index) {
+      this.servicesNew.splice(index, 1);
+      this.localServices.splice(index, 1);
     },
   },
 };

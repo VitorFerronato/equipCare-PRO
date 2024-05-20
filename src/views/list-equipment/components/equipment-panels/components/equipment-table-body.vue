@@ -1,7 +1,9 @@
 <template>
   <v-expansion-panel-text class="pl-4">
     <v-row no-gutters justify="end" align="center" class="my-4">
-      <Dsg-btn :title="'Editar'" :icon="'mdi-pencil'" />
+      <router-link :to="`/create-services/existent/${id}`">
+        <Dsg-btn :title="'Editar'" :icon="'mdi-pencil'" />
+      </router-link>
     </v-row>
     <v-data-table :items="services" :headers="headers">
       <template v-slot:item="{ item }">
@@ -24,11 +26,8 @@
         </tr>
       </template>
     </v-data-table>
-    
-    <Confirm-date
-      :modalOpen="modalOpen"
-      @closeModal="modalOpen = false"
-    />
+
+    <Confirm-date :modalOpen="modalOpen" @closeModal="modalOpen = false" />
   </v-expansion-panel-text>
 </template>
 
@@ -36,7 +35,7 @@
 import DsgBtn from "@/components/common/dsg-btn.vue";
 import ConfirmDate from "./confirm-date.vue";
 export default {
-  props: ["services"],
+  props: ["services", "id"],
   components: { DsgBtn, ConfirmDate },
   data() {
     return {

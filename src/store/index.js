@@ -18,7 +18,7 @@ export default createStore({
 
     SET_FILTERED_EQUIPMENTS(state, filtered) {
       state.filteredEquipments = filtered;
-    }
+    },
   },
 
   actions: {
@@ -42,7 +42,9 @@ export default createStore({
         item.equipmentName.toLowerCase().includes(searchTerm.toLowerCase())
       );
       commit('SET_FILTERED_EQUIPMENTS', filtered);
-    }
+    },
+
+
   },
   modules: {
     snackbar

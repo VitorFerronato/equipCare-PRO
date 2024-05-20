@@ -13,34 +13,24 @@
       ></v-progress-circular>
     </v-overlay>
 
-    <v-row v-if="!editName" align="center">
-      <h2>{{ equipmentName }}</h2>
-      <v-icon @click="editName = true" class="ml-4">mdi-pencil-box</v-icon>
-    </v-row>
-    <v-row v-if="editName">
-      <v-col cols="12" md="4" lg="6">
-        <Dsg-text-field />
-      </v-col>
+    <h2>{{ equipmentName }}</h2>
 
-      <div class="mt-5">
-        <v-icon @click="editName = false"> mdi-checkbox-marked </v-icon>
-        <v-icon> mdi-close-box </v-icon>
-      </div>
-    </v-row>
-
-    <v-breadcrumbs :items="breadCrumbs" divider="-"></v-breadcrumbs>
+    <v-breadcrumbs
+      :items="breadCrumbs"
+      divider="/"
+      class="pl-6 pt-0"
+    ></v-breadcrumbs>
 
     <Services-area :services="services" />
   </div>
 </template>
 
 <script>
-import DsgTextField from "@/components/common/dsg-text-field.vue";
 import ServicesArea from "./components/services-area.vue";
 import service from "@/service/create-equipment.js";
 const Service = new service();
 export default {
-  components: { DsgTextField, ServicesArea },
+  components: { ServicesArea },
   name: "create-services",
   data() {
     return {
@@ -54,19 +44,21 @@ export default {
           href: "create-services",
         },
       ],
-      editName: false,
-      equipment: null,
       isLoading: false,
+
+      equipment: null,
+
+      newItem: false,
     };
   },
 
   computed: {
-    equipamentsList() {
-      return this.$store?.state?.equipments ?? [];
-    },
     equipmentName() {
+      if (this.newItem) return this.equipment.toUpperCase();
+
       return this.equipment?.equipmentName ?? "-";
     },
+
     services() {
       return this.equipment?.services ?? [];
     },
@@ -78,14 +70,30 @@ export default {
 
       try {
         let response = await Service.getEquipmentByID(id);
-        console.log(response);
         this.equipment = response?.data ?? null;
       } catch (error) {
         console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao buscar serviços, contate o suporte!",
+          type: "error",
+        });
+        this.$router.push("/list-equipments");
       }
 
       this.isLoading = false;
     },
+
+    verifyEquipment(id, type) {
+      if (type == "new") {
+        this.newItem = true;
+        this.equipment = id;
+      } else {
+        this.getEquipmentByID(id);
+        this.newItem = false;
+      }
+    },
+
+    editNameFunc() {},
   },
 
   async created() {
@@ -97,8 +105,7 @@ export default {
       return;
     }
 
-    if (type == "new") this.equipment = idRouteParam;
-    else this.getEquipmentByID(idRouteParam);
+    this.verifyEquipment(idRouteParam, type);
   },
 };
 </script>
