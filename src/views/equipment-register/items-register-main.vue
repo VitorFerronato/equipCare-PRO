@@ -17,19 +17,21 @@
           @click="addNewItem"
           class="my-4"
         />
-        <v-data-table :items="items" :headers="headers" :loading="isLoading">
+        <v-data-table :items="items" :headers="headers">
           <template v-slot:[`item.itemName`]="{ item }">
             <div>
               <span v-if="!item.isEdit">{{ item.itemName.toUpperCase() }}</span>
               <Dsg-text-field v-else v-model="item.itemName" />
             </div>
           </template>
+
           <template v-slot:[`item.cod`]="{ item }">
             <div>
               <span v-if="!item.isEdit">{{ item.cod }}</span>
               <Dsg-text-field v-else v-model="item.cod" />
             </div>
           </template>
+
           <template v-slot:[`item.observation`]="{ item }">
             <div>
               <span v-if="!item.isEdit">{{
@@ -38,6 +40,7 @@
               <Dsg-text-field v-else v-model="item.observation" />
             </div>
           </template>
+
           <template v-slot:[`item.isEdit`]="{ item, index }">
             <div>
               <v-icon
@@ -50,7 +53,7 @@
               <div v-else>
                 <v-icon
                   :disabled="verifyMandatoryFields(item)"
-                  @click="saveItem(item)"
+                  @click="updateItem(item)"
                   color="#1D8527"
                   size="30"
                   >mdi-checkbox-marked</v-icon
@@ -81,6 +84,7 @@ export default {
   name: "items-register",
   data: () => ({
     isLoading: false,
+    loadingTable: false,
 
     headers: [
       {
@@ -130,6 +134,80 @@ export default {
       this.isLoading = false;
     },
 
+    async updateItem(item) {
+      if (!item.id) {
+        this.createNewItem(item);
+        return;
+      }
+
+      this.loadingTable = true;
+      item.isEdit = false;
+
+      try {
+        await Service.updateItem(item);
+        this.$store.commit("snackbar/set", {
+          message: "Sucesso editar item",
+          type: "success",
+        });
+      } catch (error) {
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao editar item, contate o suporte!",
+          type: "error",
+        });
+      }
+
+      this.loadingTable = false;
+    },
+
+    async deleteItem(item, index) {
+      if (!item.id) {
+        this.items.splice(index, 1);
+        return;
+      }
+
+      this.loadingTable = true;
+
+      try {
+        await Service.deleteItem(item.id);
+        this.items = this.items.filter((el) => el.id !== item.id);
+        this.$store.commit("snackbar/set", {
+          message: "Sucesso ao excluir item!",
+          type: "success",
+        });
+      } catch (error) {
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao excluir item, contate o suporte!",
+          type: "error",
+        });
+      }
+
+      this.loadingTable = false;
+      item.isEdit = false;
+    },
+
+    async createNewItem(item) {
+      this.loadingTable = true;
+
+      item.id = Date.now();
+      item.isEdit = false;
+
+      try {
+        await Service.createItem(item);
+        this.$store.commit("snackbar/set", {
+          message: "Sucesso ao adicionar item",
+          type: "success",
+        });
+      } catch (error) {
+        console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao adicionar item, contate o suporte!",
+          type: "error",
+        });
+      }
+
+      this.loadingTable = false;
+    },
+
     addNewItem() {
       this.items.unshift({
         itemName: "",
@@ -138,26 +216,7 @@ export default {
         isEdit: true,
       });
     },
-
-    saveItem(item) {
-      console.log("item salvo com sucesso", item);
-      this.$store.commit("snackbar/set", {
-        message: "Item salvo com sucesso",
-        type: "success",
-      });
-      item.isEdit = false;
-    },
-
-    deleteItem(item, index) {
-      console.log("item Excluido com sucesso", item, index);
-      this.items.splice(index, 1);
-      this.$store.commit("snackbar/set", {
-        message: "Item excluído com sucesso",
-        type: "success",
-      });
-      item.isEdit = false;
-    },
-
+    
     verifyMandatoryFields(item) {
       if (!item.cod || item.cod == "" || !item.itemName || item.name == "")
         return true;

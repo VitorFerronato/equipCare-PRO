@@ -268,22 +268,18 @@
   ],
   "items": [
     {
-      "itemName": "òleo 5:30",
-      "cod": "CAP 14454",
-      "observation": "Òleo 5:30, procurar especificações no rótulo, precisa ser da oficina do joão porque temos convênio",
+      "itemName": "ÓLEO 5W60 ",
+      "cod": "COP1844",
+      "observation": "Aqui vai alguma observação",
+      "id": 4514,
       "isEdit": false
     },
     {
-      "itemName": "Engrenagem cxp+elx",
-      "cod": "COP8444",
-      "observation": "Alguma descrição sobre a engrenagem",
-      "isEdit": false
-    },
-    {
-      "itemName": "ENGRENAGEM 1444S4S4",
-      "cod": "CÓD AHAHAH",
+      "itemName": "novo item",
+      "cod": "teste",
       "observation": "",
-      "isEdit": false
+      "isEdit": false,
+      "id": 1716665490635
     }
   ]
 }
