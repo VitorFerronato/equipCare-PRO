@@ -1,6 +1,7 @@
 <template>
   <v-app>
     <Header />
+    <Sidebar-app />
     <v-main>
       <router-view class="view" />
     </v-main>
@@ -11,8 +12,9 @@
 <script>
 import Header from "./components/header-app.vue";
 import Snackbar from "@/components/common/dsg-snackbar.vue";
+import SidebarApp from './components/sidebar-app.vue';
 export default {
-  components: { Header, Snackbar },
+  components: { Header, Snackbar, SidebarApp },
   name: "App",
 
   data: () => ({

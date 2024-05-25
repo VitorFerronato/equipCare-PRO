@@ -1,6 +1,8 @@
 <template>
   <nav class="header header-color dsg-flex-center px-5">
-    <h4 class="text-white">Equip Care PRO</h4>
+    <router-link to="/list-equipments">
+      <h4 class="text-white">Equip Care PRO</h4>
+    </router-link>
   </nav>
 </template>
 
@@ -14,6 +16,7 @@ export default {};
 .header {
   height: $header-height-lg;
   width: 100%;
+  z-index: 100000;
 
   @media (max-width: $medium-breakpoint) {
     height: $header-height-md;

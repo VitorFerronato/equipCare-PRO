@@ -13,7 +13,12 @@
       ></v-progress-circular>
     </v-overlay>
 
-    <h2>{{ equipmentName }}</h2>
+    <v-row no-gutters justify="space-between" align="end">
+      <h2>{{ equipmentName }}</h2>
+      <router-link to="/create-equipment">
+        <Dsg-btn :title="'Voltar'" :icon="'mdi-arrow-left'" />
+      </router-link>
+    </v-row>
 
     <v-breadcrumbs
       :items="breadCrumbs"
@@ -21,16 +26,17 @@
       class="pl-6 pt-0"
     ></v-breadcrumbs>
 
-    <Services-area :services="services" />
+    <Services-area :services="services" @setServices="saveService" />
   </div>
 </template>
 
 <script>
 import ServicesArea from "./components/services-area.vue";
 import service from "@/service/create-equipment.js";
+import DsgBtn from "@/components/common/dsg-btn.vue";
 const Service = new service();
 export default {
-  components: { ServicesArea },
+  components: { ServicesArea, DsgBtn },
   name: "create-services",
   data() {
     return {
@@ -81,6 +87,22 @@ export default {
       }
 
       this.isLoading = false;
+    },
+
+    async saveService(services) {
+      let request = {
+        equipmentName: this.equipmentName,
+        semaphore: 0,
+        id: Math.floor(Math.random() * 1000),
+        services: services,
+      };
+
+      try {
+        let response = await Service.saveNewEquipment(request);
+        console.log("resposta do back", response);
+      } catch (error) {
+        console.log(error);
+      }
     },
 
     verifyEquipment(id, type) {

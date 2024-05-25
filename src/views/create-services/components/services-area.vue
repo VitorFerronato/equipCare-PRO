@@ -22,6 +22,7 @@
 <script>
 import DsgBtn from "@/components/common/dsg-btn.vue";
 import ServiceCard from "./service-card.vue";
+
 export default {
   components: { DsgBtn, ServiceCard },
   props: ["services"],
@@ -52,7 +53,20 @@ export default {
     },
 
     saveEquipment() {
-      console.log(this.services);
+      let mountServices = this.buildRequest(this.services);
+      this.$emit("setServices", mountServices);
+    },
+
+    buildRequest(services) {
+      return services.map((service) => ({
+        serviceName: service.serviceName,
+        workHours: service.daysUsed,
+        daysUsed: service.daysUsed,
+        dateInterval: 800,
+        nextMaintence: "22/08/2024 - 15:00",
+        semaphore: 0,
+        realized: 1,
+      }));
     },
 
     addNewService() {
