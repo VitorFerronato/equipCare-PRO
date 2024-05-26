@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <Dsg-btn
       :title="'Adicionar serviço'"
       :icon="'mdi-plus'"
@@ -13,6 +13,7 @@
       :key="index"
       :service="service"
       :index="index"
+    
       @deleteService="deleteService"
       @setNewService="setNewService"
     />

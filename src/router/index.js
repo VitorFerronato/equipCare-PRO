@@ -15,7 +15,7 @@ const routes = [
     name: 'create-equipment'
   },
   {
-    path: '/create-services/:type?/:id?/:tag?',
+    path: '/create-services',
     component: createServices,
     name: 'create-services'
   },

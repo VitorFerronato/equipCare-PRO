@@ -12,7 +12,7 @@
 <script>
 import Header from "./components/header-app.vue";
 import Snackbar from "@/components/common/dsg-snackbar.vue";
-import SidebarApp from './components/sidebar-app.vue';
+import SidebarApp from "./components/sidebar-app.vue";
 export default {
   components: { Header, Snackbar, SidebarApp },
   name: "App",
@@ -60,6 +60,14 @@ a {
 .dsg-flex-center {
   display: flex;
   align-items: center;
+}
+.dsg-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.gap-1{
+  gap: 1rem;
 }
 
 .red-border {

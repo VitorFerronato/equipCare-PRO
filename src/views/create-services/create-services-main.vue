@@ -13,13 +13,20 @@
       ></v-progress-circular>
     </v-overlay>
 
-    <h2 class="mb-4">
-      {{ equipmentName }} <span v-show="tag">- {{ tag }}</span>
+    <h2 class="mb-2">
+      {{ equipment.equipmentName.toUpperCase() }}
+      <span v-show="equipment.tagName">- {{ equipment.tagName }}</span>
     </h2>
 
-    <p class="mb-6">
-      Aqui você pode criar os serviços e mais uma breve descrição do que fazer
-    </p>
+    <div class="dsg-flex-center gap-1 mb-6">
+      <div>
+        <span class="font-weight-bold">Regime de trabalho: </span>
+        <span
+          >{{ equipment.workRegime }} Horas por dia
+          {{ equipment.weekRegime }} dias por semana</span
+        >
+      </div>
+    </div>
 
     <Services-area :services="services" @setServices="saveService" />
   </div>
@@ -44,12 +51,6 @@ export default {
   },
 
   computed: {
-    equipmentName() {
-      if (this.newItem) return this.equipment.toUpperCase();
-
-      return this.equipment?.equipmentName ?? "-";
-    },
-
     services() {
       return this.equipment?.services ?? [];
     },
@@ -104,19 +105,16 @@ export default {
   },
 
   async created() {
-    let idRouteParam = this.$route.params.id;
-    let type = this.$route.params.type;
-
-    this.tag = this.$route?.params?.tag ?? null;
-
-    if (!idRouteParam) {
-      this.$router.push("/list-equipments");
-      return;
-    }
-    this.verifyEquipment(idRouteParam, type);
+    if (this.$route.query.data)
+      this.equipment = JSON.parse(this.$route.query.data);
   },
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.equipment-details {
+  background-color: #cccccc60;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
 </style>
