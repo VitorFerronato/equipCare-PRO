@@ -24,6 +24,11 @@ export default {
       },
       {
         icon: "mdi-tab-plus",
+        title: "Cadastrar Categorias",
+        path: "categories-register",
+      },
+      {
+        icon: "mdi-tab-plus",
         title: "Cadastrar items",
         path: "items-register",
       },

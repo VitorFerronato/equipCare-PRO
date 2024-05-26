@@ -269,17 +269,38 @@
   "items": [
     {
       "itemName": "ÓLEO 5W60 ",
-      "cod": "COP1844",
+      "cod": "cop sss",
       "observation": "Aqui vai alguma observação",
       "id": 4514,
       "isEdit": false
     },
     {
-      "itemName": "novo item",
-      "cod": "teste",
+      "itemName": "novo item 2",
+      "cod": "teste 31",
       "observation": "",
       "isEdit": false,
       "id": 1716665490635
+    },
+    {
+      "itemName": "Aqui vai algum equipamento",
+      "cod": "COP98747",
+      "observation": "Aqui vai outra observaçção",
+      "isEdit": false,
+      "id": 1716740246553
+    }
+  ],
+  "categories": [
+    {
+      "categorie": "TORNO",
+      "observation": "",
+      "id": 7787,
+      "isEdit": false
+    },
+    {
+      "categorie": "FRESA",
+      "observation": "FRESA ALGUMA COISA SAIUJDUASHDISAMSADDMI",
+      "id": 477,
+      "isEdit": false
     }
   ]
 }

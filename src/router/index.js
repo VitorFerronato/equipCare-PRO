@@ -2,7 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router'
 import createEquipment from "@/views/create-equipment/create-equipment-main.vue"
 import createServices from "@/views/create-services/create-services-main.vue"
 import listEquipments from "@/views/list-equipment/list-equipment-main.vue"
-import itemsRegister from "@/views/equipment-register/items-register-main.vue"
+import itemsRegister from "@/views/items-register/items-register-main.vue"
+import categoriesRegister from "@/views/categories-register/categories-register-main.vue"
 const routes = [
   {
     path: "/",
@@ -27,6 +28,11 @@ const routes = [
     path: '/items-register',
     component: itemsRegister,
     name: 'items-register'
+  },
+  {
+    path: '/categories-register',
+    component: categoriesRegister,
+    name: 'categories-register'
   },
 ]
 

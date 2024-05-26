@@ -116,7 +116,7 @@ export default {
     items: [],
   }),
 
-  methods: {
+  _methods: {
     async getItems() {
       this.isLoading = true;
 
@@ -154,6 +154,7 @@ export default {
           message: "Erro ao editar item, contate o suporte!",
           type: "error",
         });
+        this.getItems();
       }
 
       this.loadingTable = false;
@@ -179,6 +180,7 @@ export default {
           message: "Erro ao excluir item, contate o suporte!",
           type: "error",
         });
+        this.getItems();
       }
 
       this.loadingTable = false;
@@ -203,6 +205,7 @@ export default {
           message: "Erro ao adicionar item, contate o suporte!",
           type: "error",
         });
+        this.getItems();
       }
 
       this.loadingTable = false;
@@ -216,12 +219,18 @@ export default {
         isEdit: true,
       });
     },
-    
+
     verifyMandatoryFields(item) {
       if (!item.cod || item.cod == "" || !item.itemName || item.name == "")
         return true;
       return false;
     },
+  },
+  get methods() {
+    return this._methods;
+  },
+  set methods(value) {
+    this._methods = value;
   },
 
   created() {
