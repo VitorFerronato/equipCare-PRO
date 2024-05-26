@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-4">
+  <div >
     <Dsg-btn
       :title="'Adicionar serviço'"
       :icon="'mdi-plus'"

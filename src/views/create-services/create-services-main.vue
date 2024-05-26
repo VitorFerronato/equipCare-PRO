@@ -13,18 +13,13 @@
       ></v-progress-circular>
     </v-overlay>
 
-    <v-row no-gutters justify="space-between" align="end">
-      <h2>{{ equipmentName }}</h2>
-      <router-link to="/create-equipment">
-        <Dsg-btn :title="'Voltar'" :icon="'mdi-arrow-left'" />
-      </router-link>
-    </v-row>
+    <h2 class="mb-4">
+      {{ equipmentName }} <span v-show="tag">- {{ tag }}</span>
+    </h2>
 
-    <v-breadcrumbs
-      :items="breadCrumbs"
-      divider="/"
-      class="pl-6 pt-0"
-    ></v-breadcrumbs>
+    <p class="mb-6">
+      Aqui você pode criar os serviços e mais uma breve descrição do que fazer
+    </p>
 
     <Services-area :services="services" @setServices="saveService" />
   </div>
@@ -33,26 +28,16 @@
 <script>
 import ServicesArea from "./components/services-area.vue";
 import service from "@/service/create-equipment.js";
-import DsgBtn from "@/components/common/dsg-btn.vue";
 const Service = new service();
 export default {
-  components: { ServicesArea, DsgBtn },
+  components: { ServicesArea },
   name: "create-services",
   data() {
     return {
-      breadCrumbs: [
-        {
-          title: "Criar equipamento",
-          href: "/create-equipment",
-        },
-        {
-          title: "Criar serviços",
-          href: "create-services",
-        },
-      ],
       isLoading: false,
 
       equipment: null,
+      tag: null,
 
       newItem: false,
     };
@@ -122,11 +107,12 @@ export default {
     let idRouteParam = this.$route.params.id;
     let type = this.$route.params.type;
 
+    this.tag = this.$route?.params?.tag ?? null;
+
     if (!idRouteParam) {
       this.$router.push("/list-equipments");
       return;
     }
-
     this.verifyEquipment(idRouteParam, type);
   },
 };

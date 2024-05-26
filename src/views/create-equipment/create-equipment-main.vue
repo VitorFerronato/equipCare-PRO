@@ -1,21 +1,21 @@
 <template>
   <div>
-    <v-row no-gutters justify="space-between" align="center" class="mb-6">
-      <h2 >CRIAR EQUIPAMENTO</h2>
-      <router-link to="/list-equipments">
-        <Dsg-btn :title="'Voltar'" :icon="'mdi-arrow-left'" />
-      </router-link>
-    </v-row>
+    <h2 class="mb-4">CRIAR NOVO EQUIPAMENTO</h2>
+
+    <p class="mb-6">
+      Criar novo equipamento, aqui vai alguma outra descrição sobre o que essa
+      tela faz
+    </p>
+
     <New-equipment />
   </div>
 </template>
 
 <script>
-import DsgBtn from "@/components/common/dsg-btn.vue";
 import NewEquipment from "./components/new-equipment.vue";
 
 export default {
-  components: { NewEquipment, DsgBtn },
+  components: { NewEquipment },
   name: "create-equipment",
   data() {
     return {};

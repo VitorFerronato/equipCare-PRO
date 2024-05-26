@@ -226,12 +226,6 @@ export default {
       return false;
     },
   },
-  get methods() {
-    return this._methods;
-  },
-  set methods(value) {
-    this._methods = value;
-  },
 
   created() {
     this.getItems();
