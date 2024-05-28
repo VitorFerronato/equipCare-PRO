@@ -24,7 +24,7 @@
           :title="'Categoria'"
           :items="categories"
           :itemTitle="'categorie'"
-          :itemValue="'id'"       
+          :itemValue="'id'"        
         />
       </v-col>
     </v-row>
