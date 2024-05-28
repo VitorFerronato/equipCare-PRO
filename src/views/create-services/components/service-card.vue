@@ -8,13 +8,24 @@
           placeholder="Ex: Troca de óleo"
         />
       </v-col>
-
       <v-col>
-        <Dsg-combobox :title="'Item/Peça'" :items="itemsList" />
+        <Dsg-combobox
+          v-model="localService.item"
+          :title="'Item/Peça'"
+          :items="items"
+          :itemTitle="'itemName'"
+          :itemValue="'cod'"
+        />
       </v-col>
 
       <v-col>
-        <Dsg-combobox :title="'Categoria'" :items="categorieList" />
+        <Dsg-combobox
+          v-model="localService.categorie"
+          :title="'Categoria'"
+          :items="categories"
+          :itemTitle="'categorie'"
+          :itemValue="'id'"       
+        />
       </v-col>
     </v-row>
     <v-row>
@@ -33,6 +44,7 @@
         <Dsg-data-picker
           :title="'Data da ultima troca'"
           :tooltipText="'Caso nenhum valor for estipulado, ira considerar o dia atual'"
+          @setDate="date = $event"
           placeholder="Ex: 4"
           hide-spin-buttons
         />
@@ -52,7 +64,7 @@ import { dsgFormatDate } from "@/utils/dsg-format-date.js";
 import DsgCombobox from "@/components/common/dsg-combobox.vue";
 import DsgDataPicker from "@/components/common/dsg-data-picker.vue";
 export default {
-  props: ["service", "index"],
+  props: ["service", "index", "items", "categories"],
   components: {
     DsgTextField,
     DsgBtn,
@@ -62,30 +74,13 @@ export default {
   data() {
     return {
       localService: {},
+      date: null,
       weekRegime: null,
       workRegime: null,
-
-      itemsList: [
-        {
-          text: "teste",
-          value: 1,
-        },
-      ],
-
-      categorieList: [
-        {
-          text: "teste",
-          value: 1,
-        },
-      ],
     };
   },
 
   computed: {
-    nextMaintenance() {
-      return this.addDaysToDate("25/05/2024", 8);
-    },
-
     diasCorridos() {
       return this.localService.changePeriod / this.workRegime;
     },
@@ -96,6 +91,10 @@ export default {
 
     semanasConvertidasEmDias() {
       return this.semanasCorridas * 7;
+    },
+
+    nextMaintenance() {
+      return this.addDaysToDate("25/05/2024", 8);
     },
   },
 

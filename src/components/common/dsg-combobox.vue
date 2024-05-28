@@ -12,6 +12,7 @@
     hide-details
     :item-title="itemTitle"
     :item-value="itemValue"
+    placeholder="Selecione"
     variant="outlined"
     density="compact"
     class="mt-1"

@@ -65,6 +65,12 @@ export default {
     date() {
       this.formatedDate = this.formatDate(this.date);
     },
+    formatedDate: {
+      handler(value) {
+        this.$emit("setDate", value);
+      },
+      immediate: true,
+    },
   },
 
   methods: {

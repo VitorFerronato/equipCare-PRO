@@ -6,6 +6,7 @@
       @click="addNewService"
       class="mr-4"
     />
+    
     <Dsg-btn :title="'salvar'" @click="saveEquipment" />
 
     <Service-card
@@ -13,7 +14,8 @@
       :key="index"
       :service="service"
       :index="index"
-    
+      :items="items"
+      :categories="categories"
       @deleteService="deleteService"
       @setNewService="setNewService"
     />
@@ -23,6 +25,10 @@
 <script>
 import DsgBtn from "@/components/common/dsg-btn.vue";
 import ServiceCard from "./service-card.vue";
+import itemService from "@/service/items-area.js";
+const ItemService = new itemService();
+import categorieService from "@/service/categories-area.js";
+const CategorieService = new categorieService();
 
 export default {
   components: { DsgBtn, ServiceCard },
@@ -30,13 +36,10 @@ export default {
   data: () => ({
     localServices: [],
     servicesNew: [],
+    items: [],
+    categories: [],
+    isLoading: false,
   }),
-
-  computed: {
-    newServices() {
-      return this.$store?.state?.services ?? [];
-    },
-  },
 
   watch: {
     services: {
@@ -49,6 +52,32 @@ export default {
   },
 
   methods: {
+    async getItems() {
+      this.isLoading = true;
+
+      try {
+        let response = await ItemService.getItems();
+        this.items = response?.data ?? [];
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.isLoading = false;
+    },
+
+    async getCategories() {
+      this.isLoading = true;
+
+      try {
+        let response = await CategorieService.getCategories();
+        this.categories = response?.data ?? [];
+      } catch (error) {
+        console.log(error);
+      }
+
+      this.isLoading = false;
+    },
+
     setNewService(service, index) {
       this.servicesNew.splice(index, 1, service);
     },
@@ -84,6 +113,11 @@ export default {
       this.servicesNew.splice(index, 1);
       this.localServices.splice(index, 1);
     },
+  },
+
+  created() {
+    this.getCategories();
+    this.getItems();
   },
 };
 </script>
