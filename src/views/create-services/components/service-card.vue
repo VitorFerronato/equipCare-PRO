@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-4 mt-4">
+  <v-card class="pa-4 mt-4 green-border">
     <v-row align="center">
       <v-col cols="12" md="4" lg="6 ">
         <Dsg-text-field
@@ -24,8 +24,7 @@
           :title="'Categoria'"
           :items="categories"
           :itemTitle="'categorie'"
-          :itemValue="'id'" 
-                  
+          :itemValue="'id'"
         />
       </v-col>
     </v-row>
@@ -51,8 +50,17 @@
         />
       </v-col>
     </v-row>
-    <v-row justify="space-between" no-gutters class="mt-4">
-      <h4>Próxima manutenção: {{ nextMaintenance }}</h4>
+    <v-row justify="space-between" no-gutters class="mt-8">
+      <div>
+        <h4>
+          Próxima manutenção:
+          <span v-if="proximaManutencao" class="next-maintence"
+            >{{ proximaManutencao }} -
+            {{ convertDateToWeekDay(proximaManutencao) }} </span
+          >
+          <v-icon class="ml-2">mdi-calendar-blank</v-icon>
+        </h4>
+      </div>
       <Dsg-btn :title="'Excluir'" @click="deleteService" />
     </v-row>
   </v-card>
@@ -94,8 +102,8 @@ export default {
       return this.semanasCorridas * 7;
     },
 
-    nextMaintenance() {
-      return this.addDaysToDate("25/05/2024", 8);
+    proximaManutencao() {
+      return this.addDaysToDate(this.date, this.semanasConvertidasEmDias);
     },
   },
 
@@ -119,8 +127,9 @@ export default {
 
   methods: {
     dsgFormatDate,
+
     addDaysToDate(dateString, daysToAdd) {
-      console.log(dateString, daysToAdd);
+      if (!dateString || !daysToAdd) return null;
       const parts = dateString.split("/");
       const day = parseInt(parts[0], 10);
       const month = parseInt(parts[1], 10) - 1;
@@ -137,6 +146,28 @@ export default {
       return `${newDay}/${newMonth}/${newYear}`;
     },
 
+    convertDateToWeekDay(date) {
+      if (!date) return null;
+      const dateParts = date.split("/");
+      if (dateParts.length === 3) {
+        const day = parseInt(dateParts[0], 10);
+        const month = parseInt(dateParts[1], 10) - 1; // Janeiro é 0
+        const year = parseInt(dateParts[2], 10);
+        const date = new Date(year, month, day);
+        const dayOfWeekIndex = date.getDay();
+        const daysOfWeek = [
+          "Domingo",
+          "Segunda-feira",
+          "Terça-feira",
+          "Quarta-feira",
+          "Quinta-feira",
+          "Sexta-feira",
+          "Sábado",
+        ];
+        return daysOfWeek[dayOfWeekIndex];
+      }
+    },
+
     deleteService() {
       this.$emit("deleteService", this.index);
     },
@@ -150,6 +181,12 @@ export default {
 };
 </script>
 
-<style>
-/* Seu estilo */
+<style scoped lang="scss">
+@import "@/design/_colors.scss";
+
+.next-maintence {
+  border-radius: 5px;
+  padding: 0.5rem;
+  border:.5px solid #b6b6b6;
+}
 </style>

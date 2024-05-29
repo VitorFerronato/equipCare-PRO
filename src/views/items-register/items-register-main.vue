@@ -116,7 +116,7 @@ export default {
     items: [],
   }),
 
-  _methods: {
+  methods: {
     async getItems() {
       this.isLoading = true;
 

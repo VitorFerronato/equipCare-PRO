@@ -15,13 +15,14 @@
       v-model="formatedDate"
       v-bind="$attrs"
       :append-icon="appendIcon"
+       
       hide-details="auto"
       variant="outlined"
       density="compact"
       class="mt-1 field"
     >
       <template v-slot:append-inner>
-        <v-menu>
+        <v-menu :close-on-content-click="false">
           <template v-slot:activator="{ props }">
             <v-icon color="#12192c" class="calendar" v-bind="props"
               >mdi-calendar-blank</v-icon
@@ -30,9 +31,10 @@
 
           <v-date-picker
             v-model="date"
+            :allowed-dates="allowedDates"
+            hide-header
             color="primary"
             elevation="24"
-            hide-header
           ></v-date-picker>
         </v-menu>
       </template>
@@ -74,6 +76,13 @@ export default {
   },
 
   methods: {
+allowedDates(date) {
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // Zera as horas para comparar apenas as datas
+      const selectedDate = new Date(date);
+
+      return selectedDate >= today;
+    },
     formatDate(date) {
       const day = String(date.getDate()).padStart(2, "0");
       const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -90,9 +99,6 @@ export default {
       return `${day}/${month}/${year}`;
     },
 
-    teste() {
-      return true;
-    },
   },
 
   created() {
