@@ -11,14 +11,12 @@
     - Quais filtros ?
 
 # Adicionar equipamentos
-    - Aumentar o tamanho dos text-field porque ta quebrando a tela
     - Se o usuário digitar uma tag verificar se ja tem uma existente
 
     DUVIDAS
     - Campos obrigatórios?
 
 # Adicionar Serviços
-    - Alterar a borda do card caso todos os campos sejam preenchidos
     - Mostrar snackbar caso possuir campos faltando
     - opção para selecionar a data manualmente
     - Tooltip no campo da próxima manutenção com o calculo feito

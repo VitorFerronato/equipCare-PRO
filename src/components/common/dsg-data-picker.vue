@@ -15,14 +15,13 @@
       v-model="formatedDate"
       v-bind="$attrs"
       :append-icon="appendIcon"
-       
       hide-details="auto"
       variant="outlined"
       density="compact"
       class="mt-1 field"
     >
       <template v-slot:append-inner>
-        <v-menu :close-on-content-click="false">
+        <v-menu :close-on-content-click="closeOnClick">
           <template v-slot:activator="{ props }">
             <v-icon color="#12192c" class="calendar" v-bind="props"
               >mdi-calendar-blank</v-icon
@@ -56,6 +55,10 @@ export default {
       tooltipText: String,
       default: null,
     },
+    closeOnClick: {
+      type: Boolean,
+      default: false
+    }
   },
 
   data: () => ({

@@ -17,7 +17,7 @@
       </v-col>
     </v-row>
     <v-row class="mb-4" align="center">
-      <v-col cols="12" md="2">
+      <v-col cols="12" md="3">
         <Dsg-text-field
           v-model="workRegime"
           :title="'Regime de trabalho/dia'"
@@ -28,7 +28,7 @@
           hide-spin-buttons
         />
       </v-col>
-      <v-col cols="12" md="2">
+      <v-col cols="12" md="3">
         <Dsg-text-field
           v-model="weekRegime"
           :title="'Regime de trabalho/semana'"

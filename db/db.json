@@ -246,6 +246,30 @@
           "realized": 1
         }
       ]
+    },
+    {
+      "semaphore": 0,
+      "id": 624,
+      "services": [
+        {
+          "serviceName": "TROCA DA ENGRENAGEM ",
+          "workHours": null,
+          "daysUsed": null,
+          "dateInterval": 800,
+          "nextMaintence": "22/08/2024 - 15:00",
+          "semaphore": 0,
+          "realized": 1
+        },
+        {
+          "serviceName": "TROCA DE ÓLEO X",
+          "workHours": null,
+          "daysUsed": null,
+          "dateInterval": 800,
+          "nextMaintence": "22/08/2024 - 15:00",
+          "semaphore": 0,
+          "realized": 1
+        }
+      ]
     }
   ],
   "equipmentsByName": [

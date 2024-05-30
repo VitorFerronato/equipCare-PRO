@@ -1,5 +1,8 @@
 <template>
-  <v-card class="pa-4 mt-4 green-border">
+  <v-card
+    class="pa-4 mt-4"
+    :class="invalidInputsBorder == 'red' ? 'red-border' : 'green-border'"
+  >
     <v-row align="center">
       <v-col cols="12" md="4" lg="6 ">
         <Dsg-text-field
@@ -50,17 +53,27 @@
         />
       </v-col>
     </v-row>
-    <v-row justify="space-between" no-gutters class="mt-8">
-      <div>
-        <h4>
-          Próxima manutenção:
-          <span v-if="proximaManutencao" class="next-maintence"
-            >{{ proximaManutencao }} -
-            {{ convertDateToWeekDay(proximaManutencao) }} </span
-          >
-          <v-icon class="ml-2">mdi-calendar-blank</v-icon>
-        </h4>
+    <v-row no-gutters class="mt-8">
+      <div class="dsg-flex-center">
+        <h4>Próxima manutenção:</h4>
+        <span
+          v-if="proximaManutencao && !showManualCalendar"
+          class="next-maintence font-weight-bold mx-2"
+          >{{ manualDate ? manualDate : proximaManutencao }} -
+          {{
+            convertDateToWeekDay(manualDate ? manualDate : proximaManutencao)
+          }}
+        </span>
+        <v-icon v-if="proximaManutencao && !showManualCalendar" @click="showManualCalendar = true">
+          mdi-calendar-blank
+        </v-icon>
       </div>
+
+      <v-col v-show="showManualCalendar" cols="12" md="2" class="ml-2">
+        <Dsg-data-picker :closeOnClick="true" @setDate="setManualDate" />
+      </v-col>
+
+      <v-spacer></v-spacer>
       <Dsg-btn :title="'Excluir'" @click="deleteService" />
     </v-row>
   </v-card>
@@ -86,6 +99,8 @@ export default {
       date: null,
       weekRegime: null,
       workRegime: null,
+      showManualCalendar: false,
+      manualDate: null,
     };
   },
 
@@ -104,6 +119,17 @@ export default {
 
     proximaManutencao() {
       return this.addDaysToDate(this.date, this.semanasConvertidasEmDias);
+    },
+
+    invalidInputsBorder() {
+      if (
+        !this.localService.serviceName ||
+        !this.localService.item ||
+        !this.localService.categorie
+      )
+        return "red";
+
+      return !this.proximaManutencao ? "red" : "blue";
     },
   },
 
@@ -171,6 +197,12 @@ export default {
     deleteService() {
       this.$emit("deleteService", this.index);
     },
+
+    setManualDate(date) {
+      console.log('aqui',date);
+      this.manualDate = date;
+      this.showManualCalendar = false;
+    },
   },
 
   created() {
@@ -187,6 +219,6 @@ export default {
 .next-maintence {
   border-radius: 5px;
   padding: 0.5rem;
-  border:.5px solid #b6b6b6;
+  border: 0.5px solid #b6b6b6;
 }
 </style>
