@@ -1,293 +1,54 @@
 {
   "equipments": [
     {
-      "equipmentName": "COP 5894 - TORNO MULTIUSO",
-      "id": 17871,
       "semaphore": 0,
+      "id": 222,
       "services": [
         {
-          "serviceName": "Troca de óleo",
-          "workHours": 281,
-          "daysUsed": 28,
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
+          "serviceName": "Serviço teste",
+          "item": {
+            "itemName": "novo item 2",
+            "cod": "teste 31",
+            "observation": "",
+            "isEdit": false,
+            "id": 1716665490635
+          },
+          "categorie": {
+            "categorie": "TORNO",
+            "observation": "",
+            "id": 7787,
+            "isEdit": false
+          },
+          "changePeriod": 100,
+          "nextMaintence": "29/06/2024",
+          "workRegime": 4,
+          "weekRegime": 6,
           "semaphore": 0,
           "realized": 1
         },
         {
-          "serviceName": "Troca de engrenagem",
-          "workHours": 87,
-          "daysUsed": 5,
-          "dateInterval": 41,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 1,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 2,
-          "realized": 1
-        }
-      ]
-    },
-    {
-      "equipmentName": "COP 9788 - FRESA TESTE",
-      "id": 5844,
-      "semaphore": 1,
-      "services": [
-        {
-          "serviceName": "Troca de óleo",
-          "workHours": 281,
-          "daysUsed": 28,
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
-          "semaphore": 3,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca de engrenagem",
-          "workHours": 87,
-          "daysUsed": 5,
-          "dateInterval": 41,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 1,
-          "realized": 1
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 2,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 3,
-          "realized": 0
-        }
-      ]
-    },
-    {
-      "equipmentName": "Algum produto",
-      "id": 5787,
-      "semaphore": 2,
-      "services": [
-        {
-          "serviceName": "Troca de óleo",
-          "workHours": 281,
-          "daysUsed": 28,
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
-          "semaphore": 0,
-          "realized": 1
-        },
-        {
-          "serviceName": "Troca de engrenagem",
-          "workHours": 87,
-          "daysUsed": 5,
-          "dateInterval": 41,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 1,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 2,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 3,
-          "realized": 1
-        }
-      ]
-    },
-    {
-      "equipmentName": "COP 5471 - TECPIX",
-      "id": 444,
-      "semaphore": 3,
-      "services": [
-        {
-          "serviceName": "Troca de óleo",
-          "workHours": 281,
-          "daysUsed": 28,
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
-          "semaphore": 0,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca de engrenagem",
-          "workHours": 87,
-          "daysUsed": 5,
-          "dateInterval": 41,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 1,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 2,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 3,
-          "realized": 0
-        }
-      ]
-    },
-    {
-      "equipmentName": "COP 5471 - TECPIX",
-      "id": 444,
-      "semaphore": 3,
-      "services": [
-        {
-          "serviceName": "Troca de óleo",
-          "workHours": 281,
-          "daysUsed": 28,
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
-          "semaphore": 0,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca de engrenagem",
-          "workHours": 87,
-          "daysUsed": 5,
-          "dateInterval": 41,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 1,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 2,
-          "realized": 0
-        },
-        {
-          "serviceName": "Troca da ventuinha de pano",
-          "workHours": 70,
-          "daysUsed": 10,
-          "dateInterval": 80,
-          "nextMaintence": "22/10/2024 - 22:00",
-          "semaphore": 3,
-          "realized": 0
-        }
-      ]
-    },
-    {
-      "equipmentName": "ALGUM EQUIPAMENTO",
-      "semaphore": 0,
-      "id": 526,
-      "services": [
-        {
-          "serviceName": "Serviço 2",
-          "workHours": "84",
-          "daysUsed": "84",
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
-          "semaphore": 0,
-          "realized": 0
-        },
-        {
-          "serviceName": "Serviço 1",
-          "workHours": "1981",
-          "daysUsed": "1981",
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
-          "semaphore": 0,
-          "realized": 0
-        }
-      ]
-    },
-    {
-      "equipmentName": "TORNO JULIANO",
-      "semaphore": 0,
-      "id": 653,
-      "services": [
-        {
-          "serviceName": "trocar nao sei o que",
-          "workHours": "3876",
-          "daysUsed": "3876",
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
+          "serviceName": "troca de engrenagem",
+          "item": {
+            "itemName": "novo item 2",
+            "cod": "teste 31",
+            "observation": "",
+            "isEdit": false,
+            "id": 1716665490635
+          },
+          "categorie": {
+            "categorie": "FRESA",
+            "observation": "FRESA ALGUMA COISA SAIUJDUASHDISAMSADDMI",
+            "id": 477,
+            "isEdit": false
+          },
+          "changePeriod": 100,
+          "nextMaintence": "29/06/2024",
+          "workRegime": 4,
+          "weekRegime": 6,
           "semaphore": 0,
           "realized": 1
         }
       ]
-    },
-    {
-      "semaphore": 0,
-      "id": 624,
-      "services": [
-        {
-          "serviceName": "TROCA DA ENGRENAGEM ",
-          "workHours": null,
-          "daysUsed": null,
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
-          "semaphore": 0,
-          "realized": 1
-        },
-        {
-          "serviceName": "TROCA DE ÓLEO X",
-          "workHours": null,
-          "daysUsed": null,
-          "dateInterval": 800,
-          "nextMaintence": "22/08/2024 - 15:00",
-          "semaphore": 0,
-          "realized": 1
-        }
-      ]
-    }
-  ],
-  "equipmentsByName": [
-    {
-      "equipmentName": "COP 5894 - TORNO MULTIUSO",
-      "id": 17871
-    },
-    {
-      "equipmentName": "COP 9788 - FRESA TESTE",
-      "id": 5844
-    },
-    {
-      "equipmentName": "Algum produto",
-      "id": 5787
-    },
-    {
-      "equipmentName": "COP 5471 - TECPIX",
-      "id": 444
     }
   ],
   "items": [

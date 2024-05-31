@@ -47,31 +47,20 @@
         <Dsg-data-picker
           :title="'Data da ultima troca'"
           :tooltipText="'Caso nenhum valor for estipulado, ira considerar o dia atual'"
-          @setDate="date = $event"
+          @setDate="localService.lastMaintence = $event"
           placeholder="Ex: 4"
           hide-spin-buttons
         />
       </v-col>
     </v-row>
-    <v-row no-gutters class="mt-8">
-      <div class="dsg-flex-center">
-        <h4>Próxima manutenção:</h4>
-        <span
-          v-if="proximaManutencao && !showManualCalendar"
-          class="next-maintence font-weight-bold mx-2"
-          >{{ manualDate ? manualDate : proximaManutencao }} -
-          {{
-            convertDateToWeekDay(manualDate ? manualDate : proximaManutencao)
-          }}
-        </span>
-        <v-icon v-if="proximaManutencao && !showManualCalendar" @click="showManualCalendar = true">
-          mdi-calendar-blank
-        </v-icon>
-      </div>
-
-      <v-col v-show="showManualCalendar" cols="12" md="2" class="ml-2">
-        <Dsg-data-picker :closeOnClick="true" @setDate="setManualDate" />
-      </v-col>
+    <v-row no-gutters align="center" class="mt-8">
+      <h4>Próxima manutenção:</h4>
+      <span
+        v-if="proximaManutencao && !showManualCalendar"
+        class="next-maintence font-weight-bold mx-2"
+        >{{ proximaManutencao }} -
+        {{ convertDateToWeekDay(proximaManutencao) }}
+      </span>
 
       <v-spacer></v-spacer>
       <Dsg-btn :title="'Excluir'" @click="deleteService" />
@@ -86,7 +75,14 @@ import { dsgFormatDate } from "@/utils/dsg-format-date.js";
 import DsgCombobox from "@/components/common/dsg-combobox.vue";
 import DsgDataPicker from "@/components/common/dsg-data-picker.vue";
 export default {
-  props: ["service", "index", "items", "categories"],
+  props: [
+    "service",
+    "index",
+    "items",
+    "categories",
+    "weekRegime",
+    "workRegime",
+  ],
   components: {
     DsgTextField,
     DsgBtn,
@@ -96,11 +92,6 @@ export default {
   data() {
     return {
       localService: {},
-      date: null,
-      weekRegime: null,
-      workRegime: null,
-      showManualCalendar: false,
-      manualDate: null,
     };
   },
 
@@ -118,7 +109,10 @@ export default {
     },
 
     proximaManutencao() {
-      return this.addDaysToDate(this.date, this.semanasConvertidasEmDias);
+      return this.addDaysToDate(
+        this.localService.lastMaintence,
+        this.semanasConvertidasEmDias
+      );
     },
 
     invalidInputsBorder() {
@@ -144,7 +138,11 @@ export default {
 
     localService: {
       handler(newValue) {
-        this.$emit("setNewService", newValue, this.index);
+        this.$emit(
+          "setNewService",
+          { ...newValue, proximaManutencao: this.proximaManutencao },
+          this.index
+        );
       },
       deep: true,
       immediate: true,
@@ -197,18 +195,6 @@ export default {
     deleteService() {
       this.$emit("deleteService", this.index);
     },
-
-    setManualDate(date) {
-      console.log('aqui',date);
-      this.manualDate = date;
-      this.showManualCalendar = false;
-    },
-  },
-
-  created() {
-    let equipment = JSON.parse(this.$route.query.data);
-    this.workRegime = parseFloat(equipment.workRegime);
-    this.weekRegime = parseFloat(equipment.weekRegime);
   },
 };
 </script>

@@ -6,7 +6,7 @@
       @click="addNewService"
       class="mr-4"
     />
-    
+
     <Dsg-btn :title="'salvar'" @click="saveEquipment" />
 
     <Service-card
@@ -16,6 +16,8 @@
       :index="index"
       :items="items"
       :categories="categories"
+      :workRegime="workRegime"
+      :weekRegime="weekRegime"
       @deleteService="deleteService"
       @setNewService="setNewService"
     />
@@ -35,9 +37,11 @@ export default {
   props: ["services"],
   data: () => ({
     localServices: [],
-    servicesNew: [],
+    servicesCreated: [],
     items: [],
     categories: [],
+    workRegime: null,
+    weekRegime: null,
     isLoading: false,
   }),
 
@@ -79,43 +83,65 @@ export default {
     },
 
     setNewService(service, index) {
-      this.servicesNew.splice(index, 1, service);
+      this.servicesCreated.splice(index, 1, service);
     },
 
     saveEquipment() {
-      let mountServices = this.buildRequest(this.services);
-      this.$emit("setServices", mountServices);
+      let hasNullProperty = this.hasInvalidProperty(this.servicesCreated);
+
+      if (hasNullProperty) {
+        this.$store.commit("snackbar/set", {
+          message: "Propriedades faltando, verifique!",
+          type: "error",
+        });
+        return;
+      }
+
+      let serviceRequest = this.buildRequest(this.servicesCreated);
+      this.$emit("setServices", serviceRequest);
+    },
+
+    hasInvalidProperty(arr) {
+      return arr.some((obj) => {
+        return Object.values(obj).some(
+          (value) => value === null || value === "" || value === undefined
+        );
+      });
     },
 
     buildRequest(services) {
       return services.map((service) => ({
         serviceName: service.serviceName,
-        workHours: service.daysUsed,
-        daysUsed: service.daysUsed,
-        dateInterval: 800,
-        nextMaintence: "22/08/2024 - 15:00",
+        item: service.item,
+        categorie: service.categorie,
+        changePeriod: parseFloat(service.changePeriod),
+        lastMaintence: service.date,
+        nextMaintence: service.proximaManutencao,
+        workRegime: parseFloat(this.workRegime),
+        weekRegime: parseFloat(this.weekRegime),
         semaphore: 0,
         realized: 1,
       }));
     },
 
     addNewService() {
-      this.localServices.unshift({
+      this.localServices.push({
         serviceName: null,
-        workHours: null,
-        daysUsed: null,
-        dateInterval: null,
-        nextMaintence: null,
+        item: null,
+        categorie: null,
       });
     },
 
     deleteService(index) {
-      this.servicesNew.splice(index, 1);
+      this.servicesCreated.splice(index, 1);
       this.localServices.splice(index, 1);
     },
   },
 
   created() {
+    let equipment = JSON.parse(this.$route.query.data);
+    this.workRegime = parseFloat(equipment.workRegime);
+    this.weekRegime = parseFloat(equipment.weekRegime);
     this.getCategories();
     this.getItems();
   },

@@ -30,7 +30,6 @@
 
           <v-date-picker
             v-model="date"
-            :allowed-dates="allowedDates"
             hide-header
             color="primary"
             elevation="24"

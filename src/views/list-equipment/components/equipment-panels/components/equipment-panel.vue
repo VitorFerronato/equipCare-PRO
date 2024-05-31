@@ -1,7 +1,7 @@
 <template>
   <v-expansion-panel :class="setBorder(equipment.semaphore)">
     <v-expansion-panel-title>
-      <h4>{{ equipment.equipmentName.toUpperCase() }}</h4>
+      <h4>{{ equipment }}</h4>
     </v-expansion-panel-title>
 
     <Equipment-table-body :services="equipment.services" :id="equipment.id"/>

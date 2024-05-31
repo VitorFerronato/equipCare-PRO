@@ -28,7 +28,12 @@
       </div>
     </div>
 
-    <Services-area :services="services" @setServices="saveService" />
+    <Services-area
+      :services="services"
+      :workRegime="workRegime"
+      :weekRegime="weekRegime"
+      @setServices="saveService"
+    />
   </div>
 </template>
 
@@ -37,6 +42,7 @@ import ServicesArea from "./components/services-area.vue";
 import service from "@/service/create-equipment.js";
 const Service = new service();
 export default {
+  props: ["workRegime", "weekRegime"],
   components: { ServicesArea },
   name: "create-services",
   data() {
@@ -76,6 +82,7 @@ export default {
     },
 
     async saveService(services) {
+      this.isLoading = true;
       let request = {
         equipmentName: this.equipmentName,
         semaphore: 0,
@@ -84,11 +91,20 @@ export default {
       };
 
       try {
-        let response = await Service.saveNewEquipment(request);
-        console.log("resposta do back", response);
+        await Service.saveNewEquipment(request);
+        this.$store.commit("snackbar/set", {
+          message: "Sucesso ao salvar equipamento",
+          type: "success",
+        });
+        // this.$router.push("/list-equipments");
       } catch (error) {
         console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao salvar equipamento",
+          type: "error",
+        });
       }
+      this.isLoading = false;
     },
 
     verifyEquipment(id, type) {
@@ -101,7 +117,6 @@ export default {
       }
     },
 
-    editNameFunc() {},
   },
 
   async created() {
