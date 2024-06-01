@@ -23,17 +23,17 @@ export default {
         path: "/list-equipments",
       },
       {
-        icon: "mdi-format-list-bulleted",
+        icon: "mdi-tab-plus",
         title: "Cadastrar Equipamentos",
         path: "/create-equipment",
       },
       {
-        icon: "mdi-tab-plus",
+        icon: "mdi-tag-plus-outline",
         title: "Cadastrar categorias",
         path: "/categories-register",
       },
       {
-        icon: "mdi-tab-plus",
+        icon: "mdi-text-box-plus-outline",
         title: "Cadastrar items",
         path: "/items-register",
       },

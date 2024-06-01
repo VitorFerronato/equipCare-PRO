@@ -12,7 +12,6 @@
         indeterminate
       ></v-progress-circular>
     </v-overlay>
-
     <h2 class="mb-2">
       {{ equipment.equipmentName.toUpperCase() }}
       <span v-show="equipment.tagName">- {{ equipment.tagName }}</span>
@@ -27,7 +26,6 @@
         >
       </div>
     </div>
-
     <Services-area
       :services="services"
       :workRegime="workRegime"
@@ -83,20 +81,29 @@ export default {
 
     async saveService(services) {
       this.isLoading = true;
+
       let request = {
-        equipmentName: this.equipmentName,
-        semaphore: 0,
-        id: Math.floor(Math.random() * 1000),
+        equipmentName: this.equipment?.equipmentName ?? "-",
+        weekRegime: this.equipment?.weekRegime ?? "-",
+        workRegime: this.equipment?.workRegime ?? "-",
+        tagName: this.equipment?.tagName ?? "-",
+        semaphore: 0, // Sera feito o semáforo no back
+        id: this.equipment.id
+          ? this.equipment.id
+          : Math.floor(Math.random() * 1000), // Id também gerado no back
         services: services,
       };
 
+      let serviceURL = this.equipment.id
+        ? "updateEquipment"
+        : "saveNewEquipment";
       try {
-        await Service.saveNewEquipment(request);
+        await Service[serviceURL](request);
         this.$store.commit("snackbar/set", {
           message: "Sucesso ao salvar equipamento",
           type: "success",
         });
-        // this.$router.push("/list-equipments");
+        this.$router.push("/list-equipments");
       } catch (error) {
         console.log(error);
         this.$store.commit("snackbar/set", {
@@ -116,12 +123,12 @@ export default {
         this.newItem = false;
       }
     },
-
   },
 
   async created() {
-    if (this.$route.query.data)
+    if (this.$route.query.data) {
       this.equipment = JSON.parse(this.$route.query.data);
+    }
   },
 };
 </script>

@@ -22,6 +22,7 @@
           v-model="workRegime"
           :title="'Regime de trabalho/dia'"
           :tooltipText="'Quantas horas por dia ele trabalha'"
+          :rules="[maxWorkHoursRule]"
           placeholder="Ex: 4  "
           suffix="Horas por dia"
           type="number"
@@ -33,6 +34,7 @@
           v-model="weekRegime"
           :title="'Regime de trabalho/semana'"
           :tooltipText="'Quantos dias por semana ele trabalha'"
+          :rules="[maxDaysWeekRule]"
           placeholder="Ex: 2 "
           suffix="Dias por semana"
           type="number"
@@ -45,7 +47,7 @@
         :disabled="disableButton"
         @click="addNewEquipment"
         @keydown.enter="addNewEquipment"
-        class="mt-7 ml-4" 
+        class="mt-7 ml-4"
       />
     </v-row>
   </v-card>
@@ -67,7 +69,15 @@ export default {
   },
   computed: {
     disableButton() {
-      if (!this.equipmentName || !this.tagName || !this.workRegime || !this.weekRegime) return true;
+      if (
+        !this.equipmentName ||
+        !this.tagName ||
+        !this.workRegime ||
+        !this.weekRegime ||
+        this.workRegime > 24 ||
+        this.weekRegime > 7
+      )
+        return true;
       return false;
     },
   },
@@ -83,6 +93,12 @@ export default {
         name: "create-services",
         query: { data: JSON.stringify(equipment) },
       });
+    },
+    maxWorkHoursRule(value) {
+      return value <= 24 || "O número deve ser menor ou igual a 24";
+    },
+    maxDaysWeekRule(value) {
+      return value <= 7 || "O número deve ser menor ou igual a 7";
     },
   },
 };
