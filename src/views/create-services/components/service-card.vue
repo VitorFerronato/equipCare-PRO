@@ -20,6 +20,11 @@
           :itemValue="'cod'"
         />
       </v-col>
+      <Create-item-modal
+        :type="'item'"
+        @updateItems="$emit('updateItems')"
+        class="mt-7 ml-n2"
+      />
 
       <v-col>
         <Dsg-combobox
@@ -30,6 +35,11 @@
           :itemValue="'id'"
         />
       </v-col>
+      <Create-item-modal
+        :type="'categorie'"
+        @updateCategories="$emit('updateCategories')"
+        class="mt-7 ml-n2 mr-4"
+      />
     </v-row>
     <v-row>
       <v-col cols="12" md="4" lg="4">
@@ -74,6 +84,7 @@ import DsgBtn from "@/components/common/dsg-btn.vue";
 import { dsgFormatDate } from "@/utils/dsg-format-date.js";
 import DsgCombobox from "@/components/common/dsg-combobox.vue";
 import DsgDataPicker from "@/components/common/dsg-data-picker.vue";
+import CreateItemModal from "./create-item-categorie-modal.vue";
 export default {
   props: [
     "service",
@@ -88,6 +99,7 @@ export default {
     DsgBtn,
     DsgCombobox,
     DsgDataPicker,
+    CreateItemModal,
   },
   data() {
     return {

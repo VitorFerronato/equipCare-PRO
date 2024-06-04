@@ -20,6 +20,8 @@
       :weekRegime="weekRegime"
       @deleteService="deleteService"
       @setNewService="setNewService"
+      @updateItems="getItems"
+      @updateCategories="getCategories"
     />
   </div>
 </template>

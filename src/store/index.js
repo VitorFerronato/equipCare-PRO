@@ -38,13 +38,13 @@ export default createStore({
     },
 
     FILTER_ITEMS({ commit, state }, searchTerm) {
+      const searchLower = searchTerm.toLowerCase();
       const filtered = state.equipments.filter(item =>
-        item.equipmentName.toLowerCase().includes(searchTerm.toLowerCase())
+        item.equipmentName.toLowerCase().includes(searchLower) ||
+        item.tagName.toLowerCase().includes(searchLower)
       );
       commit('SET_FILTERED_EQUIPMENTS', filtered);
     },
-
-
   },
   modules: {
     snackbar

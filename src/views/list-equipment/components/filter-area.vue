@@ -37,32 +37,18 @@ export default {
   data: () => ({
     filters: [
       {
-        title: "Dias",
+        title: "Categoria",
+        items: [],
+        selected: null,
+      },
+      {
+        title: "Items",
         items: [],
         selected: null,
       },
       {
         title: "Semáforo",
         items: [],
-        selected: null,
-      },
-      {
-        title: "Código do produto",
-        items: [],
-        selected: null,
-      },
-      {
-        title: "Realizado",
-        items: [
-          {
-            text: "Realizado",
-            value: 0,
-          },
-          {
-            text: "Não realizado",
-            value: 1,
-          },
-        ],
         selected: null,
       },
     ],

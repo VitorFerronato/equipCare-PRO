@@ -56,7 +56,7 @@
             "isEdit": false
           },
           "changePeriod": 200,
-          "nextMaintence": "26/06/2024",
+          "nextMaintence": "29/06/2024",
           "workRegime": 8,
           "weekRegime": 7,
           "semaphore": 0,
@@ -78,7 +78,29 @@
             "isEdit": false
           },
           "changePeriod": 100,
-          "nextMaintence": "14/06/2024",
+          "nextMaintence": "16/06/2024",
+          "workRegime": 8,
+          "weekRegime": 7,
+          "semaphore": 0,
+          "realized": 1
+        },
+        {
+          "serviceName": "Algum serviço",
+          "item": {
+            "itemName": "novo item 2",
+            "cod": "teste 31",
+            "observation": "",
+            "isEdit": false,
+            "id": 1716665490635
+          },
+          "categorie": {
+            "categorie": "TORNO",
+            "observation": "",
+            "id": 7787,
+            "isEdit": false
+          },
+          "changePeriod": 30,
+          "nextMaintence": "03/07/2024",
           "workRegime": 8,
           "weekRegime": 7,
           "semaphore": 0,
@@ -89,13 +111,6 @@
   ],
   "items": [
     {
-      "itemName": "ÓLEO 5W60 ",
-      "cod": "cop sss",
-      "observation": "Aqui vai alguma observação",
-      "id": 4514,
-      "isEdit": false
-    },
-    {
       "itemName": "novo item 2",
       "cod": "teste 31",
       "observation": "",
@@ -103,11 +118,18 @@
       "id": 1716665490635
     },
     {
-      "itemName": "Aqui vai algum equipamento",
-      "cod": "COP98747",
-      "observation": "Aqui vai outra observaçção",
+      "itemName": "ALGUMA COISA",
+      "cod": "cop87",
+      "observation": "",
       "isEdit": false,
-      "id": 1716740246553
+      "id": 1717525933620
+    },
+    {
+      "itemName": "teste",
+      "cod": "ste",
+      "observation": "sa",
+      "isEdit": false,
+      "id": 1717526567324
     }
   ],
   "categories": [
@@ -119,9 +141,9 @@
     },
     {
       "categorie": "FRESA",
-      "observation": "FRESA ALGUMA COISA SAIUJDUASHDISAMSADDMI",
-      "id": 477,
-      "isEdit": false
+      "observation": "Fresa de algum lugar",
+      "isEdit": false,
+      "id": 1717527140653
     }
   ]
 }

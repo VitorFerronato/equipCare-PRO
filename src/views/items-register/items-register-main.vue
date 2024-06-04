@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2 class="mb-4">REGISTRO DE ITEMS</h2>
-    <p>
+    <h2 class="mb-4" v-if="!isModal">REGISTRO DE ITEMS</h2>
+    <p v-if="!isModal">
       Registre os items que você desejar, e mais alguma descrição para preencher
       linha aqui
     </p>
 
-    <v-card class="pa-4 mt-6">
-      <h4>ITEMS REGISTADOS</h4>
+    <v-card :elevation="isModal ? '0' : '10'" class="pa-4 mt-6">
+      <h4 v-if="!isModal">ITEMS REGISTADOS</h4>
       <Dsg-loading-circular v-if="isLoading" class="mt-6" />
 
       <div v-else>
@@ -27,7 +27,7 @@
 
           <template v-slot:[`item.cod`]="{ item }">
             <div>
-              <span v-if="!item.isEdit">{{ item.cod }}</span>
+              <span v-if="!item.isEdit">{{ item.cod.toUpperCase() }}</span>
               <Dsg-text-field v-else v-model="item.cod" />
             </div>
           </template>
@@ -35,7 +35,7 @@
           <template v-slot:[`item.observation`]="{ item }">
             <div>
               <span v-if="!item.isEdit">{{
-                item.observation ? item.observation : "-"
+                item.observation ? item.observation.toUpperCase() : "-"
               }}</span>
               <Dsg-text-field v-else v-model="item.observation" />
             </div>
@@ -81,6 +81,12 @@ import DsgLoadingCircular from "@/components/common/dsg-loading-circular.vue";
 const Service = new service();
 export default {
   components: { DsgTextField, DsgBtn, DsgLoadingCircular },
+  props: {
+    isModal: {
+      default: false,
+      type: Boolean,
+    },
+  },
   name: "items-register",
   data: () => ({
     isLoading: false,
@@ -156,7 +162,7 @@ export default {
         });
         this.getItems();
       }
-
+      this.$emit("updateItems");
       this.loadingTable = false;
     },
 
@@ -183,6 +189,7 @@ export default {
         this.getItems();
       }
 
+      this.$emit("updateItems");
       this.loadingTable = false;
       item.isEdit = false;
     },
@@ -208,6 +215,7 @@ export default {
         this.getItems();
       }
 
+      this.$emit("updateItems");
       this.loadingTable = false;
     },
 

@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h2 class="mb-4">REGISTRO DE CATEGORIAS</h2>
-    <p>
+    <h2 v-if="!isModal" class="mb-4">REGISTRO DE CATEGORIAS</h2>
+    <p v-if="!isModal">
       Registre as categorias que você desejar, e mais alguma descrição para
       preencher linha aqui
     </p>
 
-    <v-card class="pa-4 mt-6">
-      <h4>CATEGORIAS REGISTRADAS</h4>
+    <v-card :elevation="isModal ? '0' : '10'" class="pa-4 mt-6">
+      <h4 v-if="!isModal">CATEGORIAS REGISTRADAS</h4>
       <Dsg-btn
         title="Novo item"
         :icon="'mdi-plus'"
@@ -17,13 +17,13 @@
       <v-data-table :headers="headers" :items="items">
         <template v-slot:[`item.categorie`]="{ item }">
           <div>
-            <span v-if="!item.isEdit">{{ item.categorie }}</span>
+            <span v-if="!item.isEdit">{{ item.categorie.toUpperCase() }}</span>
             <Dsg-text-field v-else v-model="item.categorie" />
           </div>
         </template>
         <template v-slot:[`item.observation`]="{ item }">
           <div>
-            <span v-if="!item.isEdit">{{ item.observation }}</span>
+            <span v-if="!item.isEdit">{{ item.observation.toUpperCase() }}</span>
             <Dsg-text-field v-else v-model="item.observation" />
           </div>
         </template>
@@ -66,6 +66,12 @@ import DsgTextField from "@/components/common/dsg-text-field.vue";
 const Service = new service();
 export default {
   components: { DsgBtn, DsgTextField },
+  props: {
+    isModal: {
+      default: false,
+      type: Boolean,
+    },
+  },
   name: "categories-register",
   data: () => ({
     isLoading: false,
@@ -128,7 +134,7 @@ export default {
         });
         this.getCategories();
       }
-
+      this.$emit("updateCategories");
       this.loadingTable = false;
     },
 
@@ -154,6 +160,7 @@ export default {
         });
         this.getCategories();
       }
+      this.$emit("updateCategories");
 
       this.loadingTable = false;
     },
@@ -180,6 +187,7 @@ export default {
         });
         this.getCategories();
       }
+      this.$emit("updateCategories");
 
       this.loadingTable = false;
       categorie.isEdit = false;

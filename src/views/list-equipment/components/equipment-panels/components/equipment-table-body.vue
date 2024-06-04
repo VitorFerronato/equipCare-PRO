@@ -8,9 +8,9 @@
             {{ item.nextMaintence }}
           </td>
           <td>{{ item.categorie.categorie }}</td>
-          <td>{{ item.serviceName }}</td>
-          <td>{{ item.item.cod }} - {{ item.item.itemName }}</td>
-          <td>{{ item.changePeriod }} Horas</td>
+          <td>{{ item.serviceName.toUpperCase() }}</td>
+          <td>{{ item.item.cod.toUpperCase() }} - {{ item.item.itemName.toUpperCase() }}</td>
+          <td>{{ item.changePeriod }} HORAS</td>
         </tr>
       </template>
     </v-data-table>

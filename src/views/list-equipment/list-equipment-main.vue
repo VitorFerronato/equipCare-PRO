@@ -11,6 +11,7 @@
     <Header-list />
 
     <Dsg-loading-circular v-if="isLoading" class="mt-6" />
+
     <Equipment-panels-main v-else :equipments="filteredEquipments" />
 
     <v-row
@@ -51,7 +52,7 @@ export default {
     },
   },
 
-  created(){
+  created() {
     this.$store.dispatch("GET_EQUIPMENTS");
   },
 };

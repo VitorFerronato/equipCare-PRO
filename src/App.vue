@@ -14,7 +14,7 @@ import Header from "./components/header-app.vue";
 import Snackbar from "@/components/common/dsg-snackbar.vue";
 import SidebarApp from "./components/sidebar-app.vue";
 export default {
-  components: { Header, Snackbar, SidebarApp },
+  components: { Header, Snackbar, SidebarApp }, 
   name: "App",
 
   data: () => ({
@@ -22,6 +22,9 @@ export default {
   }),
 
   methods: {},
+  created(){
+    console.log('foi criado');
+  }
 };
 </script>
 
