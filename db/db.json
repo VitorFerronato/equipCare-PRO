@@ -107,6 +107,92 @@
           "realized": 1
         }
       ]
+    },
+    {
+      "equipmentName": "ALGUM EQUIPAMENTO",
+      "weekRegime": 6,
+      "workRegime": 4,
+      "tagName": "COP787",
+      "semaphore": 0,
+      "id": 186,
+      "services": [
+        {
+          "serviceName": "sdasd",
+          "item": {
+            "itemName": "ALGUMA COISA",
+            "cod": "cop87",
+            "observation": "",
+            "isEdit": false,
+            "id": 1717525933620
+          },
+          "categorie": {
+            "categorie": "FRESA",
+            "observation": "Fresa de algum lugar",
+            "isEdit": false,
+            "id": 1717527140653
+          },
+          "changePeriod": 144,
+          "nextMaintence": "18/07/2024",
+          "workRegime": 4,
+          "weekRegime": 6,
+          "semaphore": 0,
+          "realized": 1
+        }
+      ]
+    },
+    {
+      "equipmentName": "outro equipamento",
+      "weekRegime": 4,
+      "workRegime": 1,
+      "tagName": "cop84",
+      "semaphore": 0,
+      "id": 876,
+      "services": [
+        {
+          "serviceName": "outro serviço",
+          "item": {
+            "itemName": "ALGUMA COISA",
+            "cod": "cop87",
+            "observation": "",
+            "isEdit": false,
+            "id": 1717525933620
+          },
+          "categorie": {
+            "categorie": "TORNO",
+            "observation": "",
+            "id": 7787,
+            "isEdit": false
+          },
+          "changePeriod": 100,
+          "nextMaintence": "29/11/2024",
+          "workRegime": 1,
+          "weekRegime": 4,
+          "semaphore": 0,
+          "realized": 1
+        },
+        {
+          "serviceName": "tet",
+          "item": {
+            "itemName": "ALGUMA COISA",
+            "cod": "cop87",
+            "observation": "",
+            "isEdit": false,
+            "id": 1717525933620
+          },
+          "categorie": {
+            "categorie": "TORNO",
+            "observation": "",
+            "id": 7787,
+            "isEdit": false
+          },
+          "changePeriod": 200,
+          "nextMaintence": "21/05/2025",
+          "workRegime": 1,
+          "weekRegime": 4,
+          "semaphore": 0,
+          "realized": 1
+        }
+      ]
     }
   ],
   "items": [

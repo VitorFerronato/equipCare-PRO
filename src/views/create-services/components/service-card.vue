@@ -66,12 +66,23 @@
     <v-row no-gutters align="center" class="mt-8">
       <h4>Próxima manutenção:</h4>
       <span
-        v-if="proximaManutencao && !showManualCalendar"
+        v-if="proximaManutencao && !localService.manualDate"
         class="next-maintence font-weight-bold mx-2"
         >{{ proximaManutencao }} -
         {{ convertDateToWeekDay(proximaManutencao) }}
       </span>
+      <span
+        v-if="localService.manualDate"
+        class="next-maintence font-weight-bold mx-2"
+        >{{ localService.manualDate }} -
+        {{ convertDateToWeekDay(localService.manualDate) }}
+      </span>
 
+      <Dsg-data-picker-icon
+        v-if="proximaManutencao"
+        @setDate="localService.manualDate = $event"
+      />
+  
       <v-spacer></v-spacer>
       <Dsg-btn :title="'Excluir'" @click="deleteService" />
     </v-row>
@@ -85,6 +96,7 @@ import { dsgFormatDate } from "@/utils/dsg-format-date.js";
 import DsgCombobox from "@/components/common/dsg-combobox.vue";
 import DsgDataPicker from "@/components/common/dsg-data-picker.vue";
 import CreateItemModal from "./create-item-categorie-modal.vue";
+import DsgDataPickerIcon from "@/components/common/dsg-data-picker-icon.vue";
 export default {
   props: [
     "service",
@@ -100,10 +112,12 @@ export default {
     DsgCombobox,
     DsgDataPicker,
     CreateItemModal,
+    DsgDataPickerIcon,
   },
   data() {
     return {
       localService: {},
+      manualDate: null,
     };
   },
 

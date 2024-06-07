@@ -32,8 +32,8 @@ export default {
 
   computed: {
     equipmentTitle() {
-      return `${this.equipment?.tagName ?? "-"} - ${
-        this.equipment?.equipmentName ?? "-"
+      return `${this.equipment?.tagName.toUpperCase() ?? "-"} - ${
+        this.equipment?.equipmentName.toUpperCase() ?? "-"
       } `;
     },
 

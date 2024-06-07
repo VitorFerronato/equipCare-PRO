@@ -105,9 +105,15 @@ export default {
 
     hasInvalidProperty(arr) {
       return arr.some((obj) => {
-        return Object.values(obj).some(
-          (value) => value === null || value === "" || value === undefined
-        );
+        return Object.keys(obj).some((key) => {
+          if (
+            key !== "manualDate" &&
+            (obj[key] === null || obj[key] === "" || obj[key] === undefined)
+          ) {
+            return true;
+          }
+          return false;
+        });
       });
     },
 
@@ -118,7 +124,9 @@ export default {
         categorie: service.categorie,
         changePeriod: parseFloat(service.changePeriod),
         lastMaintence: service.date,
-        nextMaintence: service.proximaManutencao,
+        nextMaintence: service.manualDate
+          ? service.manualDate
+          : service.proximaManutencao,
         workRegime: parseFloat(this.workRegime),
         weekRegime: parseFloat(this.weekRegime),
         semaphore: 0,
