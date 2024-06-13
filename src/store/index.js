@@ -7,6 +7,7 @@ export default createStore({
   state: {
     equipments: [],
     filteredEquipments: [],
+    serviceOrder: [],
     listEquipmentsLoading: false
   },
 
@@ -19,6 +20,29 @@ export default createStore({
     SET_FILTERED_EQUIPMENTS(state, filtered) {
       state.filteredEquipments = filtered;
     },
+
+    ADD_SERVICE_TO_EQUIPMENT_IN_ORDER(state, { service, equipment }) {
+      let equipmentInOrder = state.serviceOrder.find(e => e.id === equipment.id);
+
+      if (!equipmentInOrder) {
+        equipmentInOrder = { ...equipment, services: [] };
+        state.serviceOrder.push(equipmentInOrder);
+      }
+
+      equipmentInOrder.services.push(service);
+    },
+
+    REMOVE_SERVICE_FROM_EQUIPMENT_IN_ORDER(state, { serviceId, equipmentId }) {
+      const equipmentInOrder = state.serviceOrder.find(e => e.id === equipmentId);
+
+      if (equipmentInOrder) {
+        equipmentInOrder.services = equipmentInOrder.services.filter(s => s.idService !== serviceId);
+
+        if (equipmentInOrder.services.length === 0) {
+          state.serviceOrder = state.serviceOrder.filter(e => e.id !== equipmentId);
+        }
+      }
+    }
   },
 
   actions: {
@@ -45,6 +69,28 @@ export default createStore({
       );
       commit('SET_FILTERED_EQUIPMENTS', filtered);
     },
+
+    ADD_TO_SERVICE_ORDER({ commit, state }, { service, equipmentId }) {
+      const equipment = state.equipments.find(e => e.id === equipmentId);
+
+      if (equipment) {
+        const equipmentInOrder = state.serviceOrder.find(e => e.id === equipmentId);
+
+        if (equipmentInOrder) {
+          const serviceExists = equipmentInOrder.services.some(s => s.idService === service.idService);
+
+          if (serviceExists) {
+            commit('REMOVE_SERVICE_FROM_EQUIPMENT_IN_ORDER', { serviceId: service.idService, equipmentId });
+          } else {
+            commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
+          }
+        } else {
+          commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
+        }
+      }
+    }
+
+
   },
   modules: {
     snackbar

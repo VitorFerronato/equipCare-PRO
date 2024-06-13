@@ -37,6 +37,11 @@ export default {
         title: "Cadastrar items",
         path: "/items-register",
       },
+      {
+        icon: "mdi-history",
+        title: "Ordens de serviço",
+        path: "/service-order-history",
+      },
     ],
   }),
 };

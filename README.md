@@ -15,6 +15,23 @@
 # Adicionar Serviços
     - Tooltip no campo da próxima manutenção com o calculo feito
 
+# Ordem de serviço
+    - Opção para selecionar todos os serviços de um equipamento
+    - Limpar store quando sair da tela de listagem
+    - Ao confirmar a ordem, atualizar o realized e a data para a próxima manutenção do equipamento
+
+    # DUVIDAS
+    - O que precisa ter, (nome de quem vai fazer, etc)
+    - As manutenções tem que acontecer no mesmo dia?
+
+# Histórico de Ordem de serviço
+    - Em progresso
+
+
+
+
+
+
  ==================
 # PATCH NOTE 04/06/2024
     - Adicionado opção para adicionar item e categoria diretamente na criação do serviço

@@ -131,6 +131,7 @@ export default {
         weekRegime: parseFloat(this.weekRegime),
         semaphore: 0,
         realized: 1,
+        idService: service.id ? service.id : Math.floor(Math.random() * 1000),
       }));
     },
 

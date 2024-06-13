@@ -9,20 +9,27 @@
           </td>
           <td>{{ item.categorie.categorie }}</td>
           <td>{{ item.serviceName.toUpperCase() }}</td>
-          <td>{{ item.item.cod.toUpperCase() }} - {{ item.item.itemName.toUpperCase() }}</td>
+          <td>
+            {{ item.item.cod.toUpperCase() }} -
+            {{ item.item.itemName.toUpperCase() }}
+          </td>
           <td>{{ item.changePeriod }} HORAS</td>
+          <td>
+            <v-checkbox
+              v-model="item.realized"
+              @click="addToServiceOrder(item)"
+              hide-details
+            ></v-checkbox>
+          </td>
         </tr>
       </template>
     </v-data-table>
-    <Confirm-date :modalOpen="modalOpen" @closeModal="modalOpen = false" />
   </div>
 </template>
 
 <script>
-import ConfirmDate from "./confirm-date.vue";
 export default {
   props: ["services", "id"],
-  components: { ConfirmDate },
   data() {
     return {
       headers: [
@@ -51,6 +58,11 @@ export default {
           value: "changePeriod",
           sortable: true,
         },
+        {
+          title: "Adicionar ordem",
+          value: "realized",
+          sortable: true,
+        },
       ],
       modalOpen: false,
     };
@@ -68,6 +80,13 @@ export default {
         case 3:
           return "green-background";
       }
+    },
+    addToServiceOrder(item) {
+      item.realized = !item.realized;
+      this.$store.dispatch("ADD_TO_SERVICE_ORDER", {
+        service: item,
+        equipmentId: this.id,
+      });
     },
   },
 };

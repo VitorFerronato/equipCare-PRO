@@ -6,6 +6,7 @@
       <router-view class="view" />
     </v-main>
     <Snackbar />
+    <Service-order />
   </v-app>
 </template>
 
@@ -13,8 +14,9 @@
 import Header from "./components/header-app.vue";
 import Snackbar from "@/components/common/dsg-snackbar.vue";
 import SidebarApp from "./components/sidebar-app.vue";
+import ServiceOrder from './components/common/service-order.vue';
 export default {
-  components: { Header, Snackbar, SidebarApp }, 
+  components: { Header, Snackbar, SidebarApp, ServiceOrder }, 
   name: "App",
 
   data: () => ({
@@ -35,6 +37,7 @@ export default {
 
 .v-application {
   background-color: $body-color !important;
+  position: relative;
 }
 
 .header-color {

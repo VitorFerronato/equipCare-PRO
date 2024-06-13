@@ -56,8 +56,8 @@ export default {
     },
     closeOnClick: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
 
   data: () => ({
@@ -78,13 +78,6 @@ export default {
   },
 
   methods: {
-allowedDates(date) {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0); // Zera as horas para comparar apenas as datas
-      const selectedDate = new Date(date);
-
-      return selectedDate >= today;
-    },
     formatDate(date) {
       const day = String(date.getDate()).padStart(2, "0");
       const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -100,7 +93,6 @@ allowedDates(date) {
       const year = today.getFullYear();
       return `${day}/${month}/${year}`;
     },
-
   },
 
   created() {

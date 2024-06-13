@@ -1,123 +1,71 @@
 {
   "equipments": [
     {
-      "equipmentName": "TORNO ALGUMA COISA",
+      "equipmentName": "TORNO",
       "weekRegime": 6,
       "workRegime": 4,
-      "tagName": "COP987",
-      "semaphore": 0,
-      "id": 291,
-      "services": [
-        {
-          "serviceName": "Algum outro serviço",
-          "item": {
-            "itemName": "ÓLEO 5W60 ",
-            "cod": "cop sss",
-            "observation": "Aqui vai alguma observação",
-            "id": 4514,
-            "isEdit": false
-          },
-          "categorie": {
-            "categorie": "TORNO",
-            "observation": "",
-            "id": 7787,
-            "isEdit": false
-          },
-          "changePeriod": 30,
-          "nextMaintence": "09/06/2024",
-          "workRegime": 4,
-          "weekRegime": 6,
-          "semaphore": 0,
-          "realized": 1
-        }
-      ]
-    },
-    {
-      "equipmentName": "FRESA 2024",
-      "weekRegime": 7,
-      "workRegime": 8,
       "tagName": "COP 9874",
       "semaphore": 0,
-      "id": 261,
+      "id": 425,
       "services": [
         {
-          "serviceName": "TROCA DE PEÇA X",
+          "serviceName": "Troca de óleo",
           "item": {
-            "itemName": "novo item 2",
-            "cod": "teste 31",
+            "itemName": "ALGUMA COISA",
+            "cod": "cop87",
             "observation": "",
             "isEdit": false,
-            "id": 1716665490635
+            "id": 1717525933620
           },
           "categorie": {
             "categorie": "TORNO",
             "observation": "",
             "id": 7787,
-            "isEdit": false
-          },
-          "changePeriod": 200,
-          "nextMaintence": "29/06/2024",
-          "workRegime": 8,
-          "weekRegime": 7,
-          "semaphore": 0,
-          "realized": 1
-        },
-        {
-          "serviceName": "TROCA DE ÓLEO",
-          "item": {
-            "itemName": "novo item 2",
-            "cod": "teste 31",
-            "observation": "",
-            "isEdit": false,
-            "id": 1716665490635
-          },
-          "categorie": {
-            "categorie": "FRESA",
-            "observation": "FRESA ALGUMA COISA SAIUJDUASHDISAMSADDMI",
-            "id": 477,
             "isEdit": false
           },
           "changePeriod": 100,
-          "nextMaintence": "16/06/2024",
-          "workRegime": 8,
-          "weekRegime": 7,
+          "nextMaintence": "18/07/2024",
+          "workRegime": 4,
+          "weekRegime": 6,
           "semaphore": 0,
-          "realized": 1
+          "realized": false,
+          "idService": 893
         },
         {
-          "serviceName": "Algum serviço",
+          "serviceName": "TROCA DA ENGRENAGEM",
           "item": {
-            "itemName": "novo item 2",
-            "cod": "teste 31",
-            "observation": "",
+            "itemName": "teste",
+            "cod": "ste",
+            "observation": "sa",
             "isEdit": false,
-            "id": 1716665490635
+            "id": 1717526567324
           },
           "categorie": {
-            "categorie": "TORNO",
-            "observation": "",
-            "id": 7787,
-            "isEdit": false
+            "categorie": "FRESA",
+            "observation": "Fresa de algum lugar",
+            "isEdit": false,
+            "id": 1717527140653
           },
-          "changePeriod": 30,
-          "nextMaintence": "03/07/2024",
-          "workRegime": 8,
-          "weekRegime": 7,
+          "changePeriod": 200,
+          "nextMaintence": "27/08/2024",
+          "workRegime": 4,
+          "weekRegime": 6,
           "semaphore": 0,
-          "realized": 1
+          "realized": false,
+          "idService": 40
         }
       ]
     },
     {
-      "equipmentName": "ALGUM EQUIPAMENTO",
-      "weekRegime": 6,
-      "workRegime": 4,
-      "tagName": "COP787",
+      "equipmentName": "FRESA",
+      "weekRegime": 7,
+      "workRegime": 6,
+      "tagName": "COP 898",
       "semaphore": 0,
-      "id": 186,
+      "id": 225,
       "services": [
         {
-          "serviceName": "sdasd",
+          "serviceName": "serviço qualuqer",
           "item": {
             "itemName": "ALGUMA COISA",
             "cod": "cop87",
@@ -131,66 +79,13 @@
             "isEdit": false,
             "id": 1717527140653
           },
-          "changePeriod": 144,
-          "nextMaintence": "18/07/2024",
-          "workRegime": 4,
-          "weekRegime": 6,
-          "semaphore": 0,
-          "realized": 1
-        }
-      ]
-    },
-    {
-      "equipmentName": "outro equipamento",
-      "weekRegime": 4,
-      "workRegime": 1,
-      "tagName": "cop84",
-      "semaphore": 0,
-      "id": 876,
-      "services": [
-        {
-          "serviceName": "outro serviço",
-          "item": {
-            "itemName": "ALGUMA COISA",
-            "cod": "cop87",
-            "observation": "",
-            "isEdit": false,
-            "id": 1717525933620
-          },
-          "categorie": {
-            "categorie": "TORNO",
-            "observation": "",
-            "id": 7787,
-            "isEdit": false
-          },
           "changePeriod": 100,
-          "nextMaintence": "29/11/2024",
-          "workRegime": 1,
-          "weekRegime": 4,
+          "nextMaintence": "28/06/2024",
+          "workRegime": 6,
+          "weekRegime": 7,
           "semaphore": 0,
-          "realized": 1
-        },
-        {
-          "serviceName": "tet",
-          "item": {
-            "itemName": "ALGUMA COISA",
-            "cod": "cop87",
-            "observation": "",
-            "isEdit": false,
-            "id": 1717525933620
-          },
-          "categorie": {
-            "categorie": "TORNO",
-            "observation": "",
-            "id": 7787,
-            "isEdit": false
-          },
-          "changePeriod": 200,
-          "nextMaintence": "21/05/2025",
-          "workRegime": 1,
-          "weekRegime": 4,
-          "semaphore": 0,
-          "realized": 1
+          "realized": false,
+          "idService": 769
         }
       ]
     }

@@ -4,6 +4,7 @@ import createServices from "@/views/create-services/create-services-main.vue"
 import listEquipments from "@/views/list-equipment/list-equipment-main.vue"
 import itemsRegister from "@/views/items-register/items-register-main.vue"
 import categoriesRegister from "@/views/categories-register/categories-register-main.vue"
+import serviceOrderHistory from "@/views/service-order-history/service-order-history-main.vue"
 const routes = [
   {
     path: "/",
@@ -33,6 +34,11 @@ const routes = [
     path: '/categories-register',
     component: categoriesRegister,
     name: 'categories-register'
+  },
+  {
+    path: '/service-order-history',
+    component: serviceOrderHistory,
+    name: 'service-order-history-main'
   },
 ]
 
