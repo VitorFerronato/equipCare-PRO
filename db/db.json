@@ -92,25 +92,18 @@
   ],
   "items": [
     {
-      "itemName": "novo item 2",
-      "cod": "teste 31",
-      "observation": "",
+      "itemName": "Adicionando novo item",
+      "cod": "COP 9874",
+      "observation": "Adicionando uma nov classe",
       "isEdit": false,
-      "id": 1716665490635
+      "id": 1718336038298
     },
     {
-      "itemName": "ALGUMA COISA",
-      "cod": "cop87",
-      "observation": "",
+      "itemName": "Adicionand",
+      "cod": "COP",
+      "observation": "Adicionando",
       "isEdit": false,
-      "id": 1717525933620
-    },
-    {
-      "itemName": "teste",
-      "cod": "ste",
-      "observation": "sa",
-      "isEdit": false,
-      "id": 1717526567324
+      "id": 1718336052466
     }
   ],
   "categories": [

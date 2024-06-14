@@ -6,7 +6,12 @@
       linha aqui
     </p>
 
-    <v-card :elevation="isModal ? '0' : '10'" class="pa-4 mt-6">
+    <v-card
+      :loading="itemsLoading"
+      :disabled="itemsLoading"
+      :elevation="isModal ? '0' : '10'"
+      class="pa-4 mt-6"
+    >
       <h4 v-if="!isModal">ITEMS REGISTADOS</h4>
       <Dsg-loading-circular v-if="isLoading" class="mt-6" />
 
@@ -68,7 +73,6 @@
             </div>
           </template>
         </v-data-table>
-        {{storeItems}}
       </div>
     </v-card>
   </div>
@@ -77,9 +81,7 @@
 <script>
 import DsgTextField from "@/components/common/dsg-text-field.vue";
 import DsgBtn from "@/components/common/dsg-btn.vue";
-import service from "@/service/items-area.js";
 import DsgLoadingCircular from "@/components/common/dsg-loading-circular.vue";
-const Service = new service();
 export default {
   components: { DsgTextField, DsgBtn, DsgLoadingCircular },
   props: {
@@ -121,10 +123,14 @@ export default {
     ],
   }),
 
-  computed:{
-    items(){
-      return this.$store?.state?.items ?? []
-    }
+  computed: {
+    items() {
+      return this.$store?.state?.items ?? [];
+    },
+
+    itemsLoading() {
+      return this.$store?.state?.getItemsLoading ?? false;
+    },
   },
 
   methods: {
@@ -137,20 +143,7 @@ export default {
       this.loadingTable = true;
       item.isEdit = false;
 
-      try {
-        await Service.updateItem(item);
-        this.$store.commit("snackbar/set", {
-          message: "Sucesso editar item",
-          type: "success",
-        });
-      } catch (error) {
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao editar item, contate o suporte!",
-          type: "error",
-        });
-        this.getItems();
-      }
-      this.$emit("updateItems");
+      await this.$store.dispatch("UPDATE_ITEM", item);
       this.loadingTable = false;
     },
 
@@ -162,48 +155,16 @@ export default {
 
       this.loadingTable = true;
 
-      try {
-        await Service.deleteItem(item.id);
-        this.items = this.items.filter((el) => el.id !== item.id);
-        this.$store.commit("snackbar/set", {
-          message: "Sucesso ao excluir item!",
-          type: "success",
-        });
-      } catch (error) {
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao excluir item, contate o suporte!",
-          type: "error",
-        });
-        this.getItems();
-      }
-
-      this.$emit("updateItems");
+      await this.$store.dispatch("DELETE_ITEM", item.id);
       this.loadingTable = false;
       item.isEdit = false;
     },
 
     async createNewItem(item) {
       this.loadingTable = true;
-
-      item.id = Date.now();
       item.isEdit = false;
 
-      try {
-        await Service.createItem(item);
-        this.$store.commit("snackbar/set", {
-          message: "Sucesso ao adicionar item",
-          type: "success",
-        });
-      } catch (error) {
-        console.log(error);
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao adicionar item, contate o suporte!",
-          type: "error",
-        });
-        this.getItems();
-      }
-
-      this.$emit("updateItems");
+      await this.$store.dispatch("CREATE_NEW_ITEM", item);
       this.loadingTable = false;
     },
 

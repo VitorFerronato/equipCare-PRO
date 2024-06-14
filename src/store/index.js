@@ -2,6 +2,8 @@
 import { createStore } from 'vuex'
 import snackbar from './snackbar'
 import service from "@/service/list-equipments.js"
+import itemService from "@/service/items-area.js"
+const ItemService = new itemService()
 const Service = new service()
 export default createStore({
   state: {
@@ -26,6 +28,10 @@ export default createStore({
 
     LIST_ITEMS(state, payload) {
       state.items = payload
+    },
+
+    DELETE_ITEM(state, itemId) {
+      state.items = state.items.filter((el) => el.id !== itemId);
     },
 
     LIST_CATEGORIES(state, payload) {
@@ -89,6 +95,45 @@ export default createStore({
       }
 
       state.getItemsLoading = false
+    },
+
+    async CREATE_NEW_ITEM({ commit }, item) {
+      let request = {
+        ...item,
+        id: Date.now()
+      }
+
+      try {
+        await ItemService.createItem(request)
+        commit('snackbar/set', { message: 'Sucesso ao adicionar item', type: 'success' }, { root: true });
+
+      } catch (error) {
+        commit('snackbar/set', { message: 'Erro ao criar novo items', type: 'error' }, { root: true });
+        this.dispatch('GET_ITEMS')
+      }
+    },
+
+    async UPDATE_ITEM({ dispatch, commit }, item) {
+      try {
+        await ItemService.updateItem(item)
+        commit('snackbar/set', { message: 'Sucesso ao atualizar items', type: 'success' }, { root: true });
+
+      } catch (error) {
+        dispatch('GET_ITEMS')
+        commit('snackbar/set', { message: 'Erro ao atualizar item', type: 'error' }, { root: true });
+      }
+    },
+
+    async DELETE_ITEM({ commit, dispatch }, itemId) {
+
+      try {
+        await ItemService.deleteItem(itemId)
+        commit('DELETE_ITEM', itemId)
+        commit('snackbar/set', { message: 'Sucesso ao exluir items', type: 'success' }, { root: true });
+      } catch (error) {
+        dispatch('GET_ITEMS')
+        commit('snackbar/set', { message: 'Erro ao excluir item', type: 'error' }, { root: true });
+      }
     },
 
     async GET_CATEGORIES({ commit, state }) {
