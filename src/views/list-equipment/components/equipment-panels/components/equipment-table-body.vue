@@ -11,12 +11,11 @@
           <td :class="setBackground(item.semaphore)">
             {{ item.nextMaintence }}
           </td>
-          <td>{{ item.categorie.categorie }}</td>
-          <td>{{ item.serviceName.toUpperCase() }}</td>
+          <td>{{ item.serviceName.toUpperCase() ?? "-" }}</td>
           <td>
-            {{ item.item.cod.toUpperCase() }} -
-            {{ item.item.itemName.toUpperCase() }}
+            {{ item.item.itemName.toUpperCase() ?? "-" }}
           </td>
+          <td>{{ item.categorie.categorie.toUpperCase() ?? "-" }}</td>
           <td>{{ item.changePeriod }} HORAS</td>
           <td>
             <v-icon

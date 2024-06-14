@@ -1,202 +1,146 @@
 {
   "equipments": [
     {
-      "equipmentName": "TORNO",
-      "weekRegime": 6,
+      "equipmentName": "TORNO MULTIUSO",
+      "weekRegime": 5,
       "workRegime": 4,
-      "tagName": "COP 9874",
+      "tagName": "COP9874",
       "semaphore": 0,
       "id": 425,
       "services": [
         {
-          "serviceName": "Troca de óleo",
+          "serviceName": "Algum serviço",
           "item": {
-            "itemName": "ALGUMA COISA",
-            "cod": "cop87",
-            "observation": "",
+            "itemName": "Rolamento",
+            "cod": "cop987",
+            "observation": "6584",
             "isEdit": false,
-            "id": 1717525933620
+            "id": 1718383217430
           },
           "categorie": {
-            "categorie": "TORNO",
-            "observation": "",
-            "id": 7787,
-            "isEdit": false
+            "categorie": "Torno",
+            "observation": "Algum torno da loja X",
+            "isEdit": false,
+            "id": 1718383231437
           },
           "changePeriod": 100,
-          "nextMaintence": "18/07/2024",
+          "nextMaintence": "19/07/2024",
           "workRegime": 4,
-          "weekRegime": 6,
+          "weekRegime": 5,
           "semaphore": 0,
-          "realized": true,
-          "idService": 893
+          "realized": 1,
+          "idService": 850
         },
         {
-          "serviceName": "TROCA DA ENGRENAGEM",
+          "serviceName": "Outro serviço",
           "item": {
-            "itemName": "teste",
-            "cod": "ste",
-            "observation": "sa",
+            "itemName": "Rolamento",
+            "cod": "cop987",
+            "observation": "6584",
             "isEdit": false,
-            "id": 1717526567324
+            "id": 1718383217430
           },
           "categorie": {
-            "categorie": "FRESA",
-            "observation": "Fresa de algum lugar",
+            "categorie": "Torno",
+            "observation": "Algum torno da loja X",
             "isEdit": false,
-            "id": 1717527140653
+            "id": 1718383231437
           },
           "changePeriod": 200,
-          "nextMaintence": "27/08/2024",
+          "nextMaintence": "30/08/2024",
           "workRegime": 4,
-          "weekRegime": 6,
+          "weekRegime": 5,
           "semaphore": 0,
-          "realized": false,
-          "idService": 40
+          "realized": 1,
+          "idService": 711
         }
       ]
     },
     {
       "equipmentName": "FRESA",
-      "weekRegime": 7,
+      "weekRegime": 4,
       "workRegime": 6,
-      "tagName": "COP 898",
+      "tagName": "COP87744",
       "semaphore": 0,
-      "id": 225,
+      "id": 803,
       "services": [
         {
-          "serviceName": "serviço qualuqer",
+          "serviceName": "FAZER ALGO NA FRESA",
           "item": {
-            "itemName": "ALGUMA COISA",
-            "cod": "cop87",
-            "observation": "",
+            "itemName": "VENTUINHA",
+            "cod": "474",
+            "observation": "alguma observação",
             "isEdit": false,
-            "id": 1717525933620
+            "id": 1718383263477
           },
           "categorie": {
             "categorie": "FRESA",
-            "observation": "Fresa de algum lugar",
+            "observation": "FRESA",
             "isEdit": false,
-            "id": 1717527140653
+            "id": 1718384593431
           },
           "changePeriod": 100,
-          "nextMaintence": "28/06/2024",
+          "nextMaintence": "14/07/2024",
           "workRegime": 6,
-          "weekRegime": 7,
-          "semaphore": 0,
-          "realized": false,
-          "idService": 769
-        }
-      ]
-    },
-    {
-      "equipmentName": "Criar novo equipamento",
-      "weekRegime": 4,
-      "workRegime": 20,
-      "tagName": "COP 89744",
-      "semaphore": 0,
-      "id": 19,
-      "services": [
-        {
-          "serviceName": "NOVO SERVIÇO",
-          "item": {
-            "itemName": "ALGUM OUTRO ITEM",
-            "cod": "SEILA",
-            "observation": "OSADAS",
-            "isEdit": false,
-            "id": 1718337849926
-          },
-          "categorie": {
-            "categorie": "Outra categoria qualquer",
-            "observation": "sei la mano",
-            "isEdit": false,
-            "id": 1718337930807
-          },
-          "changePeriod": 200,
-          "nextMaintence": "01/07/2024",
-          "workRegime": 20,
           "weekRegime": 4,
           "semaphore": 0,
           "realized": 1,
-          "idService": 526
-        }
-      ]
-    },
-    {
-      "equipmentName": "criando um cara ai",
-      "weekRegime": 2,
-      "workRegime": 24,
-      "tagName": "cpasd",
-      "semaphore": 0,
-      "id": 740,
-      "services": [
+          "idService": 965
+        },
         {
-          "serviceName": "se",
+          "serviceName": "OUTRA COISA NA FRESA",
           "item": {
-            "itemName": "Adicionando novo item",
-            "cod": "COP 9874",
-            "observation": "Adicionando uma nov classe",
+            "itemName": "Rolamento",
+            "cod": "cop987",
+            "observation": "6584",
             "isEdit": false,
-            "id": 1718336038298
+            "id": 1718383217430
           },
           "categorie": {
-            "categorie": "TORNO",
-            "observation": "",
-            "id": 7787,
-            "isEdit": false
+            "categorie": "FRESA",
+            "observation": "FRESA",
+            "isEdit": false,
+            "id": 1718384593431
           },
-          "changePeriod": 1,
-          "nextMaintence": "14/06/2024",
-          "workRegime": 24,
-          "weekRegime": 2,
+          "changePeriod": 200,
+          "nextMaintence": "11/08/2024",
+          "workRegime": 6,
+          "weekRegime": 4,
           "semaphore": 0,
           "realized": 1,
-          "idService": 525
+          "idService": 154
         }
       ]
     }
   ],
   "items": [
     {
-      "itemName": "Adicionando novo item",
-      "cod": "COP 9874",
-      "observation": "Adicionando uma nov classe",
+      "itemName": "Rolamento",
+      "cod": "cop987",
+      "observation": "6584",
       "isEdit": false,
-      "id": 1718336038298
+      "id": 1718383217430
     },
     {
-      "itemName": "Adicionand",
-      "cod": "COP",
-      "observation": "Adicionando",
+      "itemName": "VENTUINHA",
+      "cod": "474",
+      "observation": "alguma observação",
       "isEdit": false,
-      "id": 1718336052466
-    },
-    {
-      "itemName": "ALGUM OUTRO ITEM",
-      "cod": "SEILA",
-      "observation": "OSADAS",
-      "isEdit": false,
-      "id": 1718337849926
+      "id": 1718383263477
     }
   ],
   "categories": [
     {
-      "categorie": "TORNO",
-      "observation": "",
-      "id": 7787,
-      "isEdit": false
+      "categorie": "Torno",
+      "observation": "Algum torno da loja X",
+      "isEdit": false,
+      "id": 1718383231437
     },
     {
       "categorie": "FRESA",
-      "observation": "Fresa de algum lugar",
+      "observation": "FRESA",
       "isEdit": false,
-      "id": 1717527140653
-    },
-    {
-      "categorie": "Outra categoria qualquer",
-      "observation": "sei la mano",
-      "isEdit": false,
-      "id": 1718337930807
+      "id": 1718384593431
     }
   ]
 }

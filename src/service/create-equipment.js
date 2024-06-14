@@ -18,4 +18,8 @@ export default class CreateEquipment extends ServiceBase {
     async updateEquipment(equipment) {
         return await axiosInstance.put(API_URL + `equipments/${equipment.id}`, equipment);
     }
+
+    async deleteEquipment(equipmentId) {
+        return await axiosInstance.delete(API_URL + `equipments/${equipmentId}`);
+    }
 }

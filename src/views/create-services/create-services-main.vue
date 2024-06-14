@@ -12,10 +12,16 @@
         indeterminate
       ></v-progress-circular>
     </v-overlay>
-    <h2 class="mb-2">
-      {{ equipment.equipmentName.toUpperCase() }}
-      <span v-show="equipment.tagName">- {{ equipment.tagName }}</span>
-    </h2>
+    <v-row align="center" class="mb-2">
+      <h2>
+        {{ equipment.equipmentName.toUpperCase() }}
+        <span v-show="equipment.tagName">- {{ equipment.tagName }}</span>
+      </h2>
+
+      <v-icon v-if="equipment.id" @click="deleteEquipment" color="red" class="ml-4"
+        >mdi-delete-outline</v-icon
+      >
+    </v-row>
 
     <div class="dsg-flex-center gap-1 mb-6">
       <div>
@@ -103,7 +109,7 @@ export default {
           message: "Sucesso ao salvar equipamento",
           type: "success",
         });
-        await this.$store.dispatch('GET_EQUIPMENTS')
+        await this.$store.dispatch("GET_EQUIPMENTS");
         this.$router.push("/list-equipments");
       } catch (error) {
         console.log(error);
@@ -112,6 +118,27 @@ export default {
           type: "error",
         });
       }
+      this.isLoading = false;
+    },
+
+    async deleteEquipment() {
+      this.isLoading = true;
+
+      try {
+        await Service.deleteEquipment(this.equipment.id);
+        this.$store.commit("snackbar/set", {
+          message: "Sucesso ao deletar equipamento!",
+          type: "success",
+        });
+      } catch (error) {
+        console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao deletar equipamento, contate o suporte!",
+          type: "error",
+        });
+      }
+      await this.$store.dispatch("GET_EQUIPMENTS");
+      this.$router.push("/list-equipments");
       this.isLoading = false;
     },
 

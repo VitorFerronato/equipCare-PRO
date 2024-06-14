@@ -37,4 +37,6 @@
     - Na listagem de equipamentos, permitido buscar pela tag do equipamento também
 
 # PATCH NOTE 06/06/2024
-    - FEAT Opção de inserir data manualmente ao criar um serviço
+    - Opção de inserir data manualmente ao criar um serviço
+    - Criação da pop-up de ordem de serviço
+    - Opção para deletar equipamento

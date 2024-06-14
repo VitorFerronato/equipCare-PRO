@@ -18,7 +18,7 @@
           :items="items"
           :itemTitle="'itemName'"
           :itemValue="'cod'"
-          :disabled="itemsLoading"
+          :disabled="itemsLoading || !items.length"
           :loading="itemsLoading"
         />
       </v-col>
@@ -31,7 +31,7 @@
           :items="categories"
           :itemTitle="'categorie'"
           :itemValue="'id'"
-          :disabled="categoriesLoading"
+          :disabled="categoriesLoading || !categories.length"
           :loading="categoriesLoading"
         />
       </v-col>
