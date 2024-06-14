@@ -5,16 +5,31 @@ import service from "@/service/list-equipments.js"
 const Service = new service()
 export default createStore({
   state: {
+    listEquipmentsLoading: false,
+    getItemsLoading: false,
+    getCategoriesLoading: false,
+
     equipments: [],
+    items: [],
+    categories: [],
+
     filteredEquipments: [],
     serviceOrder: [],
-    listEquipmentsLoading: false
+
   },
 
   mutations: {
     LIST_EQUIPMENTS(state, payload) {
       state.equipments = payload
       state.filteredEquipments = payload
+    },
+
+    LIST_ITEMS(state, payload) {
+      state.items = payload
+    },
+
+    LIST_CATEGORIES(state, payload) {
+      state.categories = payload
     },
 
     SET_FILTERED_EQUIPMENTS(state, filtered) {
@@ -61,6 +76,36 @@ export default createStore({
       state.listEquipmentsLoading = false
     },
 
+    async GET_ITEMS({ commit, state }) {
+      state.getItemsLoading = true
+
+      try {
+        let response = await Service.getItems()
+        commit('LIST_ITEMS', response?.data ?? [])
+      } catch (error) {
+        console.log(error);
+        commit('snackbar/set', { message: 'Erro ao carregar items', type: 'error' }, { root: true });
+        commit('LIST_ITEMS', [])
+      }
+
+      state.getItemsLoading = false
+    },
+
+    async GET_CATEGORIES({ commit, state }) {
+      state.getCategoriesLoading = true
+
+      try {
+        let response = await Service.getCategories()
+        commit('LIST_CATEGORIES', response?.data ?? [])
+      } catch (error) {
+        console.log(error);
+        commit('snackbar/set', { message: 'Erro ao carregar categorias', type: 'error' }, { root: true });
+        commit('LIST_CATEGORIES', [])
+      }
+
+      state.getCategoriesLoading = false
+    },
+
     FILTER_ITEMS({ commit, state }, searchTerm) {
       const searchLower = searchTerm.toLowerCase();
       const filtered = state.equipments.filter(item =>
@@ -78,7 +123,6 @@ export default createStore({
 
         if (equipmentInOrder) {
           const serviceExists = equipmentInOrder.services.some(s => s.idService === service.idService);
-
           if (serviceExists) {
             commit('REMOVE_SERVICE_FROM_EQUIPMENT_IN_ORDER', { serviceId: service.idService, equipmentId });
           } else {
@@ -88,9 +132,7 @@ export default createStore({
           commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
         }
       }
-    }
-
-
+    },
   },
   modules: {
     snackbar

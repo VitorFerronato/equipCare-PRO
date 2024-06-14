@@ -1,9 +1,11 @@
 # Geral
     - Alterar as cores das tabelas
-    - Armazenar os items e categorias no vueX ( Fazer a chamada la também ) ( REFACTOR )
     - Refazer a modal de selecionar items e categorias no service-card, usar o vueX ( REFACTOR )
     - Fazer uma tela de loading ao carregar o projeto, que vai chamar os endpoint de listar os items, categorias e listagem de equipamentos, só assim abrir o projeto
     - Transformar a modal de items e de filtros em um componente só
+    - Separar a store por funcionalidade
+    - Arrumar o fluxo de items e categorias, esta fazendo muitas chamadas
+    - Ao criar um novo equipamento, excluir, editar, chamar novamente o endpoint de listagem, que agora nao esta mais sendo chamado ao acessar a tela list-equipments
     
 # Filtros
     - Adicionar filtro de categoria e item
@@ -27,12 +29,8 @@
 # Histórico de Ordem de serviço
     - Em progresso
 
+ =====================================================================================================================
 
-
-
-
-
- ==================
 # PATCH NOTE 04/06/2024
     - Adicionado opção para adicionar item e categoria diretamente na criação do serviço
     - UpperCase em todos os textos das tabelas

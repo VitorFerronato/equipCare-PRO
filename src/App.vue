@@ -1,10 +1,14 @@
 <template>
   <v-app>
+    <Loading-screen />
+
     <Header />
     <Sidebar-app />
+
     <v-main>
       <router-view class="view" />
     </v-main>
+
     <Snackbar />
     <Service-order />
   </v-app>
@@ -14,19 +18,15 @@
 import Header from "./components/header-app.vue";
 import Snackbar from "@/components/common/dsg-snackbar.vue";
 import SidebarApp from "./components/sidebar-app.vue";
-import ServiceOrder from './components/common/service-order.vue';
+import ServiceOrder from "./components/service-order.vue";
+import LoadingScreen from "./components/loading-screen.vue";
 export default {
-  components: { Header, Snackbar, SidebarApp, ServiceOrder }, 
+  components: { Header, Snackbar, SidebarApp, ServiceOrder, LoadingScreen },
   name: "App",
 
   data: () => ({
     //
   }),
-
-  methods: {},
-  created(){
-    console.log('foi criado');
-  }
 };
 </script>
 
@@ -72,24 +72,24 @@ a {
   flex-direction: column;
 }
 
-.gap-1{
+.gap-1 {
   gap: 1rem;
 }
 
 .red-border {
-  border-left: 6px solid $danger-color  !important;
-  border-radius: 5px  !important;
-  padding-left: 0.2rem  !important;
+  border-left: 6px solid $danger-color !important;
+  border-radius: 5px !important;
+  padding-left: 0.2rem !important;
 }
 .yellow-border {
-  border-left: 6px solid $warning-color  !important;
-  border-radius: 5px  !important;
-  padding-left: 0.2rem  !important;
+  border-left: 6px solid $warning-color !important;
+  border-radius: 5px !important;
+  padding-left: 0.2rem !important;
 }
 .orange-border {
-  border-left: 6px solid orange  !important;
-  border-radius: 5px  !important;
-  padding-left: 0.2rem  !important;
+  border-left: 6px solid orange !important;
+  border-radius: 5px !important;
+  padding-left: 0.2rem !important;
 }
 .green-border {
   border-left: 6px solid $success-color !important;
@@ -109,4 +109,5 @@ a {
 .green-background {
   border-left: 6px solid $success-color;
 }
+
 </style>

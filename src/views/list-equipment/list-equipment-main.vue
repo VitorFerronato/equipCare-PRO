@@ -47,14 +47,12 @@ export default {
     filteredEquipments() {
       return this.$store?.state?.filteredEquipments ?? [];
     },
+ 
     isLoading() {
       return this.$store?.state?.listEquipmentsLoading ?? false;
     },
   },
 
-  created() {
-    this.$store.dispatch("GET_EQUIPMENTS");
-  },
 };
 </script>
 

@@ -15,11 +15,13 @@
           </td>
           <td>{{ item.changePeriod }} HORAS</td>
           <td>
-            <v-checkbox
-              v-model="item.realized"
-              @click="addToServiceOrder(item)"
-              hide-details
-            ></v-checkbox>
+            <v-icon v-if="!item.realized" @click="addToServiceOrder(item)">
+              mdi-checkbox-blank-outline
+            </v-icon>
+
+            <v-icon v-else @click="addToServiceOrder(item)">
+              mdi-checkbox-marked
+            </v-icon>
           </td>
         </tr>
       </template>
@@ -81,8 +83,8 @@ export default {
           return "green-background";
       }
     },
+
     addToServiceOrder(item) {
-      item.realized = !item.realized;
       this.$store.dispatch("ADD_TO_SERVICE_ORDER", {
         service: item,
         equipmentId: this.id,

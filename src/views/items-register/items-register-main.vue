@@ -68,6 +68,7 @@
             </div>
           </template>
         </v-data-table>
+        {{storeItems}}
       </div>
     </v-card>
   </div>
@@ -118,28 +119,15 @@ export default {
         minWidth: "100",
       },
     ],
-
-    items: [],
   }),
 
+  computed:{
+    items(){
+      return this.$store?.state?.items ?? []
+    }
+  },
+
   methods: {
-    async getItems() {
-      this.isLoading = true;
-
-      try {
-        let response = await Service.getItems();
-        this.items = response?.data ?? [];
-      } catch (error) {
-        console.log(error);
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao buscar items, contate o suporte!",
-          type: "error",
-        });
-        this.items = [];
-      }
-      this.isLoading = false;
-    },
-
     async updateItem(item) {
       if (!item.id) {
         this.createNewItem(item);
@@ -233,10 +221,6 @@ export default {
         return true;
       return false;
     },
-  },
-
-  created() {
-    this.getItems();
   },
 };
 </script>
