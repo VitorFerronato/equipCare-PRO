@@ -1,7 +1,11 @@
 <template>
   <div>
     <v-row no-gutters justify="end" align="center" class="my-4"> </v-row>
-    <v-data-table :items="services" :headers="headers">
+    <v-data-table
+      :hide-default-footer="true"
+      :items="services"
+      :headers="headers"
+    >
       <template v-slot:item="{ item }">
         <tr>
           <td :class="setBackground(item.semaphore)">
@@ -15,11 +19,18 @@
           </td>
           <td>{{ item.changePeriod }} HORAS</td>
           <td>
-            <v-icon v-if="!item.realized" @click="addToServiceOrder(item)">
+            <v-icon
+              v-if="!item.markToOrder && !item.realized"
+              @click="addToServiceOrder(item)"
+            >
               mdi-checkbox-blank-outline
             </v-icon>
 
-            <v-icon v-else @click="addToServiceOrder(item)">
+            <v-icon
+              v-if="item.markToOrder || item.realized"
+              :disabled="item.realized"
+              @click="addToServiceOrder(item)"
+            >
               mdi-checkbox-marked
             </v-icon>
           </td>

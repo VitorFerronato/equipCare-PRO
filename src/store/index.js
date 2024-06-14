@@ -124,11 +124,14 @@ export default createStore({
         if (equipmentInOrder) {
           const serviceExists = equipmentInOrder.services.some(s => s.idService === service.idService);
           if (serviceExists) {
+            service.markToOrder = false
             commit('REMOVE_SERVICE_FROM_EQUIPMENT_IN_ORDER', { serviceId: service.idService, equipmentId });
           } else {
+            service.markToOrder = true
             commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
           }
         } else {
+          service.markToOrder = true
           commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
         }
       }

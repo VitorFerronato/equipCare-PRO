@@ -6,7 +6,7 @@
     - Separar a store por funcionalidade
     - Arrumar o fluxo de items e categorias, esta fazendo muitas chamadas
     - Ao criar um novo equipamento, excluir, editar, chamar novamente o endpoint de listagem, que agora nao esta mais sendo chamado ao acessar a tela list-equipments
-    
+    - Transformar o addDaysToDate em uma função do utils
 # Filtros
     - Adicionar filtro de categoria e item
 
