@@ -3,7 +3,9 @@ import { createStore } from 'vuex'
 import snackbar from './snackbar'
 import service from "@/service/list-equipments.js"
 import itemService from "@/service/items-area.js"
+import categorieService from "@/service/categories-area.js"
 const ItemService = new itemService()
+const CategorieService = new categorieService()
 const Service = new service()
 export default createStore({
   state: {
@@ -32,6 +34,10 @@ export default createStore({
 
     DELETE_ITEM(state, itemId) {
       state.items = state.items.filter((el) => el.id !== itemId);
+    },
+
+    DELETE_CATEGORIE(state, categorieId) {
+      state.categories = state.categories.filter((el) => el.id !== categorieId);
     },
 
     LIST_CATEGORIES(state, payload) {
@@ -105,12 +111,13 @@ export default createStore({
 
       try {
         await ItemService.createItem(request)
+
         commit('snackbar/set', { message: 'Sucesso ao adicionar item', type: 'success' }, { root: true });
 
       } catch (error) {
         commit('snackbar/set', { message: 'Erro ao criar novo items', type: 'error' }, { root: true });
-        this.dispatch('GET_ITEMS')
       }
+      this.dispatch('GET_ITEMS')
     },
 
     async UPDATE_ITEM({ dispatch, commit }, item) {
@@ -129,7 +136,7 @@ export default createStore({
       try {
         await ItemService.deleteItem(itemId)
         commit('DELETE_ITEM', itemId)
-        commit('snackbar/set', { message: 'Sucesso ao exluir items', type: 'success' }, { root: true });
+        commit('snackbar/set', { message: 'Sucesso ao excluir items', type: 'success' }, { root: true });
       } catch (error) {
         dispatch('GET_ITEMS')
         commit('snackbar/set', { message: 'Erro ao excluir item', type: 'error' }, { root: true });
@@ -149,6 +156,44 @@ export default createStore({
       }
 
       state.getCategoriesLoading = false
+    },
+
+    async CREATE_NEW_CATEGORIE({ commit, dispatch }, categorie) {
+      let request = {
+        ...categorie,
+        id: Date.now()
+      }
+
+      try {
+        await CategorieService.createCategorie(request)
+        commit('snackbar/set', { message: 'Sucesso ao adicionar categoria', type: 'success' }, { root: true });
+      } catch (error) {
+        commit('snackbar/set', { message: 'Erro ao criar novo categoria', type: 'error' }, { root: true });
+      }
+      dispatch('GET_CATEGORIES')
+    },
+
+    async UPDATE_CATEGORIE({ dispatch, commit }, categorie) {
+      try {
+        await CategorieService.updateCategorie(categorie)
+        commit('snackbar/set', { message: 'Sucesso ao atualizar categoria', type: 'success' }, { root: true });
+
+      } catch (error) {
+        dispatch('GET_CATEGORIES')
+        commit('snackbar/set', { message: 'Erro ao atualizar categoria', type: 'error' }, { root: true });
+      }
+    },
+
+    async DELETE_CATEGORIE({ commit }, categorieId) {
+
+      try {
+        await CategorieService.deleteCategorie(categorieId)
+        commit('DELETE_CATEGORIE', categorieId)
+        commit('snackbar/set', { message: 'Sucesso ao excluir categoria', type: 'success' }, { root: true });
+      } catch (error) {
+        commit('snackbar/set', { message: 'Erro ao excluir categoria', type: 'error' }, { root: true });
+      }
+
     },
 
     FILTER_ITEMS({ commit, state }, searchTerm) {

@@ -141,9 +141,11 @@ export default {
       }
 
       this.loadingTable = true;
+
       item.isEdit = false;
 
       await this.$store.dispatch("UPDATE_ITEM", item);
+
       this.loadingTable = false;
     },
 
@@ -156,15 +158,18 @@ export default {
       this.loadingTable = true;
 
       await this.$store.dispatch("DELETE_ITEM", item.id);
-      this.loadingTable = false;
       item.isEdit = false;
+
+      this.loadingTable = false;
     },
 
     async createNewItem(item) {
       this.loadingTable = true;
+
       item.isEdit = false;
 
       await this.$store.dispatch("CREATE_NEW_ITEM", item);
+
       this.loadingTable = false;
     },
 

@@ -11,12 +11,10 @@
         <Items-register-main
           v-if="type == 'item'"
           :isModal="true"
-          @updateItems="$emit('updateItems')"
         />
         <Categories-register-main
           v-if="type == 'categorie'"
           :isModal="true"
-          @updateCategories="$emit('updateCategories')"
         />
       </v-card>
     </v-dialog>

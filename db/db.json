@@ -88,6 +88,72 @@
           "idService": 769
         }
       ]
+    },
+    {
+      "equipmentName": "Criar novo equipamento",
+      "weekRegime": 4,
+      "workRegime": 20,
+      "tagName": "COP 89744",
+      "semaphore": 0,
+      "id": 19,
+      "services": [
+        {
+          "serviceName": "NOVO SERVIÇO",
+          "item": {
+            "itemName": "ALGUM OUTRO ITEM",
+            "cod": "SEILA",
+            "observation": "OSADAS",
+            "isEdit": false,
+            "id": 1718337849926
+          },
+          "categorie": {
+            "categorie": "Outra categoria qualquer",
+            "observation": "sei la mano",
+            "isEdit": false,
+            "id": 1718337930807
+          },
+          "changePeriod": 200,
+          "nextMaintence": "01/07/2024",
+          "workRegime": 20,
+          "weekRegime": 4,
+          "semaphore": 0,
+          "realized": 1,
+          "idService": 526
+        }
+      ]
+    },
+    {
+      "equipmentName": "criando um cara ai",
+      "weekRegime": 2,
+      "workRegime": 24,
+      "tagName": "cpasd",
+      "semaphore": 0,
+      "id": 740,
+      "services": [
+        {
+          "serviceName": "se",
+          "item": {
+            "itemName": "Adicionando novo item",
+            "cod": "COP 9874",
+            "observation": "Adicionando uma nov classe",
+            "isEdit": false,
+            "id": 1718336038298
+          },
+          "categorie": {
+            "categorie": "TORNO",
+            "observation": "",
+            "id": 7787,
+            "isEdit": false
+          },
+          "changePeriod": 1,
+          "nextMaintence": "14/06/2024",
+          "workRegime": 24,
+          "weekRegime": 2,
+          "semaphore": 0,
+          "realized": 1,
+          "idService": 525
+        }
+      ]
     }
   ],
   "items": [
@@ -104,6 +170,13 @@
       "observation": "Adicionando",
       "isEdit": false,
       "id": 1718336052466
+    },
+    {
+      "itemName": "ALGUM OUTRO ITEM",
+      "cod": "SEILA",
+      "observation": "OSADAS",
+      "isEdit": false,
+      "id": 1718337849926
     }
   ],
   "categories": [
@@ -120,10 +193,10 @@
       "id": 1717527140653
     },
     {
-      "categorie": "batata",
-      "observation": "batata",
+      "categorie": "Outra categoria qualquer",
+      "observation": "sei la mano",
       "isEdit": false,
-      "id": 1718300200995
+      "id": 1718337930807
     }
   ]
 }

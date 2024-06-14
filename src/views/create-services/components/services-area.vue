@@ -20,8 +20,6 @@
       :weekRegime="weekRegime"
       @deleteService="deleteService"
       @setNewService="setNewService"
-      @updateItems="getItems"
-      @updateCategories="getCategories"
     />
   </div>
 </template>
@@ -29,10 +27,6 @@
 <script>
 import DsgBtn from "@/components/common/dsg-btn.vue";
 import ServiceCard from "./service-card.vue";
-import itemService from "@/service/items-area.js";
-const ItemService = new itemService();
-import categorieService from "@/service/categories-area.js";
-const CategorieService = new categorieService();
 
 export default {
   components: { DsgBtn, ServiceCard },
@@ -40,12 +34,19 @@ export default {
   data: () => ({
     localServices: [],
     servicesCreated: [],
-    items: [],
-    categories: [],
     workRegime: null,
     weekRegime: null,
     isLoading: false,
   }),
+
+  computed: {
+    items() {
+      return this.$store?.state?.items ?? [];
+    },
+    categories() {
+      return this.$store?.state?.categories ?? [];
+    },
+  },
 
   watch: {
     services: {
@@ -58,32 +59,6 @@ export default {
   },
 
   methods: {
-    async getItems() {
-      this.isLoading = true;
-
-      try {
-        let response = await ItemService.getItems();
-        this.items = response?.data ?? [];
-      } catch (error) {
-        console.log(error);
-      }
-
-      this.isLoading = false;
-    },
-
-    async getCategories() {
-      this.isLoading = true;
-
-      try {
-        let response = await CategorieService.getCategories();
-        this.categories = response?.data ?? [];
-      } catch (error) {
-        console.log(error);
-      }
-
-      this.isLoading = false;
-    },
-
     setNewService(service, index) {
       this.servicesCreated.splice(index, 1, service);
     },
@@ -153,8 +128,6 @@ export default {
     let equipment = JSON.parse(this.$route.query.data);
     this.workRegime = parseFloat(equipment.workRegime);
     this.weekRegime = parseFloat(equipment.weekRegime);
-    this.getCategories();
-    this.getItems();
   },
 };
 </script>

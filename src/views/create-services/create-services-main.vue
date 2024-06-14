@@ -103,6 +103,7 @@ export default {
           message: "Sucesso ao salvar equipamento",
           type: "success",
         });
+        await this.$store.dispatch('GET_EQUIPMENTS')
         this.$router.push("/list-equipments");
       } catch (error) {
         console.log(error);

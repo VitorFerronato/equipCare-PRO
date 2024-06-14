@@ -6,7 +6,12 @@
       preencher linha aqui
     </p>
 
-    <v-card :elevation="isModal ? '0' : '10'" class="pa-4 mt-6">
+    <v-card
+      :loading="categoriesLoading"
+      :disabled="categoriesLoading"
+      :elevation="isModal ? '0' : '10'"
+      class="pa-4 mt-6"
+    >
       <h4 v-if="!isModal">CATEGORIAS REGISTRADAS</h4>
       <Dsg-btn
         title="Novo item"
@@ -14,7 +19,7 @@
         @click="addNewItem"
         class="my-4"
       />
-      <v-data-table :headers="headers" :items="items">
+      <v-data-table :headers="headers" :items="categories">
         <template v-slot:[`item.categorie`]="{ item }">
           <div>
             <span v-if="!item.isEdit">{{ item.categorie.toUpperCase() }}</span>
@@ -23,7 +28,9 @@
         </template>
         <template v-slot:[`item.observation`]="{ item }">
           <div>
-            <span v-if="!item.isEdit">{{ item.observation.toUpperCase() }}</span>
+            <span v-if="!item.isEdit">{{
+              item.observation.toUpperCase()
+            }}</span>
             <Dsg-text-field v-else v-model="item.observation" />
           </div>
         </template>
@@ -61,9 +68,7 @@
 
 <script>
 import DsgBtn from "@/components/common/dsg-btn.vue";
-import service from "@/service/categories-area";
 import DsgTextField from "@/components/common/dsg-text-field.vue";
-const Service = new service();
 export default {
   components: { DsgBtn, DsgTextField },
   props: {
@@ -93,51 +98,19 @@ export default {
         sortable: true,
       },
     ],
-    items: [],
   }),
 
+  computed: {
+    categories() {
+      return this.$store?.state?.categories ?? [];
+    },
+
+    categoriesLoading() {
+      return this.$store?.state?.getCategoriesLoading ?? false;
+    },
+  },
+
   methods: {
-    async getCategories() {
-      this.isLoading = true;
-
-      try {
-        let response = await Service.getCategories();
-        this.items = response?.data ?? [];
-      } catch (error) {
-        console.log(error);
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao buscar categorias, contate o suporte!",
-          type: "error",
-        });
-        this.items = [];
-      }
-      this.isLoading = false;
-    },
-
-    async createNewCategorie(categorie) {
-      this.loadingTable = true;
-
-      categorie.id = Date.now();
-      categorie.isEdit = false;
-
-      try {
-        await Service.createCategorie(categorie);
-        this.$store.commit("snackbar/set", {
-          message: "Sucesso ao adicionar categoria",
-          type: "success",
-        });
-      } catch (error) {
-        console.log(error);
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao adicionar categoria, contate o suporte!",
-          type: "error",
-        });
-        this.getCategories();
-      }
-      this.$emit("updateCategories");
-      this.loadingTable = false;
-    },
-
     async updateCategorie(categorie) {
       if (!categorie.id) {
         this.createNewCategorie(categorie);
@@ -145,52 +118,36 @@ export default {
       }
 
       this.loadingTable = true;
+
       categorie.isEdit = false;
 
-      try {
-        await Service.updateCategorie(categorie);
-        this.$store.commit("snackbar/set", {
-          message: "Sucesso editar categoria",
-          type: "success",
-        });
-      } catch (error) {
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao editar categoria, contate o suporte!",
-          type: "error",
-        });
-        this.getCategories();
-      }
-      this.$emit("updateCategories");
+      await this.$store.dispatch("UPDATE_CATEGORIE", categorie);
+
+      this.loadingTable = false;
+    },
+
+    async createNewCategorie(categorie) {
+      this.loadingTable = true;
+
+      categorie.isEdit = false;
+
+      await this.$store.dispatch("CREATE_NEW_CATEGORIE", categorie);
 
       this.loadingTable = false;
     },
 
     async deleteCategorie(categorie, index) {
       if (!categorie.id) {
-        this.items.splice(index, 1);
+        this.categories.splice(index, 1);
         return;
       }
 
       this.loadingTable = true;
 
-      try {
-        await Service.deleteCategorie(categorie.id);
-        this.items = this.items.filter((el) => el.id !== categorie.id);
-        this.$store.commit("snackbar/set", {
-          message: "Sucesso ao excluir categoria!",
-          type: "success",
-        });
-      } catch (error) {
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao excluir categoria, contate o suporte!",
-          type: "error",
-        });
-        this.getCategories();
-      }
-      this.$emit("updateCategories");
+      await this.$store.dispatch("DELETE_CATEGORIE", categorie.id);
+      categorie.isEdit = false;
 
       this.loadingTable = false;
-      categorie.isEdit = false;
     },
 
     verifyMandatoryFields(categorie) {
@@ -200,16 +157,12 @@ export default {
     },
 
     addNewItem() {
-      this.items.unshift({
+      this.categories.unshift({
         categorie: "",
         observation: "",
         isEdit: true,
       });
     },
-  },
-
-  created() {
-    this.getCategories();
   },
 };
 </script>

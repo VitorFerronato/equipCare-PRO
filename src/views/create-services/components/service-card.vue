@@ -18,13 +18,11 @@
           :items="items"
           :itemTitle="'itemName'"
           :itemValue="'cod'"
+          :disabled="itemsLoading"
+          :loading="itemsLoading"
         />
       </v-col>
-      <Create-item-modal
-        :type="'item'"
-        @updateItems="$emit('updateItems')"
-        class="mt-7 ml-n2"
-      />
+      <Create-item-modal :type="'item'" class="mt-7 ml-n2" />
 
       <v-col>
         <Dsg-combobox
@@ -33,13 +31,11 @@
           :items="categories"
           :itemTitle="'categorie'"
           :itemValue="'id'"
+          :disabled="categoriesLoading"
+          :loading="categoriesLoading"
         />
       </v-col>
-      <Create-item-modal
-        :type="'categorie'"
-        @updateCategories="$emit('updateCategories')"
-        class="mt-7 ml-n2 mr-4"
-      />
+      <Create-item-modal :type="'categorie'" class="mt-7 ml-n2 mr-4" />
     </v-row>
     <v-row>
       <v-col cols="12" md="4" lg="4">
@@ -82,7 +78,7 @@
         v-if="proximaManutencao"
         @setDate="localService.manualDate = $event"
       />
-  
+
       <v-spacer></v-spacer>
       <Dsg-btn :title="'Excluir'" @click="deleteService" />
     </v-row>
@@ -150,6 +146,13 @@ export default {
         return "red";
 
       return !this.proximaManutencao ? "red" : "blue";
+    },
+
+    itemsLoading() {
+      return this.$store?.state?.getItemsLoading ?? false;
+    },
+    categoriesLoading() {
+      return this.$store?.state?.getCategoriesLoading ?? false;
     },
   },
 
