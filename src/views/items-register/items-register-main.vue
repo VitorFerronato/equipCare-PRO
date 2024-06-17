@@ -22,7 +22,11 @@
           @click="addNewItem"
           class="my-4"
         />
-        <v-data-table :items="items" :headers="headers">
+        <v-data-table
+          :items="items"
+          :headers="headers"
+          :hide-default-footer="items.length <= 5"
+        >
           <template v-slot:[`item.itemName`]="{ item }">
             <div>
               <span v-if="!item.isEdit">{{ item.itemName.toUpperCase() }}</span>

@@ -19,12 +19,13 @@
 
 # Ordem de serviço
     - Opção para selecionar todos os serviços de um equipamento
-    - Limpar store quando sair da tela de listagem
     - Ao confirmar a ordem, atualizar o realized e a data para a próxima manutenção do equipamento
 
     # DUVIDAS
     - O que precisa ter, (nome de quem vai fazer, etc)
     - As manutenções tem que acontecer no mesmo dia?
+    - Se a partir do momento que eu marcar uma ordem de serviço para um serviço, ela só ficara disponivel para adicionar
+    quando a da da proxima manuteção tiver passado
 
 # Histórico de Ordem de serviço
     - Em progresso
@@ -40,3 +41,5 @@
     - Opção de inserir data manualmente ao criar um serviço
     - Criação da pop-up de ordem de serviço
     - Opção para deletar equipamento
+    - Esconder paginação das tabelas caso numero de items for inferior a 5
+    - Tela de loading de Bem vindo

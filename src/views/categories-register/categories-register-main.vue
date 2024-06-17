@@ -19,7 +19,12 @@
         @click="addNewItem"
         class="my-4"
       />
-      <v-data-table :headers="headers" :items="categories">
+
+      <v-data-table
+        :headers="headers"
+        :items="categories"
+        :hide-default-footer="categories.length <= 5"
+      >
         <template v-slot:[`item.categorie`]="{ item }">
           <div>
             <span v-if="!item.isEdit">{{ item.categorie.toUpperCase() }}</span>

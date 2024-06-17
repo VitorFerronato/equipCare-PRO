@@ -1,5 +1,9 @@
 <template>
-  <div id="service-order" class="service-order">
+  <div
+    v-if="this.$route.path.startsWith('/list-equipments')"
+    id="service-order"
+    class="service-order"
+  >
     <v-badge
       v-if="formatedServiceOrder.length"
       color="error"
@@ -31,7 +35,11 @@
 
         <v-card class="pa-4">
           <h4 class="mb-4">SERVIÇOS</h4>
-          <v-data-table :headers="headers" :items="formatedServiceOrder">
+          <v-data-table
+            :headers="headers"
+            :items="formatedServiceOrder"
+            :hide-default-footer="formatedServiceOrder.length <= 5"
+          >
             <template v-slot:[`item.equipmentName`]="{ item }">
               <td>{{ item.tagName }} - {{ item.equipmentName }}</td>
             </template>

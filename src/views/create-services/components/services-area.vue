@@ -105,7 +105,8 @@ export default {
         workRegime: parseFloat(this.workRegime),
         weekRegime: parseFloat(this.weekRegime),
         semaphore: 0,
-        realized: 1,
+        realized: false,
+        hasServiceOrder: null,
         idService: service.id ? service.id : Math.floor(Math.random() * 1000),
       }));
     },

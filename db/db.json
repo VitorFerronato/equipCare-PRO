@@ -28,7 +28,7 @@
           "workRegime": 4,
           "weekRegime": 5,
           "semaphore": 0,
-          "realized": 1,
+          "realized": true,
           "idService": 850
         },
         {
@@ -51,27 +51,27 @@
           "workRegime": 4,
           "weekRegime": 5,
           "semaphore": 0,
-          "realized": 1,
+          "realized": false,
           "idService": 711
         }
       ]
     },
     {
-      "equipmentName": "FRESA",
-      "weekRegime": 4,
-      "workRegime": 6,
-      "tagName": "COP87744",
+      "equipmentName": "FRESA NAO SEI O QUE ",
+      "weekRegime": 7,
+      "workRegime": 24,
+      "tagName": "COP 987",
       "semaphore": 0,
-      "id": 803,
+      "id": 929,
       "services": [
         {
-          "serviceName": "FAZER ALGO NA FRESA",
+          "serviceName": "Troca de óleo",
           "item": {
-            "itemName": "VENTUINHA",
-            "cod": "474",
-            "observation": "alguma observação",
+            "itemName": "Òleo",
+            "cod": "cpoo",
+            "observation": "5w30 da petronas",
             "isEdit": false,
-            "id": 1718383263477
+            "id": 1718667913579
           },
           "categorie": {
             "categorie": "FRESA",
@@ -80,15 +80,16 @@
             "id": 1718384593431
           },
           "changePeriod": 100,
-          "nextMaintence": "14/07/2024",
-          "workRegime": 6,
-          "weekRegime": 4,
+          "nextMaintence": "21/06/2024",
+          "workRegime": 24,
+          "weekRegime": 7,
           "semaphore": 0,
-          "realized": 1,
-          "idService": 965
+          "realized": false,
+          "hasServiceOrder": null,
+          "idService": 565
         },
         {
-          "serviceName": "OUTRA COISA NA FRESA",
+          "serviceName": "Troca de engrenagem X",
           "item": {
             "itemName": "Rolamento",
             "cod": "cop987",
@@ -102,13 +103,14 @@
             "isEdit": false,
             "id": 1718384593431
           },
-          "changePeriod": 200,
-          "nextMaintence": "11/08/2024",
-          "workRegime": 6,
-          "weekRegime": 4,
+          "changePeriod": 500,
+          "nextMaintence": "07/07/2024",
+          "workRegime": 24,
+          "weekRegime": 7,
           "semaphore": 0,
-          "realized": 1,
-          "idService": 154
+          "realized": false,
+          "hasServiceOrder": null,
+          "idService": 862
         }
       ]
     }
@@ -127,6 +129,13 @@
       "observation": "alguma observação",
       "isEdit": false,
       "id": 1718383263477
+    },
+    {
+      "itemName": "Òleo",
+      "cod": "cpoo",
+      "observation": "5w30 da petronas",
+      "isEdit": false,
+      "id": 1718667913579
     }
   ],
   "categories": [

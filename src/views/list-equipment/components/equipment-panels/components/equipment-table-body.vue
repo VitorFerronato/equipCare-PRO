@@ -2,10 +2,17 @@
   <div>
     <v-row no-gutters justify="end" align="center" class="my-4"> </v-row>
     <v-data-table
-      :hide-default-footer="true"
+      :hide-default-footer="services.length <= 5"
       :items="services"
       :headers="headers"
     >
+      <template v-slot:[`header.realized`]="{ column }">
+        <div class="dsg-flex-center">
+          {{ column.title.toUpperCase() }}
+          <v-checkbox @click="addAllToOrder" hide-details></v-checkbox>
+        </div>
+      </template>
+
       <template v-slot:item="{ item }">
         <tr>
           <td :class="setBackground(item.semaphore)">
@@ -17,9 +24,10 @@
           </td>
           <td>{{ item.categorie.categorie.toUpperCase() ?? "-" }}</td>
           <td>{{ item.changePeriod }} HORAS</td>
+
           <td>
             <v-icon
-              v-if="!item.markToOrder && !item.realized"
+              v-if="!item.markToOrder && !item.realized && item"
               @click="addToServiceOrder(item)"
             >
               mdi-checkbox-blank-outline
@@ -27,7 +35,6 @@
 
             <v-icon
               v-if="item.markToOrder || item.realized"
-              :disabled="item.realized"
               @click="addToServiceOrder(item)"
             >
               mdi-checkbox-marked
@@ -73,7 +80,7 @@ export default {
         {
           title: "Adicionar ordem",
           value: "realized",
-          sortable: true,
+          sortable: false,
         },
       ],
       modalOpen: false,
@@ -92,6 +99,12 @@ export default {
         case 3:
           return "green-background";
       }
+    },
+
+    addAllToOrder() {
+      this.services
+        .filter((service) => !service.realized)
+        .forEach((service) => this.addToServiceOrder(service));
     },
 
     addToServiceOrder(item) {
