@@ -7,25 +7,30 @@
     - Arrumar o fluxo de items e categorias, esta fazendo muitas chamadas
     - Ao criar um novo equipamento, excluir, editar, chamar novamente o endpoint de listagem, que agora nao esta mais sendo chamado ao acessar a tela list-equipments
     - Transformar o addDaysToDate em uma função do utils
+
 # Filtros
+    - Inserir filtro de busca
     - Adicionar filtro de categoria e item
+    
 
 # Listagem de equipamentos
+    - Alterar listagem de equipamentos para uma unica tabelona
 
 # Adicionar equipamentos
+    - Horas trabalhadas e dias por semana não pode ser 0
 
 # Adicionar Serviços
     - Tooltip no campo da próxima manutenção com o calculo feito
+    - Modal para confirmação de excluir equipamento
+    - Mostrar uma mensagem com confirmação caso o usuario selecione uma data manual e ela passe do tempo de manutenção
 
 # Ordem de serviço
     - Opção para selecionar todos os serviços de um equipamento
     - Ao confirmar a ordem, atualizar o realized e a data para a próxima manutenção do equipamento
-
-    # DUVIDAS
-    - O que precisa ter, (nome de quem vai fazer, etc)
-    - As manutenções tem que acontecer no mesmo dia?
-    - Se a partir do momento que eu marcar uma ordem de serviço para um serviço, ela só ficara disponivel para adicionar
-    quando a da da proxima manuteção tiver passado
+    - Remover responsavel
+    - Remover próxima manutenção
+    - Adicionar id unico por ordem "001"
+    - Ordem de serviço deve ser unica por equipamento
 
 # Histórico de Ordem de serviço
     - Em progresso

@@ -73,10 +73,6 @@ export default {
   },
 
   methods: {
-    search() {
-      this.$store.dispatch("FILTER_ITEMS", this.searchTerm);
-    },
-
     setFilterItems() {},
   },
 };

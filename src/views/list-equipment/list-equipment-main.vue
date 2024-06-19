@@ -12,10 +12,10 @@
 
     <Dsg-loading-circular v-if="isLoading" class="mt-6" />
 
-    <Equipment-panels-main v-else :equipments="filteredEquipments" />
+    <Equipment-table-main v-else :equipments="equipmentsToTable" />
 
     <v-row
-      v-if="!isLoading && filteredEquipments.length <= 0"
+      v-if="!isLoading && equipmentsToTable.length <= 0"
       no-gutters
       justify="center"
     >
@@ -26,7 +26,7 @@
 
 <script>
 import DsgBtn from "@/components/common/dsg-btn.vue";
-import EquipmentPanelsMain from "./components/equipment-panels/equipment-panels-main.vue";
+import EquipmentTableMain from "./components/equipment-panels/equipment-table-main.vue";
 import FilterArea from "./components/filter-area.vue";
 import HeaderList from "./components/header-list.vue";
 import DsgLoadingCircular from "@/components/common/dsg-loading-circular.vue";
@@ -34,25 +34,62 @@ export default {
   components: {
     FilterArea,
     HeaderList,
-    EquipmentPanelsMain,
+    EquipmentTableMain,
     DsgBtn,
     DsgLoadingCircular,
   },
   name: "list-equipments",
   data() {
-    return {};
+    return {
+      equipmentsToTable: [],
+    };
   },
 
   computed: {
-    filteredEquipments() {
-      return this.$store?.state?.filteredEquipments ?? [];
+    equipments() {
+      return this.$store?.state?.equipments ?? [];
     },
- 
+
     isLoading() {
       return this.$store?.state?.listEquipmentsLoading ?? false;
     },
   },
 
+  watch: {
+    equipments: {
+      handler(value) {
+        if (!value.length) return;
+
+        this.equipmentsToTable = this.flattenEquipments(value);
+        console.log(this.equipmentsToTable);
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+
+  methods: {
+    flattenEquipments(equipments) {
+      return equipments.flatMap((equipment) =>
+        equipment.services.map((service) => ({
+          equipmentName: equipment?.equipmentName.toUpperCase() ?? "-",
+          tagName: equipment?.tagName.toUpperCase() ?? "-",
+          semaphore: equipment.semaphore,
+          id: equipment.id,
+          serviceName: service?.serviceName.toUpperCase() ?? "-",
+          item: service?.item?.itemName.toUpperCase() ?? "-",
+          categorie: service?.categorie?.categorie.toUpperCase() ?? "-",
+          changePeriod: service.changePeriod,
+          nextMaintence: service.nextMaintence,
+          workRegime: service.workRegime,
+          weekRegime: service.weekRegime,
+          realized: service.realized,
+          idService: service.idService,
+          hasServiceOrder: service.hasServiceOrder || null,
+        }))
+      );
+    },
+  },
 };
 </script>
 

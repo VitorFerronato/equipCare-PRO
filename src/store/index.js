@@ -17,7 +17,6 @@ export default createStore({
     items: [],
     categories: [],
 
-    filteredEquipments: [],
     serviceOrder: [],
 
   },
@@ -25,7 +24,6 @@ export default createStore({
   mutations: {
     LIST_EQUIPMENTS(state, payload) {
       state.equipments = payload
-      state.filteredEquipments = payload
     },
 
     LIST_ITEMS(state, payload) {
@@ -44,9 +42,7 @@ export default createStore({
       state.categories = payload
     },
 
-    SET_FILTERED_EQUIPMENTS(state, filtered) {
-      state.filteredEquipments = filtered;
-    },
+  
 
     ADD_SERVICE_TO_EQUIPMENT_IN_ORDER(state, { service, equipment }) {
       let equipmentInOrder = state.serviceOrder.find(e => e.id === equipment.id);
@@ -194,15 +190,6 @@ export default createStore({
         commit('snackbar/set', { message: 'Erro ao excluir categoria', type: 'error' }, { root: true });
       }
 
-    },
-
-    FILTER_ITEMS({ commit, state }, searchTerm) {
-      const searchLower = searchTerm.toLowerCase();
-      const filtered = state.equipments.filter(item =>
-        item.equipmentName.toLowerCase().includes(searchLower) ||
-        item.tagName.toLowerCase().includes(searchLower)
-      );
-      commit('SET_FILTERED_EQUIPMENTS', filtered);
     },
 
     ADD_TO_SERVICE_ORDER({ commit, state }, { service, equipmentId }) {

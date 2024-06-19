@@ -44,13 +44,13 @@
               <td>{{ item.tagName }} - {{ item.equipmentName }}</td>
             </template>
             <template v-slot:[`item.serviceName`]="{ item }">
-              <td>{{ item.serviceName.toUpperCase() }}</td>
+              <td>{{ item.serviceName }}</td>
             </template>
             <template v-slot:[`item.item`]="{ item }">
-              <td>{{ item.item.itemName.toUpperCase() }}</td>
+              <td>{{ item.item }}</td>
             </template>
             <template v-slot:[`item.categorie`]="{ item }">
-              <td>{{ item.categorie.categorie.toUpperCase() }}</td>
+              <td>{{ item.categorie }}</td>
             </template>
             <template v-slot:[`item.nextMaintence`]="{ item }">
               <td class="font-weight-bold">{{ setNextMaintence(item) }}</td>

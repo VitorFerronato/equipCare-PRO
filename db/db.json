@@ -28,7 +28,7 @@
           "workRegime": 4,
           "weekRegime": 5,
           "semaphore": 0,
-          "realized": true,
+          "realized": false,
           "idService": 850
         },
         {
