@@ -72,7 +72,7 @@ export default createStore({
   },
 
   actions: {
-    async GET_EQUIPMENTS({ commit,dispatch, state }) {
+    async GET_EQUIPMENTS({ commit, dispatch, state }) {
       state.listEquipmentsLoading = true
 
       try {
@@ -196,28 +196,6 @@ export default createStore({
 
     },
 
-    ADD_TO_SERVICE_ORDER({ commit, state }, { service, equipmentId }) {
-      const equipment = state.equipments.find(e => e.id === equipmentId);
-
-      if (equipment) {
-        const equipmentInOrder = state.serviceOrder.find(e => e.id === equipmentId);
-
-        if (equipmentInOrder) {
-          const serviceExists = equipmentInOrder.services.some(s => s.idService === service.idService);
-          if (serviceExists) {
-            service.markToOrder = false
-            commit('REMOVE_SERVICE_FROM_EQUIPMENT_IN_ORDER', { serviceId: service.idService, equipmentId });
-          } else {
-            service.markToOrder = true
-            commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
-          }
-        } else {
-          service.markToOrder = true
-          commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
-        }
-      }
-    },
-
     SET_EQUIPMENTS_TO_TABLE({ commit }, equipments) {
       let newEquipments = equipments.flatMap((equipment) =>
         equipment.services.map((service) => ({
@@ -241,7 +219,34 @@ export default createStore({
       console.log('new equipments', newEquipments);
 
       commit('SET_EQUIPMENTS_TO_TABLE', newEquipments)
-    }
+    },
+
+    ADD_TO_SERVICE_ORDER({ commit, state }, { service, equipmentId }) {
+      const equipment = state.equipments.find(e => e.id === equipmentId);
+
+      if (equipment) {
+        const equipmentInOrder = state.serviceOrder.find(e => e.id === equipmentId);
+
+        if (equipmentInOrder) {
+          const serviceExists = equipmentInOrder.services.some(s => s.idService === service.idService);
+          if (serviceExists) {
+            service.markToOrder = false
+            commit('REMOVE_SERVICE_FROM_EQUIPMENT_IN_ORDER', { serviceId: service.idService, equipmentId });
+          } else {
+            service.markToOrder = true
+            commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
+          }
+        } else if (!equipmentInOrder && !state.serviceOrder.length) {
+          service.markToOrder = true
+          commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
+        } else {
+          service.blockEquipment = true
+          commit('snackbar/set', { message: 'Não é possível adicionar equipamentos diferentes na ordem de serviço!', type: 'error' }, { root: true });
+        }
+      }
+    },
+
+
   },
   modules: {
     snackbar

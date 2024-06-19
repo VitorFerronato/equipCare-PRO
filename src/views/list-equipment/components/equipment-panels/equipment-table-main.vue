@@ -20,14 +20,14 @@
 
           <td>
             <v-icon
-              v-if="!item.markToOrder && !item.realized && item"
+              v-if="!item.markToOrder"
               @click="addToServiceOrder(item)"
             >
               mdi-checkbox-blank-outline
             </v-icon>
 
             <v-icon
-              v-if="item.markToOrder || item.realized"
+              v-if="item.markToOrder"
               @click="addToServiceOrder(item)"
             >
               mdi-checkbox-marked

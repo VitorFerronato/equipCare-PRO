@@ -75,7 +75,9 @@ export default {
         !this.workRegime ||
         !this.weekRegime ||
         this.workRegime > 24 ||
-        this.weekRegime > 7
+        this.weekRegime > 7 ||
+        this.workRegime <= 0 ||
+        this.weekRegime <= 0
       )
         return true;
       return false;
@@ -95,10 +97,12 @@ export default {
       });
     },
     maxWorkHoursRule(value) {
-      return value <= 24 || "O número deve ser menor ou igual a 24";
+      return (
+        value <= 24 || value <= 0 || "O número deve ser menor ou igual a 24"
+      );
     },
     maxDaysWeekRule(value) {
-      return value <= 7 || "O número deve ser menor ou igual a 7";
+       return value <= 7 || value == 0 || "O número deve ser menor ou igual a 7";
     },
   },
 };

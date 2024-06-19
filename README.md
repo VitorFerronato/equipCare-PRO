@@ -1,4 +1,5 @@
 # Geral
+    - Por enquanto que não tem backend, fazer o calculo do semáforo no próprio front
     - Alterar as cores das tabelas
     - Refazer a modal de selecionar items e categorias no service-card, usar o vueX ( REFACTOR )
     - Fazer uma tela de loading ao carregar o projeto, que vai chamar os endpoint de listar os items, categorias e listagem de equipamentos, só assim abrir o projeto
@@ -12,12 +13,10 @@
     - Inserir filtro de busca
     - Adicionar filtro de categoria e item
     
-
 # Listagem de equipamentos
-    - Alterar listagem de equipamentos para uma unica tabelona
+    - Ao marcar um equipamento para fazer a ordem de serviço, exibir um icone com um tooltip nos outros dizendo que nao pode ser feita ordem de equipamentos diferentes
 
 # Adicionar equipamentos
-    - Horas trabalhadas e dias por semana não pode ser 0
 
 # Adicionar Serviços
     - Tooltip no campo da próxima manutenção com o calculo feito
@@ -27,10 +26,7 @@
 # Ordem de serviço
     - Opção para selecionar todos os serviços de um equipamento
     - Ao confirmar a ordem, atualizar o realized e a data para a próxima manutenção do equipamento
-    - Remover responsavel
-    - Remover próxima manutenção
     - Adicionar id unico por ordem "001"
-    - Ordem de serviço deve ser unica por equipamento
 
 # Histórico de Ordem de serviço
     - Em progresso
@@ -48,3 +44,10 @@
     - Opção para deletar equipamento
     - Esconder paginação das tabelas caso numero de items for inferior a 5
     - Tela de loading de Bem vindo
+
+## PATCH NOTE 18/06/2024
+    - Listagem de equipamentos e manutenções em uma unica tabela na home
+    - Desabilitar botão de criar equipamento caso campos horas por dia ou dias por semana forem igual a 0
+    - Ordem de serviço
+        - Agora, só podemos adicionar um equipamento por ordem, exibira uma mensagem informando caso o usuario tente adicionar mais de um equipamento
+        - Removido campos de responsável e data da realização

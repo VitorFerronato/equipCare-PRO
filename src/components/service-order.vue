@@ -21,18 +21,6 @@
           <v-icon @click="modalOpen = false">mdi-close</v-icon>
         </v-row>
 
-        <v-row class="my-4">
-          <v-col>
-            <Dsg-text-field v-model="responsible" :title="'Responsável'" />
-          </v-col>
-          <v-col>
-            <Dsg-data-picker
-              :title="'Realizada em:'"
-              @setDate="orderDate = $event"
-            />
-          </v-col>
-        </v-row>
-
         <v-card class="pa-4">
           <h4 class="mb-4">SERVIÇOS</h4>
           <v-data-table
@@ -52,16 +40,12 @@
             <template v-slot:[`item.categorie`]="{ item }">
               <td>{{ item.categorie }}</td>
             </template>
-            <template v-slot:[`item.nextMaintence`]="{ item }">
-              <td class="font-weight-bold">{{ setNextMaintence(item) }}</td>
-            </template>
           </v-data-table>
         </v-card>
 
         <v-row no-gutters justify="end" class="mt-6">
           <Dsg-btn
             :title="'Confirmar'"
-            :disabled="disableButton"
             @click="setNewServiceOrder"
           />
         </v-row>
@@ -72,10 +56,8 @@
 
 <script>
 import DsgBtn from "./common/dsg-btn.vue";
-import DsgDataPicker from "./common/dsg-data-picker.vue";
-import DsgTextField from "./common/dsg-text-field.vue";
 export default {
-  components: { DsgBtn, DsgTextField, DsgDataPicker },
+  components: { DsgBtn },
   data: () => ({
     modalOpen: false,
     responsible: null,
@@ -101,21 +83,12 @@ export default {
         title: "Categoria",
         value: "categorie",
       },
-      {
-        title: "Próxima manutenção",
-        value: "nextMaintence",
-      },
     ],
   }),
 
   computed: {
     serviceOrder() {
       return this.$store.state.serviceOrder;
-    },
-    disableButton() {
-      if (!this.responsible || !this.orderDate || !this.serviceOrder.length)
-        return true;
-      return false;
     },
   },
 
@@ -146,30 +119,6 @@ export default {
       );
     },
 
-    setNextMaintence(service) {
-      let diasCorridos = service.changePeriod / service.workRegime;
-      let semanasCorridas = (diasCorridos / service.weekRegime) * 7;
-      return this.addDaysToDate(this.orderDate, semanasCorridas);
-    },
-
-    addDaysToDate(dateString, daysToAdd) {
-      if (!dateString || !daysToAdd) return null;
-      const parts = dateString.split("/");
-      const day = parseInt(parts[0], 10);
-      const month = parseInt(parts[1], 10) - 1;
-      const year = parseInt(parts[2], 10);
-
-      const date = new Date(year, month, day);
-
-      date.setDate(date.getDate() + daysToAdd);
-
-      const newDay = String(date.getDate()).padStart(2, "0");
-      const newMonth = String(date.getMonth() + 1).padStart(2, "0");
-      const newYear = date.getFullYear();
-
-      return `${newDay}/${newMonth}/${newYear}`;
-    },
-
     buildRequest(data) {
       return data.map((newOrder) => ({
         equipmentName: newOrder.equipmentName,
@@ -188,7 +137,6 @@ export default {
         changePeriod: service.changePeriod,
         idService: service.idService,
         item: service.item,
-        nextMaintence: this.setNextMaintence(service),
         realized: true,
         semaphore: 3,
         serviceName: service.serviceName,
