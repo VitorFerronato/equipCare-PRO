@@ -19,19 +19,15 @@
           <td>{{ item.changePeriod }} HORAS</td>
 
           <td>
-            <v-icon
-              v-if="!item.markToOrder"
-              @click="addToServiceOrder(item)"
-            >
+            <v-icon v-if="!item.markToOrder" @click="addToServiceOrder(item)">
               mdi-checkbox-blank-outline
             </v-icon>
 
-            <v-icon
-              v-if="item.markToOrder"
-              @click="addToServiceOrder(item)"
-            >
+            <v-icon v-if="item.markToOrder" @click="addToServiceOrder(item)">
               mdi-checkbox-marked
             </v-icon>
+
+            <v-icon @click="editEquipment(item)"> mdi-pencil-box </v-icon>
           </td>
         </tr>
       </template>
@@ -106,6 +102,17 @@ export default {
       this.$store.dispatch("ADD_TO_SERVICE_ORDER", {
         service: item,
         equipmentId: item.id,
+      });
+    },
+
+    editEquipment(equipment) {
+      console.log(equipment);
+      let id = {
+        id: equipment.id,
+      };
+      this.$router.push({
+        name: "create-services",
+        query: { data: JSON.stringify(id) },
       });
     },
   },

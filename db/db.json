@@ -1,62 +1,6 @@
 {
   "equipments": [
     {
-      "equipmentName": "TORNO MULTIUSO",
-      "weekRegime": 5,
-      "workRegime": 4,
-      "tagName": "COP9874",
-      "semaphore": 0,
-      "id": 425,
-      "services": [
-        {
-          "serviceName": "Algum serviço",
-          "item": {
-            "itemName": "Rolamento",
-            "cod": "cop987",
-            "observation": "6584",
-            "isEdit": false,
-            "id": 1718383217430
-          },
-          "categorie": {
-            "categorie": "Torno",
-            "observation": "Algum torno da loja X",
-            "isEdit": false,
-            "id": 1718383231437
-          },
-          "changePeriod": 100,
-          "nextMaintence": "19/07/2024",
-          "workRegime": 4,
-          "weekRegime": 5,
-          "semaphore": 0,
-          "realized": false,
-          "idService": 850
-        },
-        {
-          "serviceName": "Outro serviço",
-          "item": {
-            "itemName": "Rolamento",
-            "cod": "cop987",
-            "observation": "6584",
-            "isEdit": false,
-            "id": 1718383217430
-          },
-          "categorie": {
-            "categorie": "Torno",
-            "observation": "Algum torno da loja X",
-            "isEdit": false,
-            "id": 1718383231437
-          },
-          "changePeriod": 200,
-          "nextMaintence": "30/08/2024",
-          "workRegime": 4,
-          "weekRegime": 5,
-          "semaphore": 0,
-          "realized": false,
-          "idService": 711
-        }
-      ]
-    },
-    {
       "equipmentName": "FRESA NAO SEI O QUE ",
       "weekRegime": 7,
       "workRegime": 24,

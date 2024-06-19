@@ -8,6 +8,7 @@
     - Arrumar o fluxo de items e categorias, esta fazendo muitas chamadas
     - Ao criar um novo equipamento, excluir, editar, chamar novamente o endpoint de listagem, que agora nao esta mais sendo chamado ao acessar a tela list-equipments
     - Transformar o addDaysToDate em uma função do utils
+    - Tabela esta clonando valores ao filtrar [ BUG ]
 
 # Filtros
     - Inserir filtro de busca
@@ -15,6 +16,7 @@
     
 # Listagem de equipamentos
     - Ao marcar um equipamento para fazer a ordem de serviço, exibir um icone com um tooltip nos outros dizendo que nao pode ser feita ordem de equipamentos diferentes
+    - Editar equipamento
 
 # Adicionar equipamentos
 
@@ -24,7 +26,6 @@
     - Mostrar uma mensagem com confirmação caso o usuario selecione uma data manual e ela passe do tempo de manutenção
 
 # Ordem de serviço
-    - Opção para selecionar todos os serviços de um equipamento
     - Ao confirmar a ordem, atualizar o realized e a data para a próxima manutenção do equipamento
     - Adicionar id unico por ordem "001"
 

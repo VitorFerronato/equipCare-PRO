@@ -1,7 +1,7 @@
 <template>
   <div v-if="isLoading" class="main-div">
     <div class="welcome-info">
-      <h2>BEM VINDO</h2>
+      <h2>CARREGANDO</h2>
       <Dsg-loading-circular :color="'#fff'" :size="80" class="mt-6" />
     </div>
   </div>

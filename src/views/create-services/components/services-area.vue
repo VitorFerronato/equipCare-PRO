@@ -30,12 +30,11 @@ import ServiceCard from "./service-card.vue";
 
 export default {
   components: { DsgBtn, ServiceCard },
-  props: ["services"],
+  props: ["services", "workRegime", "weekRegime"],
   data: () => ({
     localServices: [],
     servicesCreated: [],
-    workRegime: null,
-    weekRegime: null,
+
     isLoading: false,
   }),
 
@@ -123,12 +122,6 @@ export default {
       this.servicesCreated.splice(index, 1);
       this.localServices.splice(index, 1);
     },
-  },
-
-  created() {
-    let equipment = JSON.parse(this.$route.query.data);
-    this.workRegime = parseFloat(equipment.workRegime);
-    this.weekRegime = parseFloat(equipment.weekRegime);
   },
 };
 </script>

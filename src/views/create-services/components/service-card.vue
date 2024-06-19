@@ -78,7 +78,6 @@
         v-if="proximaManutencao"
         @setDate="localService.manualDate = $event"
       />
-
       <v-spacer></v-spacer>
       <Dsg-btn :title="'Excluir'" @click="deleteService" />
     </v-row>
