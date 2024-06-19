@@ -40,54 +40,16 @@ export default {
   },
   name: "list-equipments",
   data() {
-    return {
-      equipmentsToTable: [],
-    };
+    return {};
   },
 
   computed: {
-    equipments() {
-      return this.$store?.state?.equipments ?? [];
+    equipmentsToTable() {
+      return this.$store?.state?.equipmentsToTable ?? [];
     },
 
     isLoading() {
       return this.$store?.state?.listEquipmentsLoading ?? false;
-    },
-  },
-
-  watch: {
-    equipments: {
-      handler(value) {
-        if (!value.length) return;
-
-        this.equipmentsToTable = this.flattenEquipments(value);
-        console.log(this.equipmentsToTable);
-      },
-      deep: true,
-      immediate: true,
-    },
-  },
-
-  methods: {
-    flattenEquipments(equipments) {
-      return equipments.flatMap((equipment) =>
-        equipment.services.map((service) => ({
-          equipmentName: equipment?.equipmentName.toUpperCase() ?? "-",
-          tagName: equipment?.tagName.toUpperCase() ?? "-",
-          semaphore: equipment.semaphore,
-          id: equipment.id,
-          serviceName: service?.serviceName.toUpperCase() ?? "-",
-          item: service?.item?.itemName.toUpperCase() ?? "-",
-          categorie: service?.categorie?.categorie.toUpperCase() ?? "-",
-          changePeriod: service.changePeriod,
-          nextMaintence: service.nextMaintence,
-          workRegime: service.workRegime,
-          weekRegime: service.weekRegime,
-          realized: service.realized,
-          idService: service.idService,
-          hasServiceOrder: service.hasServiceOrder || null,
-        }))
-      );
     },
   },
 };

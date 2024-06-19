@@ -14,6 +14,7 @@ export default createStore({
     getCategoriesLoading: false,
 
     equipments: [],
+    equipmentsToTable: [],
     items: [],
     categories: [],
 
@@ -24,6 +25,10 @@ export default createStore({
   mutations: {
     LIST_EQUIPMENTS(state, payload) {
       state.equipments = payload
+    },
+
+    SET_EQUIPMENTS_TO_TABLE(state, payload) {
+      state.equipmentsToTable = payload
     },
 
     LIST_ITEMS(state, payload) {
@@ -41,8 +46,6 @@ export default createStore({
     LIST_CATEGORIES(state, payload) {
       state.categories = payload
     },
-
-  
 
     ADD_SERVICE_TO_EQUIPMENT_IN_ORDER(state, { service, equipment }) {
       let equipmentInOrder = state.serviceOrder.find(e => e.id === equipment.id);
@@ -69,12 +72,13 @@ export default createStore({
   },
 
   actions: {
-    async GET_EQUIPMENTS({ commit, state }) {
+    async GET_EQUIPMENTS({ commit,dispatch, state }) {
       state.listEquipmentsLoading = true
 
       try {
         let response = await Service.getEquipments()
         commit('LIST_EQUIPMENTS', response?.data ?? [])
+        dispatch('SET_EQUIPMENTS_TO_TABLE', response?.data ?? [])
       } catch (error) {
         console.log(error);
         commit('snackbar/set', { message: 'Erro ao carregar equipamentos', type: 'error' }, { root: true });
@@ -213,6 +217,31 @@ export default createStore({
         }
       }
     },
+
+    SET_EQUIPMENTS_TO_TABLE({ commit }, equipments) {
+      let newEquipments = equipments.flatMap((equipment) =>
+        equipment.services.map((service) => ({
+          equipmentName: equipment?.equipmentName.toUpperCase() ?? "-",
+          tagName: equipment?.tagName.toUpperCase() ?? "-",
+          semaphore: equipment.semaphore,
+          id: equipment.id,
+          serviceName: service?.serviceName.toUpperCase() ?? "-",
+          item: service?.item?.itemName.toUpperCase() ?? "-",
+          categorie: service?.categorie?.categorie.toUpperCase() ?? "-",
+          changePeriod: service.changePeriod,
+          nextMaintence: service.nextMaintence,
+          workRegime: service.workRegime,
+          weekRegime: service.weekRegime,
+          realized: service.realized,
+          idService: service.idService,
+          hasServiceOrder: service.hasServiceOrder || null,
+        }))
+      );
+
+      console.log('new equipments', newEquipments);
+
+      commit('SET_EQUIPMENTS_TO_TABLE', newEquipments)
+    }
   },
   modules: {
     snackbar
