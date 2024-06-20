@@ -18,7 +18,7 @@
         <span v-show="tagName">- {{ tagName }}</span>
       </h2>
 
-      <Delete-equipment-modal :id="equipmentId"/>
+      <Delete-equipment-modal :id="equipmentId" />
     </v-row>
 
     <div class="dsg-flex-center gap-1 mb-6">
@@ -41,7 +41,7 @@
 <script>
 import ServicesArea from "./components/services-area.vue";
 import service from "@/service/create-equipment.js";
-import DeleteEquipmentModal from './components/delete-equipment.modal.vue';
+import DeleteEquipmentModal from "./components/delete-equipment.modal.vue";
 const Service = new service();
 export default {
   components: { ServicesArea, DeleteEquipmentModal },
@@ -109,7 +109,6 @@ export default {
         weekRegime: this.equipment?.weekRegime ?? "-",
         workRegime: this.equipment?.workRegime ?? "-",
         tagName: this.equipment?.tagName ?? "-",
-        semaphore: 0, // Sera feito o semáforo no back
         id: this.equipment.id
           ? this.equipment.id
           : Math.floor(Math.random() * 1000), // Id também gerado no back
@@ -119,6 +118,7 @@ export default {
       let serviceURL = this.equipment.id
         ? "updateEquipment"
         : "saveNewEquipment";
+        
       try {
         await Service[serviceURL](request);
         this.$store.commit("snackbar/set", {
@@ -136,8 +136,6 @@ export default {
       }
       this.isLoading = false;
     },
-
-  
   },
 
   async created() {

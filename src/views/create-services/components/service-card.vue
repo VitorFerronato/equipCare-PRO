@@ -37,7 +37,7 @@
       </v-col>
       <Create-item-modal :type="'categorie'" class="mt-7 ml-n2 mr-4" />
     </v-row>
-    <v-row>
+    <v-row class="mb-8">
       <v-col cols="12" md="4" lg="4">
         <Dsg-text-field
           v-model="localService.changePeriod"
@@ -53,13 +53,14 @@
         <Dsg-data-picker
           :title="'Data da ultima troca'"
           :tooltipText="'Caso nenhum valor for estipulado, ira considerar o dia atual'"
+          :disabled="!localService.nextMaintence"
           @setDate="localService.lastMaintence = $event"
           placeholder="Ex: 4"
           hide-spin-buttons
         />
       </v-col>
     </v-row>
-    <v-row no-gutters align="center" class="mt-8">
+    <v-row v-if="localService.nextMaintence" no-gutters align="center">
       <h4>Próxima manutenção:</h4>
       <span
         v-if="proximaManutencao && !localService.manualDate"
@@ -73,7 +74,6 @@
         >{{ localService.manualDate }} -
         {{ convertDateToWeekDay(localService.manualDate) }}
       </span>
-
       <Dsg-data-picker-icon
         v-if="proximaManutencao"
         @setDate="localService.manualDate = $event"
@@ -81,6 +81,11 @@
       <v-spacer></v-spacer>
       <Dsg-btn :title="'Excluir'" @click="deleteService" />
     </v-row>
+
+    <span v-else
+      >Esse serviço ja possui uma ordem ativa portanto não será possivel alterar
+      a data da próxima manutenção.</span
+    >
   </v-card>
 </template>
 

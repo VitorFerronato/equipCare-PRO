@@ -5,56 +5,70 @@
       "weekRegime": 7,
       "workRegime": 24,
       "tagName": "COP 987",
-      "semaphore": 0,
       "id": 929,
       "services": [
         {
           "serviceName": "Troca de óleo",
-          "item": {
-            "itemName": "Òleo",
-            "cod": "cpoo",
-            "observation": "5w30 da petronas",
-            "isEdit": false,
-            "id": 1718667913579
-          },
-          "categorie": {
-            "categorie": "FRESA",
-            "observation": "FRESA",
-            "isEdit": false,
-            "id": 1718384593431
-          },
-          "changePeriod": 100,
-          "nextMaintence": "21/06/2024",
+          "item": "VENTUINHA",
+          "categorie": "TORNO",
+          "changePeriod": 900,
+          "lastMaintence": "19/06/2024",
+          "nextMaintence": null,
           "workRegime": 24,
           "weekRegime": 7,
-          "semaphore": 0,
+          "semaphore": 4,
           "realized": false,
-          "hasServiceOrder": null,
-          "idService": 565
+          "serviceOrder": "19/06/2024",
+          "idService": 840
         },
         {
-          "serviceName": "Troca de engrenagem X",
-          "item": {
-            "itemName": "Rolamento",
-            "cod": "cop987",
-            "observation": "6584",
-            "isEdit": false,
-            "id": 1718383217430
-          },
-          "categorie": {
-            "categorie": "FRESA",
-            "observation": "FRESA",
-            "isEdit": false,
-            "id": 1718384593431
-          },
-          "changePeriod": 500,
-          "nextMaintence": "07/07/2024",
+          "serviceName": "Troca de engrenagem",
+          "item": "ROLAMENTO",
+          "categorie": "FRESA",
+          "changePeriod": 600,
+          "lastMaintence": "19/06/2024",
+          "nextMaintence": null,
           "workRegime": 24,
           "weekRegime": 7,
-          "semaphore": 0,
+          "semaphore": 4,
           "realized": false,
-          "hasServiceOrder": null,
-          "idService": 862
+          "serviceOrder": "19/06/2024",
+          "idService": 160
+        }
+      ]
+    },
+    {
+      "equipmentName": "TORNO ALGUMA COISA",
+      "weekRegime": 7,
+      "workRegime": 6,
+      "tagName": "COP 987",
+      "id": 579,
+      "services": [
+        {
+          "categorie": "TORNO",
+          "changePeriod": 200,
+          "idService": 362,
+          "item": "ÒLEO",
+          "realized": false,
+          "semaphore": 4,
+          "serviceOrder": "19/06/2024",
+          "nextMaintence": null,
+          "serviceName": "TROCA DE ÓLEO",
+          "weekRegime": 7,
+          "workRegime": 6
+        },
+        {
+          "categorie": "FRESA",
+          "changePeriod": 800,
+          "idService": 18,
+          "item": "VENTUINHA",
+          "realized": false,
+          "semaphore": 4,
+          "serviceOrder": "19/06/2024",
+          "nextMaintence": null,
+          "serviceName": "TROCA DE VENTUINHA",
+          "weekRegime": 7,
+          "workRegime": 6
         }
       ]
     }

@@ -14,8 +14,8 @@
       >
     </v-badge>
 
-    <v-dialog v-model="modalOpen" max-width="900">
-      <v-card class="pa-4">
+    <v-dialog v-model="modalOpen" :persistent="isLoading" max-width="900">
+      <v-card class="pa-4" :disabled="isLoading">
         <v-row no-gutters justify="space-between" align="center">
           <h4>ORDEM DE SERVIÇO</h4>
           <v-icon @click="modalOpen = false">mdi-close</v-icon>
@@ -46,6 +46,7 @@
         <v-row no-gutters justify="end" class="mt-6">
           <Dsg-btn
             :title="'Confirmar'"
+            :loading="isLoading"
             @click="setNewServiceOrder"
           />
         </v-row>
@@ -56,12 +57,14 @@
 
 <script>
 import DsgBtn from "./common/dsg-btn.vue";
+import service from "@/service/create-equipment.js";
+const Service = new service();
 export default {
   components: { DsgBtn },
   data: () => ({
     modalOpen: false,
-    responsible: null,
-    orderDate: null,
+    isLoading: false,
+
     formatedServiceOrder: [],
     headers: [
       {
@@ -103,9 +106,24 @@ export default {
   },
 
   methods: {
-    setNewServiceOrder() {
-      let request = this.buildRequest(this.serviceOrder);
-      console.log(request);
+    async setNewServiceOrder() {
+      this.isLoading = true;
+
+      let request = this.buildRequest(this.serviceOrder)[0];
+
+      try {
+        await Service.updateEquipment(request);
+        this.$store.dispatch("GET_EQUIPMENTS");
+      } catch (error) {
+        console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao gerar ordem de serviços, contate o suporte!",
+          type: "error",
+        });
+      }
+
+      this.isLoading = false;
+      this.modalOpen = false;
     },
 
     formatToTable(data) {
@@ -125,7 +143,6 @@ export default {
         weekRegime: newOrder.weekRegime,
         workRegime: newOrder.workRegime,
         tagName: newOrder.tagName,
-        semaphore: 3,
         id: newOrder.id,
         services: this.buildRequestService(newOrder.services),
       }));
@@ -137,12 +154,22 @@ export default {
         changePeriod: service.changePeriod,
         idService: service.idService,
         item: service.item,
-        realized: true,
-        semaphore: 3,
+        realized: false,
+        semaphore: 4,
+        serviceOrder: this.getTodayDate(),
+        nextMaintence: null,
         serviceName: service.serviceName,
         weekRegime: service.weekRegime,
         workRegime: service.workRegime,
       }));
+    },
+
+    getTodayDate() {
+      const today = new Date();
+      const day = String(today.getDate()).padStart(2, "0");
+      const month = String(today.getMonth() + 1).padStart(2, "0");
+      const year = today.getFullYear();
+      return `${day}/${month}/${year}`;
     },
   },
 };

@@ -201,22 +201,20 @@ export default createStore({
         equipment.services.map((service) => ({
           equipmentName: equipment?.equipmentName.toUpperCase() ?? "-",
           tagName: equipment?.tagName.toUpperCase() ?? "-",
-          semaphore: equipment.semaphore,
+          semaphore: service.semaphore,
           id: equipment.id,
           serviceName: service?.serviceName.toUpperCase() ?? "-",
-          item: service?.item?.itemName.toUpperCase() ?? "-",
-          categorie: service?.categorie?.categorie.toUpperCase() ?? "-",
+          item: service?.item?.toUpperCase() ?? "-",
+          categorie: service?.categorie?.toUpperCase() ?? "-",
           changePeriod: service.changePeriod,
           nextMaintence: service.nextMaintence,
           workRegime: service.workRegime,
           weekRegime: service.weekRegime,
           realized: service.realized,
           idService: service.idService,
-          hasServiceOrder: service.hasServiceOrder || null,
+          serviceOrder: service?.serviceOrder ?? null,
         }))
       );
-
-      console.log('new equipments', newEquipments);
 
       commit('SET_EQUIPMENTS_TO_TABLE', newEquipments)
     },
@@ -245,8 +243,6 @@ export default createStore({
         }
       }
     },
-
-
   },
   modules: {
     snackbar

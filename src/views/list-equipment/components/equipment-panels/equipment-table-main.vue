@@ -8,7 +8,7 @@
       <template v-slot:item="{ item }">
         <tr>
           <td :class="setBackground(item.semaphore)">
-            {{ item.nextMaintence }}
+            {{ item.nextMaintence ?? "POSSUI ORDEM" }}
           </td>
           <td>{{ item.equipmentName }}</td>
           <td>{{ item.serviceName }}</td>
@@ -19,11 +19,17 @@
           <td>{{ item.changePeriod }} HORAS</td>
 
           <td>
-            <v-icon v-if="!item.markToOrder" @click="addToServiceOrder(item)">
+            <v-icon
+              v-if="!item.markToOrder && !item.serviceOrder"
+              @click="addToServiceOrder(item)"
+            >
               mdi-checkbox-blank-outline
             </v-icon>
 
-            <v-icon v-if="item.markToOrder" @click="addToServiceOrder(item)">
+            <v-icon
+              v-if="item.markToOrder && !item.serviceOrder"
+              @click="addToServiceOrder(item)"
+            >
               mdi-checkbox-marked
             </v-icon>
 
@@ -89,14 +95,16 @@ export default {
           return "orange-background";
         case 3:
           return "green-background";
+        case 4:
+          return "blue-background";
       }
     },
 
-    addAllToOrder() {
-      this.equipments
-        .filter((service) => !service.realized)
-        .forEach((service) => this.addToServiceOrder(service));
-    },
+    // addAllToOrder() {
+    //   this.equipments
+    //     .filter((service) => !service.realized)
+    //     .forEach((service) => this.addToServiceOrder(service));
+    // },
 
     addToServiceOrder(item) {
       this.$store.dispatch("ADD_TO_SERVICE_ORDER", {

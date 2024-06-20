@@ -79,9 +79,14 @@ export default {
 
     hasInvalidProperty(arr) {
       return arr.some((obj) => {
+        if (obj.serviceOrder !== null && obj.nextMaintence === null) {
+          return false;
+        }
+
         return Object.keys(obj).some((key) => {
           if (
             key !== "manualDate" &&
+            key !== "serviceOrder" &&
             (obj[key] === null || obj[key] === "" || obj[key] === undefined)
           ) {
             return true;
@@ -94,18 +99,22 @@ export default {
     buildRequest(services) {
       return services.map((service) => ({
         serviceName: service.serviceName,
-        item: service.item,
-        categorie: service.categorie,
+        item: service.item.itemName ? service.item.itemName : service.item,
+        categorie: service.categorie.categorie
+          ? service.categorie.categorie
+          : service.categorie,
         changePeriod: parseFloat(service.changePeriod),
-        lastMaintence: service.date,
-        nextMaintence: service.manualDate
+        lastMaintence: service.lastMaintence,
+        nextMaintence: service.serviceOrder
+          ? null
+          : service.manualDate
           ? service.manualDate
           : service.proximaManutencao,
         workRegime: parseFloat(this.workRegime),
         weekRegime: parseFloat(this.weekRegime),
-        semaphore: 0,
+        semaphore: service.serviceOrder ? 4 : Math.floor(Math.random() * 4),
         realized: false,
-        hasServiceOrder: null,
+        serviceOrder: service.serviceOrder,
         idService: service.id ? service.id : Math.floor(Math.random() * 1000),
       }));
     },

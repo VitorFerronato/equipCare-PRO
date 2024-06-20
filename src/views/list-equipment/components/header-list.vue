@@ -7,6 +7,7 @@
       <div class="yellow-border">Equipamentos com manutenção em 5 dias</div>
       <div class="orange-border">Equipamentos com manutenção em 15 dias</div>
       <div class="green-border">Equipamentos com manutenção em 30 dias</div>
+      <div class="blue-border">Equipamento com ordem de serviço ativa</div>
     </div>
   </v-row>
 </template>

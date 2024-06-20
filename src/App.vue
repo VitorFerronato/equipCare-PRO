@@ -96,18 +96,28 @@ a {
   border-radius: 5px !important;
   padding-left: 0.2rem !important;
 }
+.blue-border {
+  border-left: 6px solid #3c5ca7 !important;
+  border-radius: 5px !important;
+  padding-left: 0.2rem !important;
+}
+
+
 
 .red-background {
-  border-left: 6px solid $danger-color;
+  border-left: 6px solid $danger-color !important;
 }
 .yellow-background {
-  border-left: 6px solid $warning-color;
+  border-left: 6px solid $warning-color !important;
 }
 .orange-background {
-  border-left: 6px solid orange;
+  border-left: 6px solid orange !important;
 }
 .green-background {
-  border-left: 6px solid $success-color;
+  border-left: 6px solid $success-color !important;
+}
+.blue-background {
+  border-left: 6px solid #3c5ca7 !important;
 }
 
 </style>
