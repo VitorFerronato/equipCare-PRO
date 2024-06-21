@@ -18,9 +18,8 @@
         <span v-show="tagName">- {{ tagName }}</span>
       </h2>
 
-      <Delete-equipment-modal :id="equipmentId" />
+      <Delete-equipment-modal v-if="equipmentId" :id="equipmentId" />
     </v-row>
-
     <div class="dsg-flex-center gap-1 mb-6">
       <div>
         <span class="font-weight-bold">Regime de trabalho: </span>

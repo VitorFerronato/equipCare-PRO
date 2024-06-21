@@ -71,6 +71,54 @@
           "workRegime": 6
         }
       ]
+    },
+    {
+      "equipmentName": "FURADEIRA DE BANCADA",
+      "weekRegime": 2,
+      "workRegime": 5,
+      "tagName": "COP 987",
+      "id": 565,
+      "services": [
+        {
+          "serviceName": "Troca da engrenagem biela",
+          "item": "engrenagem",
+          "categorie": "FURADEIRA",
+          "changePeriod": 200,
+          "lastMaintence": "20/06/2024",
+          "nextMaintence": "07/11/2024",
+          "workRegime": 5,
+          "weekRegime": 2,
+          "semaphore": 3,
+          "realized": false,
+          "idService": 496
+        },
+        {
+          "serviceName": "Troca de fluido",
+          "item": "Òleo",
+          "categorie": "FURADEIRA",
+          "changePeriod": 20,
+          "lastMaintence": "20/06/2024",
+          "nextMaintence": "16/07/2024",
+          "workRegime": 5,
+          "weekRegime": 2,
+          "semaphore": 0,
+          "realized": false,
+          "idService": 352
+        },
+        {
+          "serviceName": "flúido de freio",
+          "item": "Òleo",
+          "categorie": "FURADEIRA",
+          "changePeriod": 300,
+          "lastMaintence": "20/06/2024",
+          "nextMaintence": "16/01/2025",
+          "workRegime": 5,
+          "weekRegime": 2,
+          "semaphore": 0,
+          "realized": false,
+          "idService": 988
+        }
+      ]
     }
   ],
   "items": [
@@ -94,6 +142,13 @@
       "observation": "5w30 da petronas",
       "isEdit": false,
       "id": 1718667913579
+    },
+    {
+      "itemName": "engrenagem",
+      "cod": "cop 98",
+      "observation": "",
+      "isEdit": false,
+      "id": 1718894275860
     }
   ],
   "categories": [
@@ -108,6 +163,12 @@
       "observation": "FRESA",
       "isEdit": false,
       "id": 1718384593431
+    },
+    {
+      "categorie": "FURADEIRA",
+      "observation": "",
+      "isEdit": false,
+      "id": 1718894287420
     }
   ]
 }

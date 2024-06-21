@@ -53,14 +53,14 @@
         <Dsg-data-picker
           :title="'Data da ultima troca'"
           :tooltipText="'Caso nenhum valor for estipulado, ira considerar o dia atual'"
-          :disabled="!localService.nextMaintence"
+          :disabled="localService.serviceOrder  "
           @setDate="localService.lastMaintence = $event"
           placeholder="Ex: 4"
           hide-spin-buttons
         />
       </v-col>
     </v-row>
-    <v-row v-if="localService.nextMaintence" no-gutters align="center">
+    <v-row v-if="!localService.serviceOrder" no-gutters align="center">
       <h4>Próxima manutenção:</h4>
       <span
         v-if="proximaManutencao && !localService.manualDate"

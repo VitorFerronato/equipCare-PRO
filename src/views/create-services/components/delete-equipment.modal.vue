@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-icon @click="modalOpen = true" color="red" class="ml-4">mdi-delete-outline</v-icon>
+    <v-icon @click="modalOpen = true" color="red" class="ml-4"
+      >mdi-delete-outline</v-icon
+    >
 
     <v-dialog v-model="modalOpen" max-width="500">
       <v-card class="pa-4">
@@ -12,7 +14,12 @@
         </p>
 
         <v-row no-gutters justify="end">
-          <Dsg-btn :title="'Cancelar'" :disabled="isLoading" class="mr-4" />
+          <Dsg-btn
+            :title="'Cancelar'"
+            :disabled="isLoading"
+            @click="modelOpen = false"
+            class="mr-4"
+          />
           <Dsg-btn
             :title="'Confirmar'"
             :disabled="isLoading"
@@ -32,7 +39,7 @@ const Service = new service();
 
 export default {
   components: { DsgBtn },
-  props: ['id'],
+  props: ["id"],
   data: () => ({
     modalOpen: false,
     isLoading: false,

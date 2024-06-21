@@ -38,7 +38,7 @@ const routes = [
   {
     path: '/service-order-history',
     component: serviceOrderHistory,
-    name: 'service-order-history-main'
+    name: 'list-service-orders'
   },
 ]
 

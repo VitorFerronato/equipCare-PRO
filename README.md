@@ -1,15 +1,12 @@
 # Geral
     - Por enquanto que não tem backend, fazer o calculo do semáforo no próprio front
     - Alterar as cores das tabelas
-    - Refazer a modal de selecionar items e categorias no service-card, usar o vueX ( REFACTOR )
-    - Fazer uma tela de loading ao carregar o projeto, que vai chamar os endpoint de listar os items, categorias e listagem de equipamentos, só assim abrir o projeto
     - Transformar a modal de items e de filtros em um componente só
     - Separar a store por funcionalidade
-    - Arrumar o fluxo de items e categorias, esta fazendo muitas chamadas
-    - Ao criar um novo equipamento, excluir, editar, chamar novamente o endpoint de listagem, que agora nao esta mais sendo chamado ao acessar a tela list-equipments
     - Transformar o addDaysToDate e getTodayDate em uma função do utils
     - Tabela esta clonando valores ao filtrar [ BUG ]
     - chamar os endpoints de items e categorias e listagem somente se a store estiver vazia
+    - Fixar sidebar
 
 # Filtros
     - Inserir filtro de busca
@@ -17,19 +14,21 @@
     
 # Listagem de equipamentos
     - Ao marcar um equipamento para fazer a ordem de serviço, exibir um icone com um tooltip nos outros dizendo que nao pode ser feita ordem de equipamentos diferentes
-   
+    - Ordenar por ordem de urgência
 
 # Adicionar equipamentos
 
+
 # Adicionar Serviços
     - Tooltip no campo da próxima manutenção com o calculo feito
-    - Modal para confirmação de excluir equipamento
     - Mostrar uma mensagem com confirmação caso o usuario selecione uma data manual e ela passe do tempo de manutenção
     - Disabled ou if nas datas caso tenha ordem de serviço
+    - Fazer a cor do semaforo no front dependendo da data
 
 # Ordem de serviço
     - Endpoint de criar ordem de serviço
    - Enviar todo o equipamento e não só aquele que eu marquei para a manutenção
+   - Limpar ordem ao salvar
 
 # Histórico de Ordem de serviço
     - Em progresso
