@@ -41,12 +41,12 @@
           "categorie": "Torno",
           "changePeriod": 30,
           "lastMaintence": "22/06/2024",
-          "nextMaintence": "01/07/2024",
+          "nextMaintence": null,
           "workRegime": 4,
           "weekRegime": 7,
-          "semaphore": 2,
+          "semaphore": 4,
           "realized": false,
-          "serviceOrder": null,
+          "serviceOrder": "22/06/2024",
           "serviceId": 612
         }
       ]

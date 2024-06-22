@@ -33,6 +33,7 @@ import EquipmentTableMain from "./components/equipment-panels/equipment-table-ma
 import FilterArea from "./components/filter-area.vue";
 import HeaderList from "./components/header-list.vue";
 import DsgLoadingCircular from "@/components/common/dsg-loading-circular.vue";
+import moment from "moment";
 export default {
   components: {
     FilterArea,
@@ -43,12 +44,53 @@ export default {
   },
   name: "list-equipments",
   data() {
-    return {};
+    return {
+      data: [
+        {
+          semaphore: 2,
+          id: 245,
+          nextMaintence: "24/05/06",
+        },
+        {
+          semaphore: 0,
+          id: 2354,
+          nextMaintence: null,
+        },
+        {
+          semaphore: 3,
+          id: 123,
+          nextMaintence: "22/06/06",
+        },
+        {
+          semaphore: 1,
+          id: 35,
+          nextMaintence: "22/05/06",
+        },
+        {
+          semaphore: 2,
+          id: 123,
+          nextMaintence: null,
+        },
+      ],
+    };
   },
 
   computed: {
     filteredEquipmentsToTable() {
-      return this.$store?.state?.filteredEquipmentsToTable ?? [];
+      let filteredEquipments =
+        this.$store?.state?.filteredEquipmentsToTable ?? [];
+
+      filteredEquipments.sort((a, b) => {
+        if (a.nextMaintence === null) return 1;
+        if (b.nextMaintence === null) return -1;
+
+        const dateA = moment(a.nextMaintence, "DD/MM/YYYY");
+        const dateB = moment(b.nextMaintence, "DD/MM/YYYY");
+
+        return dateA - dateB;
+      });
+
+      return filteredEquipments;
     },
 
     isLoading() {
