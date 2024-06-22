@@ -77,11 +77,7 @@ export default {
 
   computed: {
     equipmentsToTable() {
-      return this.$store?.state?.equipmentsToTable ?? [];
-    },
-
-    filteredEquipmentsToTable() {
-      return this.$store?.state?.filteredEquipmentsToTable ?? [];
+      return this.$store?.state?.listEquipments?.equipmentsToTable ?? [];
     },
   },
 

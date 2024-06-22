@@ -16,13 +16,13 @@
 </template>
 
 <script>
+import moment from 'moment';
 export default {
   props: {
     closeOnClick: {
       type: Boolean,
       default: false,
     },
-  
   },
 
   data: () => ({
@@ -32,7 +32,7 @@ export default {
   watch: {
     date: {
       handler(value) {
-        this.$emit("setDate", this.formatDate(value));
+        this.$emit("setDate", moment(new Date(value)).format("DD/MM/YYYY"));
       },
       immediate: true,
     },
@@ -44,24 +44,6 @@ export default {
       const selectedDate = new Date(date);
 
       return selectedDate >= today;
-    },
-
-    formatDate(date) {
-      if (!date) return null;
-
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const year = date.getFullYear();
-
-      return `${day}/${month}/${year}`;
-    },
-
-    getTodayDate() {
-      const today = new Date();
-      const day = String(today.getDate()).padStart(2, "0");
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const year = today.getFullYear();
-      return `${day}/${month}/${year}`;
     },
   },
 };

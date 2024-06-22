@@ -49,7 +49,6 @@ export default {
 
   computed: {
     filteredEquipmentsToTable() {
-      console.log(this.$store.state);
       let filteredEquipments =
         this.$store?.state?.listEquipments?.filteredEquipmentsToTable ?? [];
 

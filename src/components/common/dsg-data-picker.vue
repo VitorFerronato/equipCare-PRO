@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   props: {
     title: {
@@ -67,7 +68,7 @@ export default {
 
   watch: {
     date() {
-      this.formatedDate = this.formatDate(this.date);
+      this.formatedDate = moment(new Date(this.date)).format("DD/MM/YYYY");
     },
     formatedDate: {
       handler(value) {
@@ -77,26 +78,8 @@ export default {
     },
   },
 
-  methods: {
-    formatDate(date) {
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const year = date.getFullYear();
-
-      return `${day}/${month}/${year}`;
-    },
-
-    getTodayDate() {
-      const today = new Date();
-      const day = String(today.getDate()).padStart(2, "0");
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const year = today.getFullYear();
-      return `${day}/${month}/${year}`;
-    },
-  },
-
   created() {
-    this.formatedDate = this.getTodayDate();
+    this.formatedDate = moment().format("DD/MM/YYYY");
   },
 };
 </script>

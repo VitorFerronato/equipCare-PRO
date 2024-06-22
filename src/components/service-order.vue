@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import moment from "moment";
 import DsgBtn from "./common/dsg-btn.vue";
 import service from "@/service/create-equipment.js";
 import serviceHistory from "@/service/orders-history";
@@ -168,7 +169,7 @@ export default {
       foundedEquipment.services.forEach((e) => {
         data[0].services.forEach((s) => {
           if (e.serviceId == s.serviceId) {
-            (e.semaphore = 4), (e.serviceOrder = this.getTodayDate());
+            (e.semaphore = 4), (e.serviceOrder = moment().format("DD/MM/YYYY"));
             e.nextMaintence = null;
           }
         });
@@ -183,18 +184,10 @@ export default {
         situation: false,
         orderId: Math.floor(Math.random() * 1000),
         serviceId: el.serviceId,
-        creationDate: this.getTodayDate(),
+        creationDate: moment().format("DD/MM/YYYY"),
         equipmentName: el.equipmentName,
         serviceName: el.serviceName,
       }));
-    },
-
-    getTodayDate() {
-      const today = new Date();
-      const day = String(today.getDate()).padStart(2, "0");
-      const month = String(today.getMonth() + 1).padStart(2, "0");
-      const year = today.getFullYear();
-      return `${day}/${month}/${year}`;
     },
   },
 };
