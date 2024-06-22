@@ -27,7 +27,7 @@
 <script>
 import DsgBtn from "@/components/common/dsg-btn.vue";
 import ServiceCard from "./service-card.vue";
-
+import moment from "moment";
 export default {
   components: { DsgBtn, ServiceCard },
   props: ["services", "workRegime", "weekRegime"],
@@ -112,11 +112,37 @@ export default {
           : service.proximaManutencao,
         workRegime: parseFloat(this.workRegime),
         weekRegime: parseFloat(this.weekRegime),
-        semaphore: service.serviceOrder ? 4 : Math.floor(Math.random() * 4),
+        semaphore: service?.serviceOrder
+          ? 4
+          : service.manualDate
+          ? this.resolveSemaphore(service.manualDate, service.lastMaintence)
+          : this.resolveSemaphore(
+              service.proximaManutencao,
+              service.lastMaintence
+            ),
         realized: false,
-        serviceOrder: service.serviceOrder,
+        serviceOrder: service?.serviceOrder ?? null,
         serviceId: service.id ? service.id : Math.floor(Math.random() * 1000),
       }));
+    },
+
+    resolveSemaphore(nextMaintence, lastMaintence) {
+      const data1 = moment(lastMaintence, "DD/MM/YYYY");
+      const data2 = moment(nextMaintence, "DD/MM/YYYY");
+
+      return this.setSemaphore(data2.diff(data1, "days"));
+    },
+
+    setSemaphore(days) {
+      if (days <= 0) {
+        return 0;
+      } else if (days <= 5) {
+        return 1;
+      } else if (days <= 15) {
+        return 2;
+      } else {
+        return 3;
+      }
     },
 
     addNewService() {

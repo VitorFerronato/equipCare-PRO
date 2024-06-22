@@ -1,7 +1,7 @@
 <template>
   <v-card class="pa-4">
     <h4 class="mb-4">FILTROS</h4>
-    <v-row>
+    <v-row v-if="false">
       <v-col cols="12" md="3" lg="5">
         <Dsg-text-field
           v-model="searchTerm"
@@ -19,8 +19,14 @@
         <Dsg-combobox
           v-model="filter.selected"
           :title="filter.title"
-          :disabled="filter.items.length <= 0 || equipments.length == 0"
-          :items="filter.items"
+          :disabled="filter.items.length <= 0 || equipmentsToTable.length == 0"
+          :items="getFilterItems(filter.tag)"
+          :itemTitle="'text'"
+          :itemValue="'value'"
+          multiple
+          chips
+          closable-chips
+          @change="filterItems"
         />
       </v-col>
     </v-row>
@@ -37,43 +43,75 @@ export default {
   data: () => ({
     filters: [
       {
+        title: "Semaforo",
+        items: [],
+        selected: [],
+        tag: "semaphore",
+      },
+      {
+        title: "Equipamento",
+        items: [],
+        selected: [],
+        tag: "equipmentName",
+      },
+      {
+        title: "Serviço",
+        items: [],
+        selected: [],
+        tag: "serviceName",
+      },
+      {
+        title: "Item",
+        items: [],
+        selected: [],
+        tag: "item",
+      },
+      {
         title: "Categoria",
         items: [],
-        selected: null,
-      },
-      {
-        title: "Items",
-        items: [],
-        selected: null,
-      },
-      {
-        title: "Semáforo",
-        items: [],
-        selected: null,
+        selected: [],
+        tag: "categorie",
       },
     ],
-    searchTerm: "",
   }),
 
   computed: {
-    equipments() {
-      return this.$store?.state?.equipments ?? [];
+    equipmentsToTable() {
+      return this.$store?.state?.equipmentsToTable ?? [];
+    },
+
+    filteredEquipmentsToTable() {
+      return this.$store?.state?.filteredEquipmentsToTable ?? [];
     },
   },
 
   watch: {
-    equipments: {
+    equipmentsToTable: {
       handler(value) {
-        if (!value || value.length <= 0) return;
-        this.setFilterItems();
+        if (value.length) {
+          this.filters.forEach((f) => {
+            f.items = this.getFilterItems(f.tag);
+          });
+        }
+        this.getFilterItems();
       },
-      deep: true,
       immediate: true,
+      deep: true,
     },
   },
 
   methods: {
-    setFilterItems() {},
+    getFilterItems(filterTag) {
+      const uniqueValues = new Set(
+        this.equipmentsToTable.map((equipment) => equipment[filterTag])
+      );
+
+      return Array.from(uniqueValues).map((value) => ({ text: value, value }));
+    },
+
+    filterItems() {
+      this.$store.dispatch("FILTER_ITEMS", this.filters);
+    },
   },
 };
 </script>

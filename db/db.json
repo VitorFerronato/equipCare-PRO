@@ -1,5 +1,94 @@
 {
-  "equipments": [],
+  "equipments": [
+    {
+      "equipmentName": "TORNO CPC",
+      "weekRegime": 7,
+      "workRegime": 4,
+      "tagName": "COP 987",
+      "id": 829,
+      "services": [
+        {
+          "serviceName": "Troca do eixo",
+          "item": "Eixo frontal",
+          "categorie": "Torno",
+          "changePeriod": 200,
+          "lastMaintence": "15/06/2024",
+          "nextMaintence": "04/08/2024",
+          "workRegime": 4,
+          "weekRegime": 7,
+          "semaphore": 3,
+          "realized": false,
+          "serviceOrder": null,
+          "serviceId": 382
+        },
+        {
+          "serviceName": "Ponteira do Bitz",
+          "item": "VENTUINHA",
+          "categorie": "Torno",
+          "changePeriod": 50,
+          "lastMaintence": "22/06/2024",
+          "nextMaintence": "04/07/2024",
+          "workRegime": 4,
+          "weekRegime": 7,
+          "semaphore": 2,
+          "realized": false,
+          "serviceOrder": null,
+          "serviceId": 216
+        },
+        {
+          "serviceName": "Troca de óleo",
+          "item": "Òleo",
+          "categorie": "Torno",
+          "changePeriod": 30,
+          "lastMaintence": "22/06/2024",
+          "nextMaintence": "01/07/2024",
+          "workRegime": 4,
+          "weekRegime": 7,
+          "semaphore": 2,
+          "realized": false,
+          "serviceOrder": null,
+          "serviceId": 612
+        }
+      ]
+    },
+    {
+      "equipmentName": "FRESA VASCULANTE",
+      "weekRegime": 2,
+      "workRegime": 1,
+      "tagName": "COP 98777",
+      "id": 412,
+      "services": [
+        {
+          "serviceName": "Troca do óleo",
+          "item": "Òleo",
+          "categorie": "FRESA",
+          "changePeriod": 100,
+          "lastMaintence": "25/06/2024",
+          "nextMaintence": "10/06/2025",
+          "workRegime": 1,
+          "weekRegime": 2,
+          "semaphore": 3,
+          "realized": false,
+          "serviceOrder": null,
+          "serviceId": 871
+        },
+        {
+          "serviceName": "Troca da ventuinha do funil",
+          "item": "VENTUINHA",
+          "categorie": "FRESA",
+          "changePeriod": 10,
+          "lastMaintence": "22/06/2024",
+          "nextMaintence": "27/07/2024",
+          "workRegime": 1,
+          "weekRegime": 2,
+          "semaphore": 3,
+          "realized": false,
+          "serviceOrder": null,
+          "serviceId": 537
+        }
+      ]
+    }
+  ],
   "orders": [],
   "items": [
     {
@@ -29,6 +118,13 @@
       "observation": "",
       "isEdit": false,
       "id": 1718894275860
+    },
+    {
+      "itemName": "Eixo frontal",
+      "cod": "787",
+      "observation": "La da barraca do zé",
+      "isEdit": false,
+      "id": 1719078242629
     }
   ],
   "categories": [

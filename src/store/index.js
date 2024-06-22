@@ -18,6 +18,8 @@ export default createStore({
 
     equipments: [],
     equipmentsToTable: [],
+    filteredEquipmentsToTable: [],
+
     items: [],
     categories: [],
 
@@ -44,6 +46,7 @@ export default createStore({
 
     SET_EQUIPMENTS_TO_TABLE(state, payload) {
       state.equipmentsToTable = payload
+      state.filteredEquipmentsToTable = payload
     },
 
     DELETE_ITEM(state, itemId) {
@@ -79,7 +82,11 @@ export default createStore({
 
     CLEAN_SERVICE_ORDER(state) {
       state.serviceOrder = []
-    }
+    },
+
+    SET_FILTERED_EQUIPMENTS(state, filteredEquipments) {
+      state.filteredEquipmentsToTable = filteredEquipments;
+    },
   },
 
   actions: {
@@ -272,7 +279,25 @@ export default createStore({
 
     GET_EQUIPMENT_BY_ID({ state }, id) {
       return state.equipments.find((e) => e.id == id)
-    }
+    },
+
+    FILTER_ITEMS({ state, commit }, filters) {
+      let filtered = state.equipmentsToTable;
+
+      filters.forEach(filter => {
+        if (filter.selected.length > 0) {
+          const selectedValues = filter.selected.map(item => item.value);
+          filtered = filtered.filter(equipment =>
+            selectedValues.includes(equipment[filter.tag])
+          );
+        }
+      });
+
+      commit('SET_FILTERED_EQUIPMENTS', filtered);
+    },
+
+
+
   },
   modules: {
     snackbar

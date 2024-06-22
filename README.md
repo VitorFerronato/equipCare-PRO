@@ -3,10 +3,11 @@
     - Alterar as cores das tabelas
     - Transformar a modal de items e de filtros em um componente só
     - Separar a store por funcionalidade
-    - Transformar o addDaysToDate e getTodayDate e gerar id em uma função do utils
+    - Transformar o addDaysToDate e getTodayDate e gerar id em uma função do utils ( usar a moment)
     - Tabela esta clonando valores ao filtrar [ BUG ]
     - chamar os endpoints de items e categorias e listagem somente se a store estiver vazia
     - Fixar sidebar
+    - nao suportado em mobile
 
 # Filtros
     - Inserir filtro de busca

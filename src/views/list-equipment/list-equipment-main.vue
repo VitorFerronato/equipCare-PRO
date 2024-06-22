@@ -13,16 +13,16 @@
     <Dsg-loading-circular v-if="isLoading" class="mt-6" />
 
     <Equipment-table-main
-      v-if="!isLoading && equipmentsToTable.length"
-      :equipments="equipmentsToTable"
+      v-if="!isLoading && filteredEquipmentsToTable.length"
+      :equipments="filteredEquipmentsToTable"
     />
 
     <v-row
-      v-if="!isLoading && !equipmentsToTable.length"
+      v-if="!isLoading && !filteredEquipmentsToTable.length"
       no-gutters
       justify="center"
     >
-      <h2>NENHUMA MANUTENÇÃO ENCONTRADA </h2>
+      <h2>NENHUMA MANUTENÇÃO ENCONTRADA</h2>
     </v-row>
   </div>
 </template>
@@ -47,8 +47,8 @@ export default {
   },
 
   computed: {
-    equipmentsToTable() {
-      return this.$store?.state?.equipmentsToTable ?? [];
+    filteredEquipmentsToTable() {
+      return this.$store?.state?.filteredEquipmentsToTable ?? [];
     },
 
     isLoading() {
