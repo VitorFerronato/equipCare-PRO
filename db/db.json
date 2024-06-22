@@ -8,18 +8,18 @@
       "id": 829,
       "services": [
         {
-          "serviceName": "Troca do eixo",
+          "serviceName": "Troca do xio",
           "item": "Eixo frontal",
           "categorie": "Torno",
           "changePeriod": 200,
-          "lastMaintence": "15/06/2024",
-          "nextMaintence": "04/08/2024",
+          "lastMaintence": "22/06/2024",
+          "nextMaintence": "16/10/2024",
           "workRegime": 4,
           "weekRegime": 7,
           "semaphore": 3,
           "realized": false,
           "serviceOrder": null,
-          "serviceId": 382
+          "serviceId": 953
         },
         {
           "serviceName": "Ponteira do Bitz",
@@ -33,7 +33,7 @@
           "semaphore": 2,
           "realized": false,
           "serviceOrder": null,
-          "serviceId": 216
+          "serviceId": 612
         },
         {
           "serviceName": "Troca de óleo",
@@ -47,7 +47,7 @@
           "semaphore": 4,
           "realized": false,
           "serviceOrder": "22/06/2024",
-          "serviceId": 612
+          "serviceId": 595
         }
       ]
     },
@@ -87,6 +87,52 @@
           "serviceId": 537
         }
       ]
+    },
+    {
+      "equipmentName": "FURADEIRA",
+      "weekRegime": 6,
+      "workRegime": 20,
+      "tagName": "COP 987",
+      "id": 687,
+      "services": [
+        {
+          "serviceName": "Fluido de freio",
+          "item": "VENTUINHA",
+          "categorie": "Torno",
+          "changePeriod": 30,
+          "lastMaintence": "22/06/2024",
+          "nextMaintence": "24/06/2024",
+          "workRegime": 20,
+          "weekRegime": 6,
+          "semaphore": 1,
+          "realized": false,
+          "serviceOrder": null,
+          "serviceId": 585
+        }
+      ]
+    },
+    {
+      "equipmentName": "SERRA ",
+      "weekRegime": 6,
+      "workRegime": 20,
+      "tagName": "C4744",
+      "id": 286,
+      "services": [
+        {
+          "serviceName": "Troca de óleo",
+          "item": "Rolamento",
+          "categorie": "Torno",
+          "changePeriod": 10,
+          "lastMaintence": "22/06/2024",
+          "nextMaintence": "22/06/2024",
+          "workRegime": 20,
+          "weekRegime": 6,
+          "semaphore": 0,
+          "realized": false,
+          "serviceOrder": null,
+          "serviceId": 216
+        }
+      ]
     }
   ],
   "orders": [],
@@ -97,13 +143,6 @@
       "observation": "6584",
       "isEdit": false,
       "id": 1718383217430
-    },
-    {
-      "itemName": "VENTUINHA",
-      "cod": "474",
-      "observation": "alguma observação",
-      "isEdit": false,
-      "id": 1718383263477
     },
     {
       "itemName": "Òleo",
@@ -125,6 +164,13 @@
       "observation": "La da barraca do zé",
       "isEdit": false,
       "id": 1719078242629
+    },
+    {
+      "itemName": "VENTUINHA",
+      "cod": "487",
+      "observation": "Sei la",
+      "isEdit": false,
+      "id": 1719090787045
     }
   ],
   "categories": [

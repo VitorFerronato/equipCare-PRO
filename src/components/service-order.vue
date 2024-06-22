@@ -94,7 +94,7 @@ export default {
 
   computed: {
     serviceOrder() {
-      return this.$store.state.serviceOrder;
+      return this.$store.state.serviceOrder?.serviceOrder ?? [];
     },
   },
 

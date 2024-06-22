@@ -28,7 +28,7 @@ export default {
 
   computed: {
     orders() {
-      return this.$store?.state?.orderHistory ?? [];
+      return this.$store?.state?.serviceOrder?.orderHistory ?? [];
     },
   },
 };

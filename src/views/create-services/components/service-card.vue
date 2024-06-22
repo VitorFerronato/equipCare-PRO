@@ -1,7 +1,14 @@
 <template>
   <v-card
     class="pa-4 mt-4"
-    :class="invalidInputsBorder == 'red' ? 'red-border' : 'green-border'"
+    :class="
+      localService.serviceOrder
+        ? 'blue-border'
+        : invalidInputsBorder == 'red'
+        ? 'red-border'
+        : 'green-border'
+    "
+    :disabled="localService.serviceOrder"
   >
     <v-row align="center">
       <v-col cols="12" md="4" lg="6 ">
@@ -53,7 +60,7 @@
         <Dsg-data-picker
           :title="'Data da ultima troca'"
           :tooltipText="'Caso nenhum valor for estipulado, ira considerar o dia atual'"
-          :disabled="localService.serviceOrder  "
+          :disabled="localService.serviceOrder"
           @setDate="localService.lastMaintence = $event"
           placeholder="Ex: 4"
           hide-spin-buttons

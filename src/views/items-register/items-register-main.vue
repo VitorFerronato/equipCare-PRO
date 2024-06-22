@@ -129,7 +129,7 @@ export default {
 
   computed: {
     items() {
-      return this.$store?.state?.items ?? [];
+      return this.$store.state?.items?.items ?? []
     },
 
     itemsLoading() {

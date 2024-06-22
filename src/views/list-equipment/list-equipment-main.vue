@@ -44,41 +44,14 @@ export default {
   },
   name: "list-equipments",
   data() {
-    return {
-      data: [
-        {
-          semaphore: 2,
-          id: 245,
-          nextMaintence: "24/05/06",
-        },
-        {
-          semaphore: 0,
-          id: 2354,
-          nextMaintence: null,
-        },
-        {
-          semaphore: 3,
-          id: 123,
-          nextMaintence: "22/06/06",
-        },
-        {
-          semaphore: 1,
-          id: 35,
-          nextMaintence: "22/05/06",
-        },
-        {
-          semaphore: 2,
-          id: 123,
-          nextMaintence: null,
-        },
-      ],
-    };
+    return {};
   },
 
   computed: {
     filteredEquipmentsToTable() {
+      console.log(this.$store.state);
       let filteredEquipments =
-        this.$store?.state?.filteredEquipmentsToTable ?? [];
+        this.$store?.state?.listEquipments?.filteredEquipmentsToTable ?? [];
 
       filteredEquipments.sort((a, b) => {
         if (a.nextMaintence === null) return 1;
@@ -94,7 +67,7 @@ export default {
     },
 
     isLoading() {
-      return this.$store?.state?.listEquipmentsLoading ?? false;
+      return this.$store?.state?.listEquipments?.listEquipmentsLoading ?? false;
     },
   },
 };
