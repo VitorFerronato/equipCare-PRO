@@ -115,7 +115,7 @@ export default {
         semaphore: service.serviceOrder ? 4 : Math.floor(Math.random() * 4),
         realized: false,
         serviceOrder: service.serviceOrder,
-        idService: service.id ? service.id : Math.floor(Math.random() * 1000),
+        serviceId: service.id ? service.id : Math.floor(Math.random() * 1000),
       }));
     },
 

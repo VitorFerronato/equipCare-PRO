@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  props: ["orders"],
   data: () => ({
     headers: [
       {
@@ -51,28 +52,7 @@ export default {
         sortable: false,
       },
     ],
-
-    orders: [
-      {
-        situation: false,
-        orderId: "001",
-        serviceId: 234,
-        creationDate: "10/09/2024",
-        equipmentName: "TORNO CAP",
-        serviceName: "FRESA",
-      },
-      {
-        situation: true,
-        orderId: "002",
-        serviceId: 234,
-        creationDate: "10/09/2024",
-        equipmentName: "TORNO CAP",
-        serviceName: "FRESA",
-      },
-    ],
   }),
-
-  methods: {},
 };
 </script>
 

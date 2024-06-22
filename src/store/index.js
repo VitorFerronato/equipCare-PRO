@@ -4,14 +4,17 @@ import snackbar from './snackbar'
 import service from "@/service/list-equipments.js"
 import itemService from "@/service/items-area.js"
 import categorieService from "@/service/categories-area.js"
+import orderHistoryService from "@/service/orders-history";
 const ItemService = new itemService()
 const CategorieService = new categorieService()
 const Service = new service()
+const OrderHistoryService = new orderHistoryService();
 export default createStore({
   state: {
     listEquipmentsLoading: false,
     getItemsLoading: false,
     getCategoriesLoading: false,
+    getOrderHistoryLoading: false,
 
     equipments: [],
     equipmentsToTable: [],
@@ -19,7 +22,7 @@ export default createStore({
     categories: [],
 
     serviceOrder: [],
-
+    orderHistory: []
   },
 
   mutations: {
@@ -27,12 +30,20 @@ export default createStore({
       state.equipments = payload
     },
 
-    SET_EQUIPMENTS_TO_TABLE(state, payload) {
-      state.equipmentsToTable = payload
-    },
-
     LIST_ITEMS(state, payload) {
       state.items = payload
+    },
+
+    LIST_CATEGORIES(state, payload) {
+      state.categories = payload
+    },
+
+    LIST_ORDER_HISTORY(state, payload) {
+      state.orderHistory = payload
+    },
+
+    SET_EQUIPMENTS_TO_TABLE(state, payload) {
+      state.equipmentsToTable = payload
     },
 
     DELETE_ITEM(state, itemId) {
@@ -41,10 +52,6 @@ export default createStore({
 
     DELETE_CATEGORIE(state, categorieId) {
       state.categories = state.categories.filter((el) => el.id !== categorieId);
-    },
-
-    LIST_CATEGORIES(state, payload) {
-      state.categories = payload
     },
 
     ADD_SERVICE_TO_EQUIPMENT_IN_ORDER(state, { service, equipment }) {
@@ -62,12 +69,16 @@ export default createStore({
       const equipmentInOrder = state.serviceOrder.find(e => e.id === equipmentId);
 
       if (equipmentInOrder) {
-        equipmentInOrder.services = equipmentInOrder.services.filter(s => s.idService !== serviceId);
+        equipmentInOrder.services = equipmentInOrder.services.filter(s => s.serviceId !== serviceId);
 
         if (equipmentInOrder.services.length === 0) {
           state.serviceOrder = state.serviceOrder.filter(e => e.id !== equipmentId);
         }
       }
+    },
+
+    CLEAN_SERVICE_ORDER(state) {
+      state.serviceOrder = []
     }
   },
 
@@ -101,6 +112,36 @@ export default createStore({
       }
 
       state.getItemsLoading = false
+    },
+
+    async GET_CATEGORIES({ commit, state }) {
+      state.getCategoriesLoading = true
+
+      try {
+        let response = await Service.getCategories()
+        commit('LIST_CATEGORIES', response?.data ?? [])
+      } catch (error) {
+        console.log(error);
+        commit('snackbar/set', { message: 'Erro ao carregar categorias', type: 'error' }, { root: true });
+        commit('LIST_CATEGORIES', [])
+      }
+
+      state.getCategoriesLoading = false
+    },
+
+    async GET_ORDER_HISTORY({ commit, state }) {
+      state.getOrderHistoryLoading = true
+
+      try {
+        let response = await OrderHistoryService.getOrdersHistory()
+        commit('LIST_ORDER_HISTORY', response?.data ?? [])
+      } catch (error) {
+        console.log(error);
+        commit('snackbar/set', { message: 'Erro ao carregar histórico de ordens', type: 'error' }, { root: true });
+        commit('LIST_ORDER_HISTORY', [])
+      }
+
+      state.getOrderHistoryLoading = false
     },
 
     async CREATE_NEW_ITEM({ commit }, item) {
@@ -141,21 +182,6 @@ export default createStore({
         dispatch('GET_ITEMS')
         commit('snackbar/set', { message: 'Erro ao excluir item', type: 'error' }, { root: true });
       }
-    },
-
-    async GET_CATEGORIES({ commit, state }) {
-      state.getCategoriesLoading = true
-
-      try {
-        let response = await Service.getCategories()
-        commit('LIST_CATEGORIES', response?.data ?? [])
-      } catch (error) {
-        console.log(error);
-        commit('snackbar/set', { message: 'Erro ao carregar categorias', type: 'error' }, { root: true });
-        commit('LIST_CATEGORIES', [])
-      }
-
-      state.getCategoriesLoading = false
     },
 
     async CREATE_NEW_CATEGORIE({ commit, dispatch }, categorie) {
@@ -211,7 +237,7 @@ export default createStore({
           workRegime: service.workRegime,
           weekRegime: service.weekRegime,
           realized: service.realized,
-          idService: service.idService,
+          serviceId: service.serviceId,
           serviceOrder: service?.serviceOrder ?? null,
         }))
       );
@@ -226,10 +252,10 @@ export default createStore({
         const equipmentInOrder = state.serviceOrder.find(e => e.id === equipmentId);
 
         if (equipmentInOrder) {
-          const serviceExists = equipmentInOrder.services.some(s => s.idService === service.idService);
+          const serviceExists = equipmentInOrder.services.some(s => s.serviceId === service.serviceId);
           if (serviceExists) {
             service.markToOrder = false
-            commit('REMOVE_SERVICE_FROM_EQUIPMENT_IN_ORDER', { serviceId: service.idService, equipmentId });
+            commit('REMOVE_SERVICE_FROM_EQUIPMENT_IN_ORDER', { serviceId: service.serviceId, equipmentId });
           } else {
             service.markToOrder = true
             commit('ADD_SERVICE_TO_EQUIPMENT_IN_ORDER', { service, equipment });
@@ -243,6 +269,10 @@ export default createStore({
         }
       }
     },
+
+    GET_EQUIPMENT_BY_ID({ state }, id) {
+      return state.equipments.find((e) => e.id == id)
+    }
   },
   modules: {
     snackbar

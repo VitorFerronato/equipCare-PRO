@@ -16,7 +16,7 @@
 
     <v-dialog v-model="modalOpen" :persistent="isLoading" max-width="900">
       <v-card class="pa-4" :disabled="isLoading">
-        <v-row no-gutters justify="space-between" align="center">
+        <v-row no-gutters justify="space-between" align="center" class="mb-4">
           <h4>ORDEM DE SERVIÇO</h4>
           <v-icon @click="modalOpen = false">mdi-close</v-icon>
         </v-row>
@@ -47,7 +47,7 @@
           <Dsg-btn
             :title="'Confirmar'"
             :loading="isLoading"
-            @click="setNewServiceOrder"
+            @click="setOrderJob"
           />
         </v-row>
       </v-card>
@@ -58,14 +58,16 @@
 <script>
 import DsgBtn from "./common/dsg-btn.vue";
 import service from "@/service/create-equipment.js";
+import serviceHistory from "@/service/orders-history";
+const ServiceHistory = new serviceHistory();
 const Service = new service();
+
 export default {
   components: { DsgBtn },
   data: () => ({
     modalOpen: false,
     isLoading: false,
 
-    formatedServiceOrder: [],
     headers: [
       {
         title: "Equipamento",
@@ -87,6 +89,7 @@ export default {
         value: "categorie",
       },
     ],
+    formatedServiceOrder: [],
   }),
 
   computed: {
@@ -106,26 +109,6 @@ export default {
   },
 
   methods: {
-    async setNewServiceOrder() {
-      this.isLoading = true;
-
-      let request = this.buildRequest(this.serviceOrder)[0];
-
-      try {
-        await Service.updateEquipment(request);
-        this.$store.dispatch("GET_EQUIPMENTS");
-      } catch (error) {
-        console.log(error);
-        this.$store.commit("snackbar/set", {
-          message: "Erro ao gerar ordem de serviços, contate o suporte!",
-          type: "error",
-        });
-      }
-
-      this.isLoading = false;
-      this.modalOpen = false;
-    },
-
     formatToTable(data) {
       return data.flatMap(({ equipmentName, tagName, services, id }) =>
         services.map((service) => ({
@@ -137,30 +120,72 @@ export default {
       );
     },
 
-    buildRequest(data) {
-      return data.map((newOrder) => ({
-        equipmentName: newOrder.equipmentName,
-        weekRegime: newOrder.weekRegime,
-        workRegime: newOrder.workRegime,
-        tagName: newOrder.tagName,
-        id: newOrder.id,
-        services: this.buildRequestService(newOrder.services),
-      }));
+    async setOrderJob() {
+      let paramForRequest = this.serviceOrder;
+      this.isLoading = true;
+      await this.setNewServiceOrder(paramForRequest);
+      // await this.setToOrderHistory(paramForRequest);
+      this.isLoading = false;
+      this.modalOpen = false;
     },
 
-    buildRequestService(services) {
-      return services.map((service) => ({
-        categorie: service.categorie,
-        changePeriod: service.changePeriod,
-        idService: service.idService,
-        item: service.item,
-        realized: false,
-        semaphore: 4,
-        serviceOrder: this.getTodayDate(),
-        nextMaintence: null,
-        serviceName: service.serviceName,
-        weekRegime: service.weekRegime,
-        workRegime: service.workRegime,
+    async setNewServiceOrder(paramForRequest) {
+      let request = await this.buildRequest(paramForRequest);
+
+      try {
+        await Service.updateEquipment(request);
+        await this.$store.commit("CLEAN_SERVICE_ORDER");
+        await this.$store.dispatch("GET_EQUIPMENTS");
+      } catch (error) {
+        console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao gerar ordem de serviços, contate o suporte!",
+          type: "error",
+        });
+      }
+    },
+
+    async setToOrderHistory(paramForRequest) {
+      let request = this.buildHistoryRequest(paramForRequest);
+
+      try {
+        await ServiceHistory.setNewOrderHistory(request[0]);
+      } catch (error) {
+        console.log(error);
+        this.$store.commit("snackbar/set", {
+          message: "Erro ao inserir ordem no histórico, contate o suporte!",
+          type: "error",
+        });
+      }
+    },
+
+    async buildRequest(data) {
+      let foundedEquipment = await this.$store.dispatch(
+        "GET_EQUIPMENT_BY_ID",
+        data[0]?.id
+      );
+
+      foundedEquipment.services.forEach((e) => {
+        data[0].services.forEach((s) => {
+          if (e.serviceId == s.serviceId) {
+            (e.semaphore = 4), (e.serviceOrder = this.getTodayDate());
+            e.nextMaintence = null;
+          }
+        });
+      });
+
+      return foundedEquipment;
+    },
+
+    buildHistoryRequest(data) {
+      console.log(data);
+      return data[0].services.map((el) => ({
+        situation: false,
+        orderId: Math.floor(Math.random() * 1000),
+        serviceId: el.serviceId,
+        creationDate: this.getTodayDate(),
+        equipmentName: el.equipmentName,
+        serviceName: el.serviceName,
       }));
     },
 

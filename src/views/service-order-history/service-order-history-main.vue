@@ -4,29 +4,21 @@
 
     <Filter-area />
 
-    <Dsg-loading-circular v-if="false" class="mt-6" />
+    <Order-history-list v-if="orders.length" :orders="orders"/>
 
-    <Order-history-list />
-
-    <!-- <v-row
-      v-if="!isLoading && equipmentsToTable.length <= 0"
-      no-gutters
-      justify="center"
-    >
+    <v-row v-if="!orders.length" no-gutters justify="center" class="mt-6">
       <h2>NENHUMA ORDEM ENCONTRADA</h2>
-    </v-row> -->
+    </v-row>
   </div>
 </template>
 
 <script>
 import FilterArea from "./components/filter-area.vue";
-import DsgLoadingCircular from "@/components/common/dsg-loading-circular.vue";
 import OrderHistoryList from "./components/order-history-list.vue";
 
 export default {
   components: {
     FilterArea,
-    DsgLoadingCircular,
     OrderHistoryList,
   },
   name: "list-service-orders",
@@ -34,7 +26,11 @@ export default {
     return {};
   },
 
-  computed: {},
+  computed: {
+    orders() {
+      return this.$store?.state?.orderHistory ?? [];
+    },
+  },
 };
 </script>
 

@@ -12,14 +12,17 @@
 
     <Dsg-loading-circular v-if="isLoading" class="mt-6" />
 
-    <Equipment-table-main v-else :equipments="equipmentsToTable" />
+    <Equipment-table-main
+      v-if="!isLoading && equipmentsToTable.length"
+      :equipments="equipmentsToTable"
+    />
 
     <v-row
-      v-if="!isLoading && equipmentsToTable.length <= 0"
+      v-if="!isLoading && !equipmentsToTable.length"
       no-gutters
       justify="center"
     >
-      <h2>NENHUM EQUIPAMENTO ENCONTRADO</h2>
+      <h2>NENHUMA MANUTENÇÃO ENCONTRADA </h2>
     </v-row>
   </div>
 </template>

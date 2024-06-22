@@ -20,6 +20,7 @@ export default {
     await this.$store.dispatch("GET_EQUIPMENTS");
     await this.$store.dispatch("GET_ITEMS");
     await this.$store.dispatch("GET_CATEGORIES");
+    await this.$store.dispatch("GET_ORDER_HISTORY");
     this.isLoading = false;
   },
 };

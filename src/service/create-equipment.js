@@ -16,7 +16,6 @@ export default class CreateEquipment extends ServiceBase {
     }
 
     async updateEquipment(equipment) {
-        console.log('equipment', equipment);
         return await axiosInstance.put(API_URL + `equipments/${equipment.id}`, equipment);
     }
 

@@ -138,7 +138,7 @@ export default {
   },
 
   async created() {
-    if (!this.$route.query.data) this.$router.push("list-equipment");
+    if (!this.$route.query.data) this.$router.push("list-equipments");
 
     let id = JSON.parse(this.$route.query.data).id;
 
