@@ -135,7 +135,20 @@
       ]
     }
   ],
-  "orders": [],
+  "orders": [
+    {
+      "situation": false,
+      "creationDate": "22/05/2020",
+      "equipmentName": "FRESA VASCULANTE",
+      "serviceName": "Ponteira do Bitz"
+    },
+    {
+      "situation": true,
+      "creationDate": "24/05/2020",
+      "equipmentName": "FRESA VASCULANTE",
+      "serviceName": "Ponteira do Bitz"
+    }
+  ],
   "items": [
     {
       "itemName": "Rolamento",

@@ -5,6 +5,11 @@
       :items="orders"
       :hide-default-footer="orders.length <= 5"
     >
+      <template v-slot:[`item.orderId`]="{ item,index }">
+        <td v-if="item">
+          00{{index + 1}}
+        </td>
+      </template>
       <template v-slot:[`item.situation`]="{ item }">
         <td>
           <div :class="item.situation ? 'done' : 'undone'">

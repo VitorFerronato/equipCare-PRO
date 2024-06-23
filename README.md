@@ -24,5 +24,7 @@
     - Endpoint de criar ordem de serviço
 
 # Histórico de Ordem de serviço
-    - Em progresso
-    - Adicionar id unico por ordem "001"
+    - Painel espansivo com o nome da ordem, e dentro todos os serviços
+
+    === DUVIDAS
+        - Se eu alterar os serviços de umequipamento a ordem de serviço precisa ser alterada também? Principalmente a data? 

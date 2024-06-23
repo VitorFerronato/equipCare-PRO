@@ -100,12 +100,6 @@ export default {
       }
     },
 
-    // addAllToOrder() {
-    //   this.equipments
-    //     .filter((service) => !service.realized)
-    //     .forEach((service) => this.addToServiceOrder(service));
-    // },
-
     addToServiceOrder(item) {
       this.$store.dispatch("ADD_TO_SERVICE_ORDER", {
         service: item,
@@ -114,7 +108,6 @@ export default {
     },
 
     editEquipment(equipment) {
-      console.log(equipment);
       let id = {
         id: equipment.id,
       };
