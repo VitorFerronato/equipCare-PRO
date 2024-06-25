@@ -6,12 +6,15 @@
     - chamar os endpoints de items e categorias e listagem somente se a store estiver vazia
     - Fixar sidebar
     - nao suportado em mobile
+    - fazer o semáforo baseado no dia de hoje
 
 # Filtros
-
+    - Range de data - 15, 30, 45, 50
     
 # Listagem de equipamentos
     - Ao marcar um equipamento para fazer a ordem de serviço, remover os filtros se tiver e mostrar na listagem só os items correspondentes
+    - Na coluna de possui ordem adicionar uma ação que vai abrir aquela ordem e todos os seus serviços, e uma opção
+    para baixar.
 
 # Adicionar equipamentos
 
@@ -22,6 +25,7 @@
 
 # Ordem de serviço
     - Endpoint de criar ordem de serviço
+    - Ao confirmar a ordem abrir uma tela para imprimir 
 
 # Histórico de Ordem de serviço
     - Painel espansivo com o nome da ordem, e dentro todos os serviços
