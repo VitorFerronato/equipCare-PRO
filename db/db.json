@@ -41,12 +41,12 @@
           "categorie": "Torno",
           "changePeriod": 30,
           "lastMaintence": "22/06/2024",
-          "nextMaintence": "27/07/2024",
+          "nextMaintence": null,
           "workRegime": 4,
           "weekRegime": 7,
-          "semaphore": 2,
+          "semaphore": 4,
           "realized": false,
-          "serviceOrder": null,
+          "serviceOrder": "25/06/2024",
           "serviceId": 595
         }
       ]
@@ -101,36 +101,13 @@
           "categorie": "Torno",
           "changePeriod": 30,
           "lastMaintence": "22/06/2024",
-          "nextMaintence": "24/06/2024",
+          "nextMaintence": null,
           "workRegime": 20,
           "weekRegime": 6,
-          "semaphore": 1,
+          "semaphore": 4,
           "realized": false,
-          "serviceOrder": null,
+          "serviceOrder": "25/06/2024",
           "serviceId": 585
-        }
-      ]
-    },
-    {
-      "equipmentName": "SERRA ",
-      "weekRegime": 6,
-      "workRegime": 20,
-      "tagName": "C4744",
-      "id": 286,
-      "services": [
-        {
-          "serviceName": "Troca de óleo",
-          "item": "Rolamento",
-          "categorie": "Torno",
-          "changePeriod": 10,
-          "lastMaintence": "22/06/2024",
-          "nextMaintence": "22/06/2024",
-          "workRegime": 20,
-          "weekRegime": 6,
-          "semaphore": 0,
-          "realized": false,
-          "serviceOrder": null,
-          "serviceId": 216
         }
       ]
     }
@@ -138,15 +115,21 @@
   "orders": [
     {
       "situation": false,
-      "creationDate": "22/05/2020",
-      "equipmentName": "FRESA VASCULANTE",
-      "serviceName": "Ponteira do Bitz"
+      "orderId": 219,
+      "serviceId": 585,
+      "creationDate": "25/06/2024",
+      "equipmentName": "FURADEIRA",
+      "serviceName": "FLUIDO DE FREIO",
+      "id": 1
     },
     {
-      "situation": true,
-      "creationDate": "24/05/2020",
-      "equipmentName": "FRESA VASCULANTE",
-      "serviceName": "Ponteira do Bitz"
+      "situation": false,
+      "orderId": 501,
+      "serviceId": 595,
+      "creationDate": "25/06/2024",
+      "equipmentName": "TORNO CPC",
+      "serviceName": "TROCA DE ÓLEO",
+      "id": 2
     }
   ],
   "items": [

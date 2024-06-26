@@ -116,18 +116,24 @@ export default {
           ...service,
           equipmentName,
           tagName,
-          id,
+          idOrder: id,
         }))
       );
     },
 
     async setOrderJob() {
       let paramForRequest = this.serviceOrder;
+
       this.isLoading = true;
+      await this.setToOrderHistory(paramForRequest);
       await this.setNewServiceOrder(paramForRequest);
-      // await this.setToOrderHistory(paramForRequest);
+      await this.$store.dispatch("GET_ORDER_HISTORY");
       this.isLoading = false;
       this.modalOpen = false;
+      this.$store.commit("snackbar/set", {
+        message: "Sucesso ao gerar ordem de serviço",
+        type: 'success',
+      });
     },
 
     async setNewServiceOrder(paramForRequest) {

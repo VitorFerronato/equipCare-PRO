@@ -7,6 +7,7 @@
     - Fixar sidebar
     - nao suportado em mobile
     - fazer o semáforo baseado no dia de hoje
+    - Calculo da data ta errada
 
 # Filtros
     - Range de data - 15, 30, 45, 50
@@ -24,7 +25,6 @@
     - Mostrar uma mensagem com confirmação caso o usuario selecione uma data manual e ela passe do tempo de manutenção
 
 # Ordem de serviço
-    - Endpoint de criar ordem de serviço
     - Ao confirmar a ordem abrir uma tela para imprimir 
 
 # Histórico de Ordem de serviço
