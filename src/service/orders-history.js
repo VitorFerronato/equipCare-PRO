@@ -9,6 +9,4 @@ export default class ListOrdersHistory extends ServiceBase {
     async getOrdersHistory() {
         return await axiosInstance.get(API_URL + "orders");
     }
-
-
 }

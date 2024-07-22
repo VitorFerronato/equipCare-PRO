@@ -8,7 +8,9 @@
       <template v-slot:item="{ item }">
         <tr>
           <td :class="setBackground(item.semaphore)">
-            {{ item.nextMaintence ?? "POSSUI ORDEM" }}
+            <span v-if="item.nextMaintence" class="mr-4"> {{ item.nextMaintence}}</span>
+           
+            <span v-else>POSSUI ORDEM <v-icon @click="openOrder(item)" right>mdi-clipboard-outline</v-icon> </span>
           </td>
           <td>{{ item.equipmentName }}</td>
           <td>{{ item.serviceName }}</td>
@@ -116,6 +118,10 @@ export default {
         query: { data: JSON.stringify(id) },
       });
     },
+
+    openOrder(item){
+      console.log(item);
+    }
   },
 };
 </script>

@@ -23,12 +23,9 @@
 # Adicionar Serviços
     - Tooltip no campo da próxima manutenção com o calculo feito
     - Mostrar uma mensagem com confirmação caso o usuario selecione uma data manual e ela passe do tempo de manutenção
+    - Esconde botão de excluir equipamento se algum serviço possuir ordem ativa
 
 # Ordem de serviço
     - Ao confirmar a ordem abrir uma tela para imprimir 
 
 # Histórico de Ordem de serviço
-    - Painel espansivo com o nome da ordem, e dentro todos os serviços
-
-    === DUVIDAS
-        - Se eu alterar os serviços de umequipamento a ordem de serviço precisa ser alterada também? Principalmente a data? 

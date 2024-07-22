@@ -18,7 +18,7 @@
           "weekRegime": 7,
           "semaphore": 4,
           "realized": false,
-          "serviceOrder": "24/06/2024",
+          "serviceOrder": "29/06/2024",
           "serviceId": 953
         },
         {
@@ -32,7 +32,7 @@
           "weekRegime": 7,
           "semaphore": 4,
           "realized": false,
-          "serviceOrder": "24/06/2024",
+          "serviceOrder": "29/06/2024",
           "serviceId": 612
         },
         {
@@ -46,7 +46,7 @@
           "weekRegime": 7,
           "semaphore": 4,
           "realized": false,
-          "serviceOrder": "25/06/2024",
+          "serviceOrder": "29/06/2024",
           "serviceId": 595
         }
       ]
@@ -64,12 +64,12 @@
           "categorie": "FRESA",
           "changePeriod": 100,
           "lastMaintence": "25/06/2024",
-          "nextMaintence": "10/06/2025",
+          "nextMaintence": null,
           "workRegime": 1,
           "weekRegime": 2,
-          "semaphore": 3,
+          "semaphore": 4,
           "realized": false,
-          "serviceOrder": null,
+          "serviceOrder": "29/06/2024",
           "serviceId": 871
         },
         {
@@ -78,12 +78,12 @@
           "categorie": "FRESA",
           "changePeriod": 10,
           "lastMaintence": "22/06/2024",
-          "nextMaintence": "27/07/2024",
+          "nextMaintence": null,
           "workRegime": 1,
           "weekRegime": 2,
-          "semaphore": 3,
+          "semaphore": 4,
           "realized": false,
-          "serviceOrder": null,
+          "serviceOrder": "22/07/2024",
           "serviceId": 537
         }
       ]
@@ -106,7 +106,7 @@
           "weekRegime": 6,
           "semaphore": 4,
           "realized": false,
-          "serviceOrder": "25/06/2024",
+          "serviceOrder": "29/06/2024",
           "serviceId": 585
         }
       ]
@@ -114,22 +114,69 @@
   ],
   "orders": [
     {
+      "creationDate": "29/06/2024",
       "situation": false,
-      "orderId": 219,
-      "serviceId": 585,
-      "creationDate": "25/06/2024",
-      "equipmentName": "FURADEIRA",
-      "serviceName": "FLUIDO DE FREIO",
+      "orderId": 144,
+      "services": [
+        {
+          "equipmentName": "TORNO CPC",
+          "serviceId": 953,
+          "serviceName": "TROCA DO XIO"
+        }
+      ],
       "id": 1
     },
     {
+      "creationDate": "29/06/2024",
       "situation": false,
-      "orderId": 501,
-      "serviceId": 595,
-      "creationDate": "25/06/2024",
-      "equipmentName": "TORNO CPC",
-      "serviceName": "TROCA DE ÓLEO",
+      "orderId": 152,
+      "services": [
+        {
+          "equipmentName": "FRESA VASCULANTE",
+          "serviceId": 871,
+          "serviceName": "TROCA DO ÓLEO"
+        }
+      ],
       "id": 2
+    },
+    {
+      "creationDate": "29/06/2024",
+      "situation": false,
+      "orderId": 971,
+      "services": [
+        {
+          "equipmentName": "TORNO CPC",
+          "serviceId": 612,
+          "serviceName": "PONTEIRA DO BITZ"
+        }
+      ],
+      "id": 3
+    },
+    {
+      "creationDate": "29/06/2024",
+      "situation": false,
+      "orderId": 8,
+      "services": [
+        {
+          "equipmentName": "FURADEIRA",
+          "serviceId": 585,
+          "serviceName": "FLUIDO DE FREIO"
+        }
+      ],
+      "id": 4
+    },
+    {
+      "creationDate": "22/07/2024",
+      "situation": false,
+      "orderId": 395,
+      "services": [
+        {
+          "equipmentName": "FRESA VASCULANTE",
+          "serviceId": 537,
+          "serviceName": "TROCA DA VENTUINHA DO FUNIL"
+        }
+      ],
+      "id": 5
     }
   ],
   "items": [

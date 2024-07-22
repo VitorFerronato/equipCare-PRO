@@ -119,5 +119,12 @@ a {
 .blue-background {
   border-left: 6px solid #3c5ca7 !important;
 }
-
+@media print {
+    @page {
+      margin: 0;
+    }
+    body {
+      margin: 0;
+    }
+  }
 </style>

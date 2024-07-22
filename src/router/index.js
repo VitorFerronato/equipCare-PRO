@@ -5,6 +5,7 @@ import listEquipments from "@/views/list-equipment/list-equipment-main.vue"
 import itemsRegister from "@/views/items-register/items-register-main.vue"
 import categoriesRegister from "@/views/categories-register/categories-register-main.vue"
 import serviceOrderHistory from "@/views/service-order-history/service-order-history-main.vue"
+import printableOrder from '@/components/printable-order.vue'
 const routes = [
   {
     path: "/",
@@ -39,6 +40,10 @@ const routes = [
     path: '/service-order-history',
     component: serviceOrderHistory,
     name: 'list-service-orders'
+  },
+  {
+    path: '/print-component',
+    component: printableOrder,
   },
 ]
 

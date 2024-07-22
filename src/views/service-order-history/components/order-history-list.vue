@@ -1,23 +1,28 @@
 <template>
   <div class="mt-6">
-    <v-data-table
-      :headers="headers"
-      :items="orders"
-      :hide-default-footer="orders.length <= 5"
-    >
-      <template v-slot:[`item.orderId`]="{ item,index }">
-        <td v-if="item">
-          00{{index + 1}}
-        </td>
-      </template>
-      <template v-slot:[`item.situation`]="{ item }">
-        <td>
-          <div :class="item.situation ? 'done' : 'undone'">
-            {{ item.situation ? "Realizado" : "Não realizado" }}
-          </div>
-        </td>
-      </template>
-    </v-data-table>
+    <v-expansion-panels variant="accordion">
+      <v-expansion-panel
+        v-for="(order, index) in orders"
+        :key="order.orderId"
+        class="mt-2"
+      >
+        <v-expansion-panel-title>
+          <v-row no-gutters justify="space-between"
+            ><span class="font-weight-bold">ORDEM 00{{ index + 1 }}</span>
+            <v-icon @click="$emit('printOrder')">mdi-printer</v-icon>
+          </v-row>
+        </v-expansion-panel-title>
+
+        <v-expansion-panel-text>
+          <v-data-table
+            :headers="headers"
+            :items="order.services"
+            :hide-default-footer="orders.length <= 5"
+          >
+          </v-data-table>
+        </v-expansion-panel-text>
+      </v-expansion-panel>
+    </v-expansion-panels>
   </div>
 </template>
 
@@ -27,21 +32,6 @@ export default {
   data: () => ({
     headers: [
       {
-        title: "Situação",
-        value: "situation",
-        sortable: true,
-      },
-      {
-        title: "Número da ordem",
-        value: "orderId",
-        sortable: true,
-      },
-      {
-        title: "Data da criação",
-        value: "creationDate",
-        sortable: true,
-      },
-      {
         title: "Equipamento",
         value: "equipmentName",
         sortable: true,
@@ -50,11 +40,6 @@ export default {
         title: "Serviço",
         value: "serviceName",
         sortable: true,
-      },
-      {
-        title: "Ações",
-        value: "actions",
-        sortable: false,
       },
     ],
   }),

@@ -132,7 +132,7 @@ export default {
       this.modalOpen = false;
       this.$store.commit("snackbar/set", {
         message: "Sucesso ao gerar ordem de serviço",
-        type: 'success',
+        type: "success",
       });
     },
 
@@ -175,7 +175,8 @@ export default {
       foundedEquipment.services.forEach((e) => {
         data[0].services.forEach((s) => {
           if (e.serviceId == s.serviceId) {
-            (e.semaphore = 4), (e.serviceOrder = moment().format("DD/MM/YYYY"));
+            e.semaphore = 4;
+            e.serviceOrder = moment().format("DD/MM/YYYY");
             e.nextMaintence = null;
           }
         });
@@ -185,14 +186,17 @@ export default {
     },
 
     buildHistoryRequest(data) {
-      console.log(data);
       return data[0].services.map((el) => ({
+        creationDate: moment().format("DD/MM/YYYY"),
         situation: false,
         orderId: Math.floor(Math.random() * 1000),
-        serviceId: el.serviceId,
-        creationDate: moment().format("DD/MM/YYYY"),
-        equipmentName: el.equipmentName,
-        serviceName: el.serviceName,
+        services: [
+          {
+            equipmentName: el.equipmentName,
+            serviceId: el.serviceId,
+            serviceName: el.serviceName,
+          },
+        ],
       }));
     },
   },
