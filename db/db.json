@@ -110,6 +110,29 @@
           "serviceId": 585
         }
       ]
+    },
+    {
+      "equipmentName": "TESTE",
+      "weekRegime": 6,
+      "workRegime": 4,
+      "tagName": "COP 8478",
+      "id": 608,
+      "services": [
+        {
+          "serviceName": "SERVIÇO 1",
+          "item": "Rolamento",
+          "categorie": "Torno",
+          "changePeriod": 30,
+          "lastMaintence": "20/07/2024",
+          "nextMaintence": "31/12/1969",
+          "workRegime": 4,
+          "weekRegime": 6,
+          "semaphore": 0,
+          "realized": false,
+          "serviceOrder": null,
+          "serviceId": 37
+        }
+      ]
     }
   ],
   "orders": [

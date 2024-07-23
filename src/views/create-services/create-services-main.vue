@@ -17,8 +17,7 @@
         {{ equipmentName }}
         <span v-show="tagName">- {{ tagName }}</span>
       </h2>
-
-      <Delete-equipment-modal v-if="equipmentId" :id="equipmentId" />
+      <Delete-equipment-modal v-if="equipmentId && !hasActiveServiceOrder" :id="equipmentId" />
     </v-row>
     <div class="dsg-flex-center gap-1 mb-6">
       <div>
@@ -64,7 +63,6 @@ export default {
     },
 
     equipmentName() {
-      console.log(this.equipment);
       return this.equipment?.equipmentName.toUpperCase() ?? "-";
     },
 
@@ -78,6 +76,10 @@ export default {
 
     workRegime() {
       return this.equipment?.workRegime ?? null;
+    },
+
+    hasActiveServiceOrder() {
+      return this.equipment?.services?.filter((el) => el.serviceOrder !== null) ?? false
     },
   },
 
@@ -117,7 +119,7 @@ export default {
       let serviceURL = this.equipment.id
         ? "updateEquipment"
         : "saveNewEquipment";
-        
+
       try {
         await Service[serviceURL](request);
         this.$store.commit("snackbar/set", {

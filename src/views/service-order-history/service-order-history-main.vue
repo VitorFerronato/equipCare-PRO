@@ -35,7 +35,7 @@ export default {
   data() {
     return {
       orderToPrint: {
-        equipmentName: "teste",
+        equipmentName: "TORNO CNC ALGUMA COISA",
         serviceName: "Outro teste",
       },
     };
@@ -108,7 +108,5 @@ export default {
   gap: 0.2rem;
 }
 
-.print-only {
-  display: block !important;
-}
+
 </style>
